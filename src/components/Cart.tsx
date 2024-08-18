@@ -22,33 +22,9 @@ const Cart = () => {
   const item = useSelector((state: any) => state.cart.products);
 
   const dispatch = useDispatch();
-  // localStorage.getItem('cartItems')
-
-  //   if (typeof window !== 'undefined') {
-  //     console.log('we are running on the client')
-  //     console.log(JSON.parse(localStorage.getItem('cartItems')!))
-  // }
-
+  
   useEffect(() => {
-    // const handleLoad = () => {
-    //   console.log("Page fully loaded");
-    //   // Your code here
-    // };
-
-    // // Check if window object is available
-    // if (typeof window !== "undefined") {
-    //   window.addEventListener("load", () => {
-    //     console.log("Hello");
-    //   });
-    // }
-
-    // return () => {
-    //   // Cleanup the event listener on component unmount
-    //   if (typeof window !== "undefined") {
-    //     window.removeEventListener("load", handleLoad);
-    //   }
-    // };
-
+   
     dispatch(updateInitState(loadFromCookies()))
   }, [loadFromCookies]);
 
