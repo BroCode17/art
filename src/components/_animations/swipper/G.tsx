@@ -149,12 +149,12 @@ const G = () => {
             </div>}
 
           {isSuccess &&
-            product.slice(0, 15).map(({item, index}: {item: ProductTypes, index: number}) => (
+            product.slice(0, 15).map((item:any, index) => (
               <div className="item" key={index}>
                 <div className="card">
                 <ImageContainerTwo
                     imgUrl={item?.image?.public_src as string}
-                    text={item.description!}
+                    text={'Ebenezer'}
                     flag={false}
                   />
                 </div>

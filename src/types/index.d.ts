@@ -66,6 +66,7 @@ export interface ImageInterface {
 
 
 export type ProductTypes = {
+    _id: string;
     name: string;
     description: string;
     quantity: number;
