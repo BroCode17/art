@@ -52,3 +52,25 @@ export type ProductDetails = {
     price: string | number;
     quantyt: number;
 }
+
+
+
+export interface ImageInterface {
+    public_src: string;
+    url: string;
+    base64: string;
+}
+
+
+
+
+
+export type ProductTypes = {
+    name: string;
+    description: string;
+    quantity: number;
+    price: number
+    image: ImageInterface,
+    isActive: boolean, 
+    
+}
