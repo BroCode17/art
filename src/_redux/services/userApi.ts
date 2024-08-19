@@ -22,9 +22,18 @@ export const userApi = createApi({
                 credentials: 'same-origin'
             })
         }),
+
+        sendUserInquaries: builder.mutation({
+            query: (data:any) => ({
+                url: '/user-request',
+                method: 'POST',
+                body: {data},
+                credentials: 'same-origin'
+            })
+        })
       
     })
 })
 
 
-export const {useLoginUserMutation, useValidateUserMutation} = userApi
+export const {useLoginUserMutation, useValidateUserMutation, useSendUserInquariesMutation} = userApi

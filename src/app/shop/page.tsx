@@ -36,9 +36,10 @@ const ShopPage = () => {
         <Container className="bg-white mt-10">
           <div className="flex justify-between">
             <HeadTitle title="Buy an Art Piece" className="text-xl p-0 m-0" />
-            <div className="flex items-center justify-start border-black border pl-4">
+            <div className="flex items-center justify-start border-black border pl-4 focus-within:border-2">
+              {/* I will fix the search box */}
               <Search size={18} color="	#778899"/>
-              <Input  placeholder="Search" className="border-none outline-none" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
+              <Input  placeholder="Search" className="border-none outline-none  focus-visible:ring-0 focus-visible:bg-none focus-visible:border-none focus-visible:ring-offset-0" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}/>
             </div>
           </div>
 

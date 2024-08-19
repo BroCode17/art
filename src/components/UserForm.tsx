@@ -10,6 +10,10 @@ import {
 } from "@/components/ui/form";
 import UserInput from "./UserInput";
 import { useToast } from "@/app/shop/_components/toast-context";
+import { describe } from "node:test";
+import { useSendUserInquariesMutation } from "@/_redux/services/userApi";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 export enum FormFiedType {
   NAME = "username",
@@ -20,17 +24,20 @@ export enum FormFiedType {
 
 const formSchema = z.object({
   firstname: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "First must be at least 2 characters.",
   }),
   lastname: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
+    message: "Last must be at least 2 characters.",
   }),
   email: z.string().email({ message: "Please, Enter a valid email address" }),
+  desc: z.string().min(10, { message: "Description must contain at least 20 Character(s)" }),
 });
 
 const UserForm = () => {
   // ...
   const toast = useToast();
+  const[sendUserRequest] = useSendUserInquariesMutation()
+  const[isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -38,12 +45,28 @@ const UserForm = () => {
       firstname: "",
       lastname: "",
       email: "",
+      desc:"",
     },
   });
 
-  const onSubmit = (e: any) => {
-    toast?.open('Information Sent!')
-    console.log(e);
+  const onSubmit = async (e: any) => {
+   // toast?.open('Information Sent!')
+    try {
+      setIsLoading(true)
+      const res = await sendUserRequest(e)
+      if(res.error){
+      
+        // toast?.open(res.error?.data.message)
+         toast?.open('Ops!, Something happened, Try submiting again')
+      }else{
+        toast?.open("Thank you for the information.")
+      }
+
+    } catch (error:any) {
+      console.log(error)
+    }finally{
+      setIsLoading(false)
+    }
   };
 
   return (
@@ -94,7 +117,7 @@ const UserForm = () => {
         </p>
         <div className="w-full flex justify-end mt-10">
           <Button type="submit" className="rounded-none w-64 bg-black">
-            SEND
+            {isLoading ? <Loader2 className="animate-spin"  /> : "SEND"}
           </Button>
         </div>
       </form>

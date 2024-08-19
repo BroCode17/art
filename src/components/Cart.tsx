@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies   from "js-cookie";
-import { openCartModal } from "@/_redux/slices/cartSlice";
+import { openCartModal, updateInitState } from "@/_redux/slices/cartSlice";
 
 const loadFromCookies = () => {
   if (typeof window === "undefined") {
@@ -24,7 +24,7 @@ const Cart = () => {
   const dispatch = useDispatch()
   useEffect(() => {
    
-   // dispatch(updateInitState(loadFromCookies()))
+   dispatch(updateInitState(loadFromCookies()))
   }, []);
 
   return (
