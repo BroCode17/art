@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+
 export const orderApi = createApi({
   reducerPath: "orderApi",
   baseQuery: fetchBaseQuery({
@@ -9,6 +10,13 @@ export const orderApi = createApi({
     getAllOrder: builder.query({
       query: () => "/",
     }),
+    createOrder: builder.mutation<{}, any>({
+      query: (data) =>({
+          url: `/create-order`,
+          method: "POST",
+          body: {data}
+      })
+  }),
   }),
 });
 

@@ -81,8 +81,6 @@ export default function CartModal() {
 
   useEffect(() => {
     window.onbeforeunload = function(){
-      console.log('Hello')
-      console.log(totalAmount)
       Cookies.set('cartItems', JSON.stringify({data: cartItems, totalAmount: totalAmount}), {expires: 7} );
     }
 
