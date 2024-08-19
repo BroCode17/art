@@ -1,8 +1,8 @@
-import { openCartModal, updateInitState } from "@/_redux/slices/cartSlice";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import Cookies   from "js-cookie";
+import { openCartModal } from "@/_redux/slices/cartSlice";
 
 const loadFromCookies = () => {
   if (typeof window === "undefined") {
@@ -21,17 +21,17 @@ const loadFromCookies = () => {
 const Cart = () => {
   const item = useSelector((state: any) => state.cart.products);
 
-  const dispatch = useDispatch();
-  
+  const dispatch = useDispatch()
   useEffect(() => {
    
-    dispatch(updateInitState(loadFromCookies()))
-  }, [loadFromCookies]);
+   // dispatch(updateInitState(loadFromCookies()))
+  }, []);
 
   return (
     <div
       className="relative w-4 cursor-pointer"
       onClick={() => {
+       
         dispatch(openCartModal());
       }}
     >

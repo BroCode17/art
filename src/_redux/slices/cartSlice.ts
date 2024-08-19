@@ -15,6 +15,7 @@ export interface ProductFromCartPageProps {
   quantity: number;
   deliveryMethod?: string;
   image: string;
+  size: string;
 }
 
 interface CartState {

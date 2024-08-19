@@ -9,6 +9,7 @@ import {
   Form,
 } from "@/components/ui/form";
 import UserInput from "./UserInput";
+import { useToast } from "@/app/shop/_components/toast-context";
 
 export enum FormFiedType {
   NAME = "username",
@@ -29,7 +30,7 @@ const formSchema = z.object({
 
 const UserForm = () => {
   // ...
-  // const toast = useToast();
+  const toast = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -41,8 +42,8 @@ const UserForm = () => {
   });
 
   const onSubmit = (e: any) => {
-    // toast?.open('Information Sent!')
-    // console.log(e);
+    toast?.open('Information Sent!')
+    console.log(e);
   };
 
   return (

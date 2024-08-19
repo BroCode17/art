@@ -22,7 +22,7 @@ const Gallery = () => {
             title="Explore My Gallery"
             className="text-xl p-0 m-0 flex justify-start"
           />
-          <div className="grid grid-cols-2 md:grid-cols-4 w-full min-h-96   mt-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 w-full min-h-96 mt-10 gap-1">
             {shopData.map((item, index) => {
               let sizeClass = "";
 
