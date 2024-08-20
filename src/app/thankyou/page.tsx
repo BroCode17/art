@@ -33,7 +33,7 @@ const ThankYouPage = () => {
             </div> */}
     
             <div className="text-left mb-8">
-              <h3 className="text-lg font-medium text-gray-700 mb-2">What’s Next?</h3>
+              <h3 className="text-lg font-mediyum text-gray-700 mb-2">What’s Next?</h3>
               <p className="text-gray-600 mb-2">We’ll send you a confirmation email with your order details shortly.</p>
               <div className='flex items-center'><p className="text-gray-600 ">You can view your order status and track your shipment in by navigation to 
                 <span>🛒</span></p>

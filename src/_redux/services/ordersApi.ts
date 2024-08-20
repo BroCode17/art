@@ -10,14 +10,10 @@ export const orderApi = createApi({
     getAllOrder: builder.query({
       query: () => "/",
     }),
-    createOrder: builder.mutation<{}, any>({
-      query: (data) =>({
-          url: `/create-order`,
-          method: "POST",
-          body: {data}
-      })
+    getOrderByRef: builder.query<any, string>({
+      query: (ref) => `/${ref}`
   }),
   }),
 });
 
-export const { useGetAllOrderQuery } = orderApi;
+export const { useGetAllOrderQuery, useGetOrderByRefQuery } = orderApi;

@@ -5,7 +5,7 @@ import { ReduxProvider } from "@/components/Provider";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { ToastProvider } from "./shop/_components/toast";
-import CartModal from "@/components/CartList";
+import CartModal, { ProductDetail } from "@/components/CartList";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} flex flex-col justify-between`} suppressHydrationWarning={true}>
+      <body className={`${inter.className} flex flex-col justify-between relative`} suppressHydrationWarning={true}>
         <ReduxProvider>
           <ToastProvider>
             <Header />

@@ -5,6 +5,7 @@ import "./toast.css";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { useSelector } from "react-redux";
 import { MobileNav } from "@/components/Header";
+import { ProductDetail } from "@/components/CartList";
 
 interface ToastProperties {
   message: string;
@@ -48,6 +49,7 @@ type ToastType = {
 export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
   const [toasts, setToasts] = useState<ToastType[]>([]);
   const showMobileNav = useSelector((state: any) => state.header.showMobileNav);
+  const showOrderDetails = useSelector((state: any) => state.order.showOrder);
 
   function openToast(message: string) {
     const newToast = {
@@ -95,6 +97,15 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
         )}
+        {showOrderDetails && (
+          <div className={`fixed inset-0 bg-black bg-opacity-50 flex justify-center z-50  transition-opacity duration-300 `}>
+            <div className={`bg-transparent p-6 w-full max-h-screen overflow-auto transform transition-transform duration-300 flex items-center justify-center `}>
+            <ProductDetail />
+            </div>
+          </div>
+        )}
+
+        
       </>
     </ToastContext.Provider>
   );

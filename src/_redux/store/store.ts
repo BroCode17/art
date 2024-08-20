@@ -8,6 +8,7 @@ import productSlice from "../slices/productSlice";
 import cartSlice from '../slices/cartSlice'
 import { orderApi } from "../services/ordersApi";
 import headerSlice from "../slices/headerSlice";
+import orderSlice from "../slices/orderSlice";
 
 export const store = configureStore({
     reducer: {
@@ -17,7 +18,8 @@ export const store = configureStore({
         user: userReducer,
         product: productSlice,
         cart: cartSlice,
-        header: headerSlice
+        header: headerSlice,
+        order: orderSlice
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([productApi.middleware, userApi.middleware, orderApi.middleware])
 })
