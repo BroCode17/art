@@ -5,7 +5,7 @@ export const productApi = createApi({
     reducerPath: 'productApi',
     tagTypes: ['Product'],
     baseQuery: fetchBaseQuery({
-        baseUrl: `${process.env.NEXT_PUBLIC_NGROK_URL}/api/v1/products/`
+        baseUrl: `https://amo-art-backend.onrender.com/api/v1/products/`
     }),
     endpoints: builder => ({
         getAllProduct: builder.query({
