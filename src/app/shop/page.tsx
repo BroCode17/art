@@ -17,15 +17,16 @@ import { useGetAllProductQuery } from "@/_redux/services/productApi";
 
 const ShopPage = () => {
   const [product, setProduct] = useState([]);
-  const { data, isSuccess, isLoading, isError } = useGetAllProductQuery("");
+  const { data, isSuccess, isLoading, isError, error } = useGetAllProductQuery("");
   const [searchQuery, setSearchQuery] = useState('');
   useEffect(() => {
     if (isSuccess) {
       setProduct(data.data);
+      console.log(data)
     }
   }, [data, isSuccess]);
 
-
+  console.log(error)
   const filteredProducts = product.filter((p:any) =>
   p.name.toLowerCase().includes(searchQuery.toLowerCase()));
 

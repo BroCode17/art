@@ -236,12 +236,12 @@ export default function CartModal() {
                     <Counter quantity={item.quantity} id={item.id} />
                   </div>
                   <div className="w-10 text-sm">
-                    <p>{formatCurrency(Number(item.price))}</p>
+                    <p>{formatCurrency(Number(item.price) / 100)}</p>
                     <p>{item.size}</p>
                   </div>
                   <button
                     onClick={() => dispatch(removeProduct(item.id))}
-                    className="text-red-500 pr-2"
+                    className=" pr-2"
                   >
                     <IoMdCloseCircleOutline size={24} />
                   </button>
@@ -255,7 +255,7 @@ export default function CartModal() {
           {cartItems.length > 0 && <CheckoutLink name="Check Out" />}
           {cartItems.length > 0 && (
             <p className="text-muted-foreground text-right ">
-              Subtotal: {formatCurrency(totalAmount)}
+              Subtotal: {formatCurrency(totalAmount / 100)}
             </p>
           )}
         </div>
@@ -264,12 +264,40 @@ export default function CartModal() {
   );
 }
 
+const load = ({ cartItems, totalAmount }: any) => {
+  window.onbeforeunload = function () {
+    Cookies.set(
+      "cartItems",
+      JSON.stringify({ data: cartItems, totalAmount: totalAmount }),
+      { expires: 7 }
+    );
+  };
+
+  return () => {
+    window.onbeforeunload;
+  };
+};
+
 const CheckoutLink = ({ name }: { name: string }) => {
   const dispatch = useDispatch();
   //generate reference number
   const order = generateOrderReference(8);
+
+  const cartItems = useSelector((state: any) => state.cart.products);
+  const totalAmount = useSelector((state: any) => state.cart.totalAmount);
+
+  const handleFoward = () => {
+    // load({ cartItems, totalAmount });
+    Cookies.set(
+      "cartItems",
+      JSON.stringify({ data: cartItems, totalAmount: totalAmount }),
+      { expires: 7 }
+    );
+    dispatch(openCartModal());
+  };
+
   return (
-    <Link href={`/order/${order}`} onClick={() => dispatch(openCartModal())}>
+    <Link href={`/order/${order}`} onClick={handleFoward}>
       <button className="bg-black text-white text-xs py-3 mt-2 font-semibold w-full uppercase border">
         {name}
       </button>

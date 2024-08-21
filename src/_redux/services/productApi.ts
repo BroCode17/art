@@ -3,35 +3,54 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 
 export const productApi = createApi({
     reducerPath: 'productApi',
+    tagTypes: ['Product'],
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:5050/api/v1/products/'
+        baseUrl: `${process.env.NEXT_PUBLIC_NGROK_URL}/api/v1/products/`
     }),
     endpoints: builder => ({
         getAllProduct: builder.query({
             query: () => `all`,
+            // transformResponse: (response: any) => {
+            //     // Handle the response manually if necessary
+            //     if (typeof response === 'string') {
+            //       try {
+            //         return JSON.parse(response);
+            //       } catch (e) {
+            //         console.error('Failed to parse response:', e);
+            //         return response;
+            //       }
+            //     }
+            //     return response;
+            //   },
+            providesTags: ['Product']
         }),
         getActiveProduct: builder.query({
             query: () => `active`,
+            providesTags: ['Product']
         }),
         getInActiveProduct: builder.query({
             query: () => `inactive`,
+            providesTags: ['Product']
         }),
         getProductById: builder.query<any ,string>({
             query: (id) => `product/${id}`,
+            providesTags: ['Product']
         }),
         
         updateActiveProduct: builder.mutation<{}, ActiveType>({
             query: ({id, isActive}) =>({
                 url: `activate/${id}`,
                 method: "PUT",
-                body: {isActive}
+                body: {isActive},
+                invalidatesTags:  ['Product']
             })
         }),
         editProduct: builder.mutation<{}, EditProductProps>({
             query: (id, ...rest) =>({
                 url: `product/${id}`,
                 method: "PUT",
-                body: {rest}
+                body: {rest},
+                invalidatesTags:  ['Product']
             })
         }),
 
@@ -39,6 +58,7 @@ export const productApi = createApi({
             query: (id) =>({
                 url: `delete/${id}`,
                 method: "Delete",
+                invalidatesTags:  ['Product']
             })
         })
     })

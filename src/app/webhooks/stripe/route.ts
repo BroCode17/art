@@ -38,7 +38,7 @@ export async function POST(req:NextRequest) {
       }
       
       try {
-        const response = await axios.post(`${process.env.NEXT_PUBLIC_DATA_URL}/orders/create-order`, orderObject);
+        const response = await axios.post(`http:localhost:5050/api/v1/orders/create-order`, orderObject);
         console.log('PUT Response:', response.data);
       } catch (error:any) {
         console.error('Error updating data:', error.status);

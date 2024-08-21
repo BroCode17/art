@@ -104,7 +104,7 @@ export function RadioButton({
 
   const dispatch = useDispatch();
 
-  const newPrice = Number(price.substring(1) || 0.0);
+  const newPrice = Number(price.substring(1) || 0)*100;
 
 
   function onSubmit(data: z.infer<typeof FormSchema>) {

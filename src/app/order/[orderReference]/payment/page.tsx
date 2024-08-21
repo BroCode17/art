@@ -29,9 +29,8 @@ const PaymentPage = async ({
   // console.log(newId)
   // console.log(typeof searchParams.shippinginfo)
 
-
   const paymentIntent = await stripe.paymentIntents.create({
-    amount:10000,
+    amount: item.totalAmount,
     currency: "USD",
     metadata: { orderReference: params.orderReference, itemPurchased: JSON.stringify(item?.data), shippinginfo: searchParams?.shippinginfo as string},
   });

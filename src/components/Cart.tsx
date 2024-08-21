@@ -22,6 +22,11 @@ const Cart = () => {
   const item = useSelector((state: any) => state.cart.products);
 
   const dispatch = useDispatch()
+
+ 
+
+
+
   useEffect(() => {
    
    dispatch(updateInitState(loadFromCookies()))
