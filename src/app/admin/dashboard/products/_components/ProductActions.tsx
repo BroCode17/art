@@ -1,4 +1,4 @@
-import { useDeleteProductMutation, useUpdateActiveProductMutation } from '@/_redux/services/productApi'
+import { useDeleteProductMutation, useGetAllProductQuery, useUpdateActiveProductMutation } from '@/_redux/services/productApi'
 import { DropdownMenuItem } from '@/components/ui/dropdown-menu'
 import { ActiveType } from '@/types'
 import { useRouter } from 'next/navigation'
@@ -9,11 +9,12 @@ export const ActiveToggleDropdownItem = ({id, isActive}: {id:string, isActive?:b
     const router = useRouter();
     const [isPending, startTransition] = useTransition()
     const[updateActiveProduct] = useUpdateActiveProductMutation()
+    const{ refetch}  = useGetAllProductQuery("");
 
 
     const handleUpdate = () => {
         updateActiveProduct({id, isActive})
-        router.refresh();
+        refetch()
     }
   return (
     <DropdownMenuItem onClick={() => {
@@ -27,12 +28,14 @@ export const ActiveToggleDropdownItem = ({id, isActive}: {id:string, isActive?:b
   )
 }
 export const DeleteDropwDownItem = ({id}:ActiveType) => {
+  const{ refetch}  = useGetAllProductQuery("");
     const router = useRouter();
     const [isPending, startTransition] = useTransition()
     const[deleteProduct] = useDeleteProductMutation()
 
     const handleDelete = () => {
         deleteProduct(id);
+        refetch()
         router.refresh()
     }
   return (

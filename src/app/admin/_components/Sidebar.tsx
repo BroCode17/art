@@ -17,13 +17,13 @@ const AdminSideBar = () => {
  }
 
   return (
-    <div className="bg-black sticky left-0 top-0  w-72 flex justify-center items-center flex-col">
+    <div className="bg-black sticky left-0 top-[5%] w-72 flex justify-center items-center flex-col ">
       <nav className="flex flex-col w-full text-white">
         <AdminLinks name="Dashboard" active={false} url="/admin/dashboard" />
         <AdminLinks name="Products" active={false} url="/admin/dashboard/products" />
-        <AdminLinks name="Sales" active={false} url="/admin/dashboard/sales" />
+        {/* <AdminLinks name="Sales" active={false} url="/admin/dashboard/sales" /> */}
         <AdminLinks name="Orders" active={false} url="/admin/dashboard/orders" />
-        <AdminLinks name="Images" active={false} url="/admin/dashboard/images" />
+        <AdminLinks name="Images" active={false} url="/admin/dashboard/lay" />
       </nav>
 
       <div className="w-full flex justify-end mt-28 pr-4 text-white cursor-pointer" onClick={handleLogout}>

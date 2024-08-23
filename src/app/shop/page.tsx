@@ -9,7 +9,7 @@ import { shopData } from "../../../utils/data";
 import Card from "@/components/Card";
 
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { Loader2, Search } from "lucide-react";
 import GenericBanner from "../gallery/_components/GenericBanner";
 import { formatCurrency } from "../../../utils/formatters";
 import { useGetAllProductQuery } from "@/_redux/services/productApi";
@@ -22,11 +22,9 @@ const ShopPage = () => {
   useEffect(() => {
     if (isSuccess) {
       setProduct(data.data);
-      console.log(data)
     }
   }, [data, isSuccess]);
 
-  console.log(error)
   const filteredProducts = product.filter((p:any) =>
   p.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
@@ -45,8 +43,8 @@ const ShopPage = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mt-10 ">
-            {isLoading && <div>Loading...</div>}
-            {isError && <div>Error</div>}
+            {isLoading && <Loader2 className="animate-spin"/>}
+          {isError && <div>Server is down</div>}
 
             {isSuccess &&
               filteredProducts.map((item:any, index) => {

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "./styles.css";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -9,18 +9,21 @@ import ImageContainerTwo from "@/components/ImageContanierTwo";
 import { ProductTypes } from "@/types";
 import { useGetAllProductQuery } from "@/_redux/services/productApi";
 import { Loader2 } from "lucide-react";
+import { useGetImagesQuery } from "@/_redux/services/imageApi";
+import { shopData } from "../../../../utils/data";
 
 gsap.registerPlugin(useGSAP, Draggable, ScrollTrigger);
 
 const G = () => {
   const container = useRef<HTMLInputElement>(null);
 
-  const [product, setProduct] = useState([]);
-  const { data, isSuccess, isLoading, isError } = useGetAllProductQuery('');
+  const { data, refetch, isSuccess, isLoading, isError } =
+    useGetImagesQuery("");
+  const [imges, setImges] = useState([]);
 
   useEffect(() => {
     if (isSuccess) {
-      setProduct(data.data);
+      setImges(data.response);
     }
   }, [data, isSuccess]);
 
@@ -29,12 +32,12 @@ const G = () => {
 
     const imageSize = images.length;
     const total = images.length;
-
+    console.log(total);
     const degree = 360 / total;
 
     const init = () => {
       const timeline = gsap.timeline();
-      images.forEach((image:any, index) => {
+      images.forEach((image: any, index) => {
         const sign = Math.floor((index / 2) % 2) ? 1 : -1;
         const value = Math.floor((index + 4) / 4) * 4;
         const rotation = index > imageSize - 3 ? 0 : sign * value;
@@ -51,7 +54,7 @@ const G = () => {
               index % 2
                 ? window.innerWidth + image.clientWidth * 4
                 : -window.innerWidth - image.clientWidth * 4,
-            y: () => window.innerHeight - image.clientHeight,
+            y: () => window.innerHeight  - image.clientHeight,
             rotation: index % 2 ? 200 : -200,
             scale: 4,
             autoAlpha: 1,
@@ -141,27 +144,29 @@ const G = () => {
               />
             </div>
           </div> */}
-          {isLoading && <div>
-            <Loader2 className="animate-spin" />
-            </div>}
-          {isError && <div className=" text-xl">
-            Ops!!!...Something Happend Whiles Fetching Data
-            </div>}
-
-          {isSuccess &&
-            product.slice(0, 15).map((item:any, index) => (
-              <div className="item" key={index}>
-                <div className="card">
-                <ImageContainerTwo
-                    imgUrl={item?.image?.public_src as string}
-                    text={'Ebenezer'}
-                    flag={false}
-                  />
-                </div>
-              </div>
-            ))}
-
-      
+          {isLoading && (
+            <div>
+              <Loader2 className="animate-spin" />
+            </div>
+          )}
+          {isError && <div className=" text-sm">Server is down</div>}
+          
+          {shopData.map((item: any, index) => 
+          
+    
+                   <div className="item" key={index}> 
+            <div className="card">
+              <img
+                className="image"
+                src="https://www.themoviedb.org/t/p/original/bX2xnavhMYjWDoZp1VM6VnU1xwe.jpg"
+              />
+            </div>
+          </div>
+              
+                
+          )}
+            
+        
         </div>
       </div>
     </div>
@@ -169,3 +174,27 @@ const G = () => {
 };
 
 export default G;
+
+{/**
+    {isSuccess &&
+            imges.slice(0, 15).map((item: any, index) => {
+              return (
+                <>
+                  {item.tags.includes("Caro 2") && (
+                    <div className="item" key={index}>
+                      <div className="card">
+                        <ImageContainerTwo
+                          imgUrl={item?.image?.public_src as string}
+                          text={"Ebenezer"}
+                          flag={false}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </>
+              );
+            })}
+  
+  
+  
+  */}

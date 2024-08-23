@@ -114,7 +114,7 @@ const Text = ({ order }: { order: any }) => {
 };
 
 const OrderStatusModal = ({ show, setShow, orderRef, actionType }: any) => {
-  const router = useRouter();
+  const { refetch } = useGetAllOrderQuery("");
   const [
     deleteOrderByRef,
     {isLoading },
@@ -150,7 +150,7 @@ const OrderStatusModal = ({ show, setShow, orderRef, actionType }: any) => {
         }else{
           toast?.open('Order can not be deleted')
         }
-
+        refetch()
         return
       }
       default:{
@@ -172,6 +172,7 @@ const OrderStatusModal = ({ show, setShow, orderRef, actionType }: any) => {
                 toast?.open('Order can not be deleted')
               }
             }
+            refetch()
         }
     }
   };

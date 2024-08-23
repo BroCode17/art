@@ -216,7 +216,7 @@ export default function CartModal() {
             Make changes to your to your cart and checkout
           </SheetDescription>
         </SheetHeader>
-        <div className="h-[80%]">
+        <div className="h-[76%]">
           <h2 className="text-xl font-bold mb-4"></h2>
 
           {cartItems.length === 0 ? (

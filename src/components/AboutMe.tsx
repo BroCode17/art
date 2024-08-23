@@ -1,6 +1,8 @@
 import React from "react";
 import Container from "./Container";
 import RecentWork from "./RecentWork";
+import Image from "next/image";
+
 
 const AboutMe = () => {
   return (
@@ -33,7 +35,7 @@ const AboutMe = () => {
             </p>
           </div>
           <div className="bg-black h-96 overflow-hidden ">
-            {/* <Image src="/images/yy.png" alt="Ebenezer"   loading="lazy" height={1000} width={1000} /> */}
+            <Image src="/images/amofa-logo.jpg" alt="Logo" priority   height={1000} width={1000} className="w-full h-full" />
           </div>
         </div>
         <RecentWork />

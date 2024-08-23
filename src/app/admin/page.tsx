@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 import { redirect } from "next/navigation";
 
 const LoginPage = () => {
-  //const token = useSelector((state: any) => state.user.accessToken);
+  const token = useSelector((state: any) => state.user.accessToken);
 
   // const [validateUser, { isSuccess, isError }] = useValidateUserMutation();
 
@@ -29,6 +29,12 @@ const LoginPage = () => {
   const access = useSelector((state: any) => state.user.accessToken);
 
   //console.log('Admin ', access)
+  // useEffect(() => {
+    
+  //   if(user)
+  //     redirect('/admin/dashboard')
+  // },[user])
+  
 
   return (
     <div className="min-h-svh flex justify-center items-center w-full">

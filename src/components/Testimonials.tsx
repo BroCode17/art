@@ -8,7 +8,7 @@ const Testimonials = () => {
 
      
       <Container className="">
-        <IntroBox
+        {/* <IntroBox
           className="mt-10"
           title="Testimonails"
           description="Collection of art curated by Amo-Mensah Amofa. Artwork designed as
@@ -19,11 +19,12 @@ const Testimonials = () => {
             <TestCard />
             <TestCard />
           </div>
-          {/* Video */}
+          {/* Video 
           <div className="col-span-2  bg-soft flex-1 flex items-center justify-center">
             Video
           </div>
-        </div>
+        </div> */}
+        <div className="h-2"></div>
       </Container>
   
   );

@@ -9,8 +9,10 @@ import {
 } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
 
 import React, { FormEvent, useState } from "react";
+import { formatCurrency } from "../../../../../../utils/formatters";
 type CheckoutFormProps = {
   product?: {};
   clientSecret: string;
@@ -77,6 +79,10 @@ function Form() {
   const pathname = usePathname();
  stripe?.elements({appearance})
 
+ const totalAmount = useSelector((state: any) => state.cart.totalAmount);
+ const deliveryAmount = useSelector((state: any) => state.cart.deliveryAmount);
+
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (stripe === null || elements === null || email === null) return;
@@ -89,7 +95,8 @@ function Form() {
       .confirmPayment({
         elements,
         confirmParams: {
-          return_url: `http://localhost:3000/thankyou`,
+          return_url: `https://amoarte.online/thankyou`,
+          //return_url: `http://localhost:3000/thankyou`,
         },
       })
       .then(({ error }) => {
@@ -115,7 +122,7 @@ function Form() {
           }`}
           disabled={stripe === null || elements === null}
         >
-          {isLoading ? "Processing..." : "Pay"}
+          {isLoading ? "Processing..." : `Pay ${formatCurrency((totalAmount + deliveryAmount) / 100)}`}
         </Button>
       </div>
     </form>

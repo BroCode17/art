@@ -1,6 +1,8 @@
 "use client";
+import CarosalTwoSlide from "@/components/_animations/swipper/carosalTwoSlider";
 import G from "@/components/_animations/swipper/G";
 import CustomSwiper from "@/components/_animations/swipper/Slide";
+
 import CarosalTwo from "@/components/CarosalTwo";
 import FrameAnArt from "@/components/FrameAnArt";
 import LetConnect from "@/components/LetConnect";
@@ -17,11 +19,11 @@ export default function Home() {
       <section className="" id="#">
         <MyArtPieces />
       </section>
-      <section className="mt-10  border h-[500px] lg:h-[550px]  w-full relative">
+      <section className="mt-10  border h-[500px] lg:h-[520px]  w-full relative">
         <div className=" flex justify-center  relative bg-car-image h-full  bg-black  bg-blend-overlay bg-opacity-50 max-xl:px-2">
           <CarosalTwo />
+          <CarosalTwoSlide autoSlide={true} intervalDuration={5000}/>
         </div>
-        <G />
       </section>
       <section className="flex justify-center mt-10">
         <FrameAnArt />

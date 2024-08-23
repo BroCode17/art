@@ -41,7 +41,7 @@ export const linkData = [
         url: '/consultation'
     },
     {
-        name: 'Events/Exhibition',
+        name: 'Project/Events',
         url: '/events'
     }
 ]

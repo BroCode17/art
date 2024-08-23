@@ -140,8 +140,8 @@ const Products = () => {
         )}
       </div>
       <div>
-        {!isLoading && !error && product.length === 0 && <span className="text-2xl">Add Product</span>}
-        {error && <span className="text-2xl">Ops...Error Fetching Data</span>}
+        {!isLoading && !error && product.length === 0 && <span className="text-sm">Add Product</span>}
+        {error && <span className="text-sm">Ops...Error Fetching Data</span>}
 
       </div>
     </div>

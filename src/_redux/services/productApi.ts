@@ -5,23 +5,12 @@ export const productApi = createApi({
     reducerPath: 'productApi',
     tagTypes: ['Product'],
     baseQuery: fetchBaseQuery({
-        baseUrl: `https://amo-art-backend.onrender.com/api/v1/products/`
+        // baseUrl: `https://amo-art-backend.onrender.com/api/v1/products/`
+        baseUrl: `${process.env.NEXT_PUBLIC_NGROK_URL}/api/v1/products/`
     }),
     endpoints: builder => ({
         getAllProduct: builder.query({
             query: () => `all`,
-            // transformResponse: (response: any) => {
-            //     // Handle the response manually if necessary
-            //     if (typeof response === 'string') {
-            //       try {
-            //         return JSON.parse(response);
-            //       } catch (e) {
-            //         console.error('Failed to parse response:', e);
-            //         return response;
-            //       }
-            //     }
-            //     return response;
-            //   },
             providesTags: ['Product']
         }),
         getActiveProduct: builder.query({

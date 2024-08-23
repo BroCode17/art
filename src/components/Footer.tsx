@@ -19,7 +19,7 @@ const Footer = () => {
               }
           </div>
           <p className="text-center">860-328-6319 amensah8@gmail.com</p> 
-          <p>CA Califonia </p>
+          <p>CT Connecticut</p>
         </div>
         <div>
           <span className="text-xs text-[#D9D9D9] font-light">

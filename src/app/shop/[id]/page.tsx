@@ -112,6 +112,8 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
                   }}
                   className="w-full h-full md:h-auto"
                 />
+                <h1 className="text-zinc-900 font-semibold">Description</h1>
+                <p className="text-sm text-muted-foreground">{description}</p>
               </div>
               <div className="w-[400px] border border-black p-10">
                 <div className="flex flex-col gap-4">
@@ -119,15 +121,14 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
                   <hr className="w-10/12 h-[1px] bg-gray-300 rounded-sm"></hr>
                   <div>
                     <h2 className="text-sm font-bold">US {price}</h2>
-                    <p className="text-xs">{description}</p>
                   </div>
 
                   <hr className=" h-[2px] bg-gray-300 rounded-sm"></hr>
-                  <div className="flex flex-row justify-between">
+                  <div className="flex flex-row justify-between items-center">
                     <div className="flex-1">
                       <div>
                         {/* <SelectForm /> */}
-                        <h1 className={`text-sm font-normal`}>Pick a size</h1>
+                        {/* <h1 className={`text-sm font-normal`}>Pick a size</h1>
                           <Select onValueChange={handleValueChange} defaultValue="Small">
                             <SelectTrigger className="w-2/3 rounded-none">
                               <SelectValue placeholder="Select a timezone" />
@@ -139,7 +140,7 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
                                 </SelectItem>
                               ))}
                             </SelectContent>
-                          </Select>
+                          </Select> */}
                         <h1 className="h-5 text-sm mt-2">Quantity</h1>
                         {/* <Counter /> */}
                         <div
@@ -166,7 +167,7 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
                     </div>
                     <div className=" w-[120px] flex flex-col gap-2 ">
                       <div className="flex h-[90%] gap-2">
-                        <div className="flex w-10/12 bg-gray-300 h-full"></div>
+                        <div className="flex w-10/12 bg-gray-300 h-[88px]"></div>
                         <div className="border-l border-black flex  justify-start items-center pl-1">
                           <div className="flex flex-col justify-center  ">
                             <span className="text-[0.65rem] transform rotate-90 font-semibold p-0 m-0 ">
@@ -178,7 +179,7 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
                           </div>
                         </div>
                       </div>
-                      <div className="w-[80%] text-center  leading-none border-t border-black">
+                      <div className="w-[78%] text-center  leading-none border-t border-black">
                         <span className="text-[.65rem] font-semibold">
                           {" "}
                           20in

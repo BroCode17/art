@@ -92,7 +92,7 @@ export const uploader = async (
   };
   try {
     await fetch(
-      `http://localhost:5050/api/v1/products/${id ? "product/" + id : "add"}`,
+      `${process.env.NEXT_PUBLIC_NGROK_URL}/${id ? "product/" + id : "add"}`,
       {
         method: `${id ? "PUT" : "POST"}`,
         body: JSON.stringify({ data: dataToBeSend }),
