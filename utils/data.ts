@@ -143,80 +143,111 @@ export const leftPointsData = [
 
 export const shopData = [
     {
-        url: 'one'
+        url: 'one.jpeg'
     },
     {
-        url: 'two'
+        url: 'two.jpeg'
     },
     {
-        url: 'chal'
+        url: 'chal.jpeg'
     },
     {
-        url: 'five'
+        url: 'five.jpeg'
     },
     {
-        url: 'six'
+        url: 'six.jpeg'
     },
     {
-        url: 'one'
+        url: 'one.jpeg'
     },
     {
-        url: 'two'
+        url: 'two.jpeg'
     },
     {
-        url: 'chal'
+        url: 'chal.jpeg'
     },
     {
-        url: 'five'
+        url: 'five.jpeg'
     },
     {
-        url: 'six'
+        url: 'six.jpeg'
     },
     {
-        url: 'one'
+        url: 'one.jpeg'
     },
     {
-        url: 'two'
+        url: 'two.jpeg'
     },
     {
-        url: 'chal'
+        url: 'chal.jpeg'
     },
     {
-        url: 'five'
+        url: 'five.jpeg'
     },
     {
-        url: 'six'
+        url: 'six.jpeg'
     },
     {
-        url: 'one'
+        url: 'one.jpeg'
     },
     {
-        url: 'two'
+        url: 'two.jpeg'
     },
     {
-        url: 'chal'
+        url: 'chal.jpeg'
     },
     {
-        url: 'five'
+        url: 'five.jpeg'
     },
     {
-        url: 'six'
+        url: 'six.jpeg'
     },
     {
-        url: 'one'
+        url: 'one.jpeg'
     },
     {
-        url: 'two'
+        url: 'two.jpeg'
     },
     {
-        url: 'chal'
+        url: 'chal.jpeg'
     },
     {
-        url: 'five'
+        url: 'five.jpeg'
     },
     {
-        url: 'six'
+        url: 'six.jpeg'
     },
+    {
+        url: 'one.jpeg'
+    },
+    {
+        url: 'two.jpeg'
+    },
+    {
+        url: 'chal.jpeg'
+    },
+    {
+        url: 'five.jpeg'
+    },
+    {
+        url: 'six.jpeg'
+    },
+    {
+        url: 'one.jpeg'
+    },
+    {
+        url: 'two.jpeg'
+    },
+    {
+        url: 'chal.jpeg'
+    },
+    {
+        url: 'five.jpeg'
+    },
+    {
+        url: 'six.jpeg'
+    },
+    
 ]
 
 

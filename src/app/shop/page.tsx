@@ -13,6 +13,7 @@ import { Loader2, Search } from "lucide-react";
 import GenericBanner from "../gallery/_components/GenericBanner";
 import { formatCurrency } from "../../../utils/formatters";
 import { useGetAllProductQuery } from "@/_redux/services/productApi";
+import { SkeletonDemo } from "@/components/_images/SkeletonDemo";
 
 
 const ShopPage = () => {
@@ -43,7 +44,7 @@ const ShopPage = () => {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mt-10 ">
-            {isLoading && <Loader2 className="animate-spin"/>}
+            {isLoading && <SkeletonDemo />}
           {isError && <div>Server is down</div>}
 
             {isSuccess &&

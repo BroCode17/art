@@ -7,6 +7,7 @@ import { formatCurrency } from "../../utils/formatters";
 import IntroBox from "./IntroBox";
 import Container from "./Container";
 import Card from "./Card";
+import { SkeletonDemo } from "./_images/SkeletonDemo";
 
 const FrameAnArt = () => {
   const [product, setProduct] = useState([]);
@@ -25,9 +26,11 @@ const FrameAnArt = () => {
         description=" Collection of art curated by Amo-Mensah Amofa. Artwork designed as
             more than a display but meant to ignite conversations"
       />
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        {isLoading && <div>Loading...</div>}
-        {isError && <div>Error</div>}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4  relative">
+        {isLoading && <div className="absolute w-full h-full flex justify-center">
+          <SkeletonDemo />
+          </div>}
+        {isError && <div>Opps!!!...try referesh your browser</div>}
 
         {isSuccess &&
           product.slice(0,6).map((item:any, index) => {

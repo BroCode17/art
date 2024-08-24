@@ -1,5 +1,6 @@
 "use client";
 import { useGetImagesQuery } from "@/_redux/services/imageApi";
+import { SkeletonDemo } from "@/components/_images/SkeletonDemo";
 import { Loader2 } from "lucide-react";
 import { CldImage } from "next-cloudinary";
 import React, { useEffect, useLayoutEffect, useState } from "react";
@@ -28,21 +29,6 @@ const CarosalTwoSlide: React.FC<SliderProps> = ({
       setImges(caroImage);
     }
   }, [data, isSuccess]);
-
-  // const [colors, setColors] = useState([
-  //   "orange",
-  //   "blue",
-  //   "white",
-  //   "yellow",
-  //   "cyan",
-  //   "cyan",
-  //   "indigo",
-  //   "indigo",
-  // ]);
-
-  // useEffect(() => {
-
-  // }, [activeIndex])
 
   const handleNext = () => {
     setActiveIndex((prev) => (prev + 1) % images.length);
@@ -140,9 +126,10 @@ const CarosalTwoSlide: React.FC<SliderProps> = ({
       )}
       {/* </Container> */}
       {isLoading && (
-        <div className="flex items-center w-full h-full">
-          <Loader2 className="animate-spin" />
-        </div>
+        // <div className="flex items-center w-full h-full">
+        //   <Loader2 className="animate-spin" />
+        // </div>
+        <SkeletonDemo />
       )}
       {isError && <div className=" text-sm flex items-center w-full h-full">Server is down</div>}
     </div>

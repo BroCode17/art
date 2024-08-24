@@ -194,3 +194,39 @@
 // };
 
 // export default Slider;
+'use client'
+
+import Gallery from "@/components/_animations/galley/ArtGallery";
+
+const artworks = [
+    {
+      id: '1',
+      title: 'Starry Night',
+      artist: 'Vincent van Gogh',
+      imageUrl: '/images/starry-night.jpg',
+      description: 'This is a description of Starry Night...',
+    },
+    {
+      id: '2',
+      title: 'Mona Lisa',
+      artist: 'Leonardo da Vinci',
+      imageUrl: '/images/mona-lisa.jpg',
+      description: 'This is a description of Mona Lisa...',
+    },
+    {
+      id: '3',
+      title: 'The Persistence of Memory',
+      artist: 'Salvador Dalí',
+      imageUrl: '/images/persistence-of-memory.jpg',
+      description: 'This is a description of The Persistence of Memory...',
+    },
+    // Add more artworks here
+  ];
+  
+  export default function Home() {
+    return (
+      <main>
+        <Gallery artworks={artworks} />
+      </main>
+    );
+  }

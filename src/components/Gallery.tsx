@@ -1,17 +1,32 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import BannerImg from "./BannerImg";
 import HeadTitle from "./HeadTitle";
 import Container from "./Container";
 import { shopData } from "../../utils/data";
 import ImageContainer from "./ImageContainer";
 import { useInView } from "react-intersection-observer";
+import ImageWithSkeleton from "./_images/ImageWithSkeleton";
+import { useGetImagesQuery } from "@/_redux/services/imageApi";
 
 const Gallery = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.7,
   });
+
+  const { data, refetch, isSuccess, isLoading, isError } =
+    useGetImagesQuery("");
+  const [images, setImges] = useState<any[]>([]);
+
+  useLayoutEffect(() => {
+    if (isSuccess) {
+      // const caroImage = data.response.filter((item: any) =>
+      //   item.tags.includes("Galley")
+      // );
+      setImges(data.response);
+    }
+  }, [data, isSuccess]);
 
   return (
     <div className="min-h-dvh">
@@ -23,7 +38,7 @@ const Gallery = () => {
             className="text-xl p-0 m-0 flex justify-start"
           />
           <div className="grid grid-cols-2 md:grid-cols-4 w-full min-h-96 mt-10 gap-1">
-            {shopData.map((item, index) => {
+            {images.map((item, index) => {
               let sizeClass = "";
 
               switch (index % 6) {
@@ -49,13 +64,17 @@ const Gallery = () => {
                       <div className="w-12 h-12 border-4 border-soft border-dotted rounded-full animate-spin" ></div>
                     </div>
                   )} */}
-                  <div className="w-full h-full" >
-                    <ImageContainer
-                      imgUrl={item.url}
-                      text={item.url}
+                  {/* <div className="w-full h-full" > */}
+                    <ImageWithSkeleton
+                      src={item.image.public_src}
+                      alt={item.alt}
+                      width={400}
+                      height={400}
+                      className="w-auto h-auto"
+              
                       // className={`opacity-0 ${inView && "opacity-100"}`}
                     />
-                  </div>
+                  {/* </div> */}
                 </div>
               );
             })}

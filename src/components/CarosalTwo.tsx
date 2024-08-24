@@ -21,11 +21,11 @@ const CarosalTwo = () => {
 
   return (
     <div className="w-[900px] text-white flex flex-col gap-5 
-     max-md:px-4 h-96 mt-10 z-50">
+     max-md:px-4 h-96 mt-10 z-40">
       <div className="relative">
         <h1 className={`${ITC_Font.className} text-xl text`}>Gallery Carousel</h1>
         <div className="w-3/5 absolute ">
-          <p className="text-sm pt-2 sm:h-10 absolute z-10 ">
+          <p className="text-sm pt-2 sm:h-10">
             Collection of art curated by Amo-Mensah Amofa. Artwork designed as
             more than a display but meant to ignite conversations{" "}
           </p>

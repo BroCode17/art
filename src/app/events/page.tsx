@@ -9,41 +9,16 @@ export type ShowType = {
   showType?: string;
 };
 
-const Render = ({ showType }: ShowType) => {
-  switch (showType) {
-    case "left":
-      return (
-        <div className="flex items-center justify-center">
-          <div className="grid grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 w-full">
-            <div className="col-span-2 h-[300px]  sm:col-span-3 rounded-sm bg-soft"></div>
-            <div className="h-[300px] w-full rounded-sm bg-soft "></div>
-            <div className="h-[300px] rounded-sm bg-soft"></div>
-            <div className="h-[300px] rounded-sm bg-soft"></div>
-          </div>
-        </div>
-      );
-    default:
-      return (
-        <div className="flex items-center justify-center w-full ">
-          <div className="grid grid-cols-2 flex-wrap gap-4 sm:grid-cols-3 w-full">
-            <div className="h-[300px] w-full  bg-soft"></div>
-            <div className="h-[300px] bg-soft"></div>
-            <div className="h-[300px] bg-soft"></div>
-            <div className="col-span-2 h-[300px] rounded-sm bg-soft sm:col-span-3"></div>
-          </div>
-        </div>
-      );
-  }
-};
+
 
 const PurposeDetails = ({ title, desc }: { title: string; desc: string }) => {
   return (
     <div className="flex  gap-3 mt-2">
       <div className=" h-full mt-2">
-        <div className="border h-3 w-3 border-gray-500 s"></div>
+        <div className="border h-3 w-3 border-gray-500 "></div>
       </div>
       <div className="">
-        <span className="font-bold">{title}</span> {desc}
+      <p>  <span className="font-bold">{title}</span> {desc}</p>
       </div>
     </div>
   );
@@ -51,24 +26,24 @@ const PurposeDetails = ({ title, desc }: { title: string; desc: string }) => {
 
 const page = () => {
   return (
-    <div className="min-h-dvh">
+    <div className="min-h-dvh ">
       <GenericBanner
         bannerImgUrl="/images/shop.png"
         bannerTitle="Events/Exhibition"
       />
-      <div className="flex  justify-center item-center mt-20">
+      <div className="flex  justify-center item-center mt-20 max-lg:p-4">
         <div className="space-y-6">
-          <HeadTitle title="A STORY TO TELL" className="text-left" />
-          <Container className={`bg-white  `}>
-            <div className="w-full flex justify-center">
+  
+          <Container className={`bg-white`}>
+            <div className="w-full">
             <Image
-             src='/images/ghana.png'
+             src='/images/ghana.jpg'
              width={200}
              height={220}
              alt="Ghana"
             />
             </div>
-            <h3 className=  {`mb-2 ${Source_Sans_Pro_400.className} `}>Deal Friends and Supports</h3>
+            <h3 className=  {`mb-2 ${Source_Sans_Pro_400.className} -mt-4`}>Deal Friends and Supports</h3>
             <p className={` ${Source_Sans_Pro_400.className} `}>
               I&apos;m exiceted to share with your an initiative close to my
               heart: &quot;A Story to Tell&quot;. This project is all about

@@ -39,7 +39,7 @@ const Card = (
 
   return (
     // <Link href={{pathname:'/shop/',  query: {name:'helloword'} }} as={`/shop/${description}`}>
-    <div className="relative h-[260px] cursor-pointer drop-shadow-md shadow-md">
+    <div className="relative h-[260px] cursor-pointer drop-shadow-md shadow-md rounded-md hover:scale-105 transition duration-150">
      { quantity === 0 && <div className="absolute inset-0 w-full h-full bg-white bg-opacity-50 flex items-center justify-center z-50">
         <p className="font-semibold text-xl select-none">Out of Stock</p>
       </div>}
@@ -52,8 +52,9 @@ const Card = (
           imgUrl={image?.public_src}
           text={description}
           flag={flag}
+          className=" "
         />
-        <div className="h-[4.15rem] sm:h-14 absolute w-full bg-white bg-opacity-80 bottom-0 left-0  overflow-hidden ">
+        <div className="h-[4.15rem] sm:h-14 absolute w-full bg-white bg-opacity-80 bottom-0 left-0  overflow-hidden shadow-inner">
           <div className="flex justify-between items-center py-2 max-sm:flex-col sm:px-5">
             <div className="m-0 p-0 max-sm:w-full max-sm:flex items-center gap-2">
               <h1 className="max-sm:ml-1 my-0 py-0 font-bold text-sm">{price}</h1>

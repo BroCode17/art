@@ -15,7 +15,6 @@ import Container from "@/components/Container";
 import HeadTitle from "@/components/HeadTitle";
 import UserForm from "@/components/UserForm";
 import { leftPointsData, pointsData } from "../../../../utils/data";
-import ImageWithSkeleton from "@/components/_images/ImageWithSkeleton";
 
 
 const Render  = ({position, imgPath}:{position: 'left'|'right'; imgPath: string}) => {
@@ -118,7 +117,7 @@ const Render  = ({position, imgPath}:{position: 'left'|'right'; imgPath: string}
 
 const Commissions = () => {
   return (
-    <div className="md:px-4 lg:px-0">
+    <div className="">
       <GenericBanner
         bannerImgUrl="/images/commision.png"
         bannerTitle="Commission"
@@ -156,9 +155,9 @@ const Commissions = () => {
                   </h1>
                 </div>
               </div>
-              <div className="flex justify-center h-[310px] sm:h-[340px] md:h-auto">
-                <ImageWithSkeleton
-                  src="four.png"
+              <div className="flex justify-center">
+                <Image
+                  src="/images/four.png"
                   alt="Fall"
                   width={400}
                   height={400}
@@ -167,27 +166,25 @@ const Commissions = () => {
                   //   height: "auto",
                   //   objectFit: "initial",
                   // }}
-                  flag={true}
-                  className="max-sm:w-max-[290px] sm:h-[330px]  md:w-[350px] md:h-auto"
+                  className="h-[500px]  md:w-[400px] md:h-auto"
                 />
               </div>
             </div>
           </div>
 
           <div className="flex gap-8 flex-col sm:flex-row mt-10 items-center">
-            <div className="max-md:w-6/12 md:w-7/12  h-[310px] sm:h-[340px]">
-              <ImageWithSkeleton
-                src="thr.png"
-                alt="Frame"
+            <div className="max-sm:w-6/12 h-64">
+              <Image
+                src="/images/frame.png"
+                alt="Fall"
                 width={1000}
                 height={1000}
-                // style={{
-                //   width: "100%",
-                //   height: "100%",
-                //   objectFit: "initial",
-                // }}
-                flag={true}
-                className="w-full h-full md:h-auto object-contain"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "initial",
+                }}
+                className="w-full h-full md:h-auto"
               />
             </div>
             <div className="w-full md:w-2/3 pt-5 flex flex-col gap-5 ">

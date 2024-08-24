@@ -80,7 +80,7 @@ const Header = () => {
 
   return (
     <header
-      className="h-[81px] bg-black flex items-center justify-center sticky top-0 z-50 "
+      className="h-[81px] bg-black flex items-center justify-center sticky -top-1 z-50 "
       ref={container}
       id="head-main"
     >

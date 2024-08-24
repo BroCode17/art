@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { ITC_Font } from "@/local-fonts/local";
 import AboutMe from "@/components/AboutMe";
+import ImageWithSkeleton from "@/components/_images/ImageWithSkeleton";
 
 const AboutPage = () => {
   return (
@@ -10,7 +11,7 @@ const AboutPage = () => {
         <div className="flex  items-center justify-center">
           <div className="border-1 flex h-96 items-center justify-center  max-sm:flex-col-reverse max-sm:gap-2 py-6">
           <div className="h-full min-w-[300px] md:w-[330px]">
-              <Image
+              <ImageWithSkeleton
                 src="/images/amofa-main.png"
                 alt="Amofa"
                 width={600}
