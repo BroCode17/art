@@ -73,11 +73,11 @@ export const galleryCarouselImages = [
 export const ButtonLinksData = [
     {
         type: ButtonLinksTypes.FACEBOOK,
-        href: '/'
+        href: 'https://www.facebook.com/amo.amofa?mibextid=LQQJ4d'
     },
     {
         type: ButtonLinksTypes.INSTAGRAM,
-        href: '/'
+        href: 'https://www.instagram.com/amo.arte_?igsh=ZzZ2cHBtdWR2Zno1&utm_source=qr'
     },
     {
         type: ButtonLinksTypes.LINKEDIN,

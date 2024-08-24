@@ -29,10 +29,10 @@ const BrandCard = ({
         `
       )}
     >
-      <div className="h-2/3 flex items-center border-2 px-4 hover:border-black hover:transition hover:ease-linear duration-75">
+      <div className="h-2/3 flex justify-center items-center border-2 px-4 hover:border-black hover:transition hover:ease-linear duration-75">
         <Image src={imgUrl} alt={alt} width={374} height={280} className="object-contain"/>
       </div>
-      <h3 className={`mt-2`}>{alt}</h3>
+      <h3 className={`mt-2 font-semibold`}>{alt}</h3>
       <p className="text-sm">{desc}</p>
     </div>
   );
@@ -153,7 +153,7 @@ const page = () => {
           {/* Explore Brand */}
           <div className="mt-10">
             <HeadTitle title="Explore Our Consulation Projects"  className="text-xl p-0 m-0 flex justify-start"/>
-            <div  className="mt-10 flex max-md:overflow-x-scroll md:grid md:grid-cols-3 gap-4">
+            <div  className="mt-10 flex flex-col md:grid md:grid-cols-3 gap-4">
               <BrandCard
                 imgUrl="/images/PGLA.png"
                 alt="One"

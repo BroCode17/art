@@ -9,7 +9,6 @@ const headerSlice = createSlice({
     reducers: {
         setShowMobileNav(state){
             state.showMobileNav  = !state.showMobileNav
-            console.log(state.showMobileNav)
         }
     }
 })
