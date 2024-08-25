@@ -24,6 +24,9 @@ const PaymentPage = async ({
 
   const c = cookies();
   const item = JSON.parse(c.get("cartItems")?.value!);
+
+  const orderNumber = c.get('orderNumber');
+  console.log(orderNumber)
   
   // const newId = params.orderReference
   // console.log(newId)

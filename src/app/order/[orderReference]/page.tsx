@@ -10,7 +10,7 @@ import { z } from "zod";
 import UserInput from "@/components/UserInput";
 import { FormFiedType } from "@/components/UserForm";
 import { useSelector } from "react-redux";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { notFound, usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ITC_Font } from "@/local-fonts/local";
 import GenericBanner from "@/app/gallery/_components/GenericBanner";
 import Cookies from 'js-cookie';
@@ -37,7 +37,11 @@ interface OrderItemProps {
 
 
 const getOrderNumberFromCookie = () => {
-  return Cookies.get('orderNumber')
+  try {
+    return JSON.parse(Cookies.get('orderNumber')!).orderNumber
+  } catch (error) {
+    return null
+  }
 }
 
 const OrderItem = ({ title, price, desc }: OrderItemProps) => {
@@ -52,7 +56,7 @@ const OrderItem = ({ title, price, desc }: OrderItemProps) => {
   );
 };
 
-const OrderDetailsPage = ({params: id}: {params: {id: string}}) => {
+const OrderDetailsPage = ({params: orderReference}: {params: {orderReference: any}}) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams()
@@ -85,6 +89,13 @@ const OrderDetailsPage = ({params: id}: {params: {id: string}}) => {
   const orderItems = useSelector((state: any) => state.cart.products);
   const totalAmount = useSelector((state: any) => state.cart.totalAmount);
   const deliveryAmount = useSelector((state: any) => state.cart.deliveryAmount);
+  const orderNumber = getOrderNumberFromCookie();
+
+  
+  if(orderNumber !== orderReference.orderReference){
+    return notFound()
+  }
+  
 
   
 
