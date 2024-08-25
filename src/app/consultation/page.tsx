@@ -18,10 +18,12 @@ const BrandCard = ({
   imgUrl,
   alt,
   desc,
+  className,
 }: {
   imgUrl: string;
   alt: string;
   desc: string;
+  className?: string;
 }) => {
   return (
     <div
@@ -30,8 +32,16 @@ const BrandCard = ({
         `
       )}
     >
-      <div className="h-2/3 flex justify-center items-center border-2 px-4 hover:border-black hover:transition hover:ease-linear duration-75">
-        <Image src={imgUrl} alt={alt} width={374} height={280} className="object-contain"/>
+      <div
+        className={`h-2/3 flex justify-center items-center border-2 px-4 hover:border-black hover:transition hover:ease-linear duration-75`}
+      >
+        <Image
+          src={imgUrl}
+          alt={alt}
+          width={374}
+          height={280}
+          className={cn(`object-contain h-auto`, className)}
+        />
       </div>
       <h3 className={`mt-2 font-semibold`}>{alt}</h3>
       <p className="text-sm">{desc}</p>
@@ -42,10 +52,7 @@ const BrandCard = ({
 const page = () => {
   return (
     <div className="min-h-screen">
-      <GenericBanner
-        bannerImgUrl="HandCraft.png"
-        bannerTitle="Consultation"
-      />
+      <GenericBanner bannerImgUrl="HandCraft.png" bannerTitle="Consultation" />
       <div className="w-ful flex justify-center items-center px-1 md:px-3 xl:px-0">
         <Container className="bg-white mt-20  ">
           <div className="">
@@ -121,7 +128,6 @@ const page = () => {
                     className="  w-full lg:w-[350px] "
                     flag={true}
                   />
-                 
                 </div>
                 <div className="w-full border rounded-lg hover:scale-105 transition-all duration-500">
                   <ImageWithSkeleton
@@ -129,10 +135,9 @@ const page = () => {
                     alt="TraditionalWearConsultationI.jpg"
                     width={400}
                     height={400}
-                    className="  w-full md:h-auto"
+                    className="  md:[100px] overflow-hidden"
                     flag={true}
                   />
-                 
                 </div>
                 {/* <h1
                     className={`${Source_Sans_Pro_Bold.className} self-start italic`}
@@ -161,8 +166,11 @@ const page = () => {
 
           {/* Explore Brand */}
           <div className="mt-10">
-            <HeadTitle title="Explore Our Consulation Projects"  className="text-xl p-0 m-0 flex justify-start"/>
-            <div  className="mt-10 flex flex-col md:grid md:grid-cols-3 gap-4">
+            <HeadTitle
+              title="Explore Our Consulation Projects"
+              className="text-xl p-0 m-0 flex justify-start"
+            />
+            <div className="mt-10 flex flex-col md:grid md:grid-cols-3 gap-4">
               <BrandCard
                 imgUrl="/images/LGMA.jpg"
                 alt="Prety Grlz Love AMAMPIANO"
@@ -174,9 +182,10 @@ const page = () => {
                 desc=" Logo created for Archive Films (@archivefilmsss via Instagram)"
               />
               <BrandCard
-                imgUrl="/images/HustleDif.png"
+                imgUrl="/images/HustleDifI.png"
                 alt="Hustle Different Logo"
                 desc="This project was in collaboration with Alyssa Monet and final logo was created by Alyssa Monet."
+                //className="max-sm:h-auto w-full"
               />
             </div>
           </div>

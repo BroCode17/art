@@ -57,11 +57,7 @@ const MyArtPieceIntro = ({className}: {className?:string}) => {
       </div>
       <div className="pl-2 text-sm mt-3 w-[90%] max-sm:w-full para invisible ">
         <p className="text-justify">
-          Collection of art curated by Amo-Mensah Amofa. Artwork designed as
-          more than a display but meant to ignite conversations that resonate
-          within. Pieces formed as an expression to explore the depths of human
-          emotion and connection. Behind every canvas is a story to tell and
-          hear, where emotions find their voice
+        Curated by Amo-Mensah Amofa, this collection of art explores the deep connection between emotion and the human experience, sparking thoughtful dialogue among viewers. Each canvas reveals a unique story, giving voice to the emotions within.
         </p>
       </div>
     </div>

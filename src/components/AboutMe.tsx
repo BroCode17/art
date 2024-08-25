@@ -3,7 +3,6 @@ import Container from "./Container";
 import RecentWork from "./RecentWork";
 import Image from "next/image";
 
-
 const AboutMe = () => {
   return (
     <div className="text-black flex justify-center mt-20 max-md:px-2 max-lg:p-6 overflow-hidden">
@@ -12,30 +11,33 @@ const AboutMe = () => {
           <div className="flex flex-col gap-2 text-justify text-sm">
             <p>
               Amo-Mensah was born in Agona, Ghana and is a self-taught artist
-              based in Glastonbury, Connecticut. Having developed an interest in
-              art since a child, when the world became still because of the
-              COVID pandemic when the world became still, he found himself
-              venturing back into art. He embarked on this journey with a
-              passion of unraveling the complexities of the human experience.
-              Without the confines of a formal art education, Amo embraced
-              experimentation, honing his craft through trial and error and
-              drawing inspiration from the depths of his own emotions and
-              observation.
-            </p>
-
-            <p>
-              His art explores beauty, resilience, vulnerability and strength of
-              the human experience, serving as a mirror reflecting the
-              intricacies of existence, inviting viewers to confront their own
-              truths and perceptions of the world. Still new to the art world,
-              Amo is eager to learn and gain more experience that will translate
-              in his artwork. He invites us to embark on a transformative
-              journey, one that transcends the confines of the canvas and
-              resonates deep within the minds and hearts of the viewer
+              based in Connecticut. He has always had a profound love for art
+              and his passion for art has been a constant throughout his life,
+              serving as a source of joy and creativity. <br></br>
+              The onset of the COVID-19 pandemic became a pivotal moment. WIth
+              the world in turmoil and time standing still, he found himself
+              returning to his artistic roots, prompting him to dive deeper into
+              his craft. <br></br>
+              Despite not having a formal art education, his work is a testament
+              of grateful talent and relentless curiosity.. Experimenting with
+              new concepts and techniques, his artwork is drawn inspiration from
+              his life experiences and contemporary ideas. Exploring beauty,
+              resilience, vulnerability and strength of the human experience,
+              his approach to art is intuitive and explorative. <br></br>
+              Artwork is more than a visual experience, but a narrative that
+              invites viewers to explore the deeper meanings and emotions behind
+              each piece
             </p>
           </div>
           <div className="bg-black h-96 overflow-hidden ">
-            <Image src="/images/amofa-logo.jpg" alt="Logo" priority   height={1000} width={1000} className="w-full h-full" />
+            <Image
+              src="/images/amofa-logo.jpg"
+              alt="Logo"
+              priority
+              height={1000}
+              width={1000}
+              className="w-full h-full"
+            />
           </div>
         </div>
         <RecentWork />
