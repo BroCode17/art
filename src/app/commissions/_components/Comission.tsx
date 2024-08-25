@@ -27,7 +27,7 @@ const Render = ({
     case "left":
       return (
         <div className="flex max-sm:flex-col gap-5 items-center ">
-          <div className="bg-black h-[370px] w-[40%] overflow-hidden border max-sm:w-full max-sm:px-10 rounded-lg">
+          <div className="bg-black h-[370px] w-[45%] overflow-hidden border max-sm:w-full max-sm:px-10 rounded-lg">
             <Image
               src={`/images/${imgPath}`}
               alt="Fall"
@@ -108,8 +108,8 @@ const Commissions = () => {
       <div className="w-ful flex justify-center md:px-4 lg:px-0">
         <Container className="bg-white mt-20">
           <div>
-            <div className="flex gap-8 flex-col md:flex-row">
-              <div className="w-full md:w-2/3 pt-5 flex flex-col gap-5 ">
+            <div className="flex gap-8 flex-col md:flex-row md:items-center">
+              <div className="w-full md:w-2/3pt-5 flex flex-col gap-5 ">
                 <h1 className={`${Ink_Free.className} text-3xl font-bold`}>
                   Bring Your Vision to LIFE <br /> With a CUSTOM ART
                 </h1>
@@ -138,26 +138,27 @@ const Commissions = () => {
                   </h1>
                 </div>
               </div>
-              <div className="flex justify-center h-[310px] sm:h-[340px] md:h-auto">
+              <div className="flex justify-center h-[310px] sm:h-[340px] md:h-[450px] w-full">
                 <ImageWithSkeleton
                   src="four.png"
                   alt="Fall"
-                  width={400}
-                  height={400}
+                  width={1000}
+                  height={1000}
                   // style={{
                   //   width: "100%",
                   //   height: "auto",
                   //   objectFit: "initial",
                   // }}
                   flag={true}
-                  className="max-sm:w-max-[290px] sm:h-[330px]  md:w-[350px] md:h-auto"
+                //  className="max-sm:w-max-[290px] sm:h-[330px]  md:w-[350px] md:h-auto "
+                 className="w-full  object-contain"
                 />
               </div>
             </div>
           </div>
 
           <div className="flex gap-8 flex-col sm:flex-row mt-10 items-center">
-            <div className="max-md:w-6/12 md:w-7/12  h-[310px] sm:h-[340px]">
+            <div className="w-full md:w-7/12  h-[310px] sm:h-[340px] ">
               <ImageWithSkeleton
                 src="CommissionedPortraitII.jpg"
                 alt="Frame"
