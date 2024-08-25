@@ -26,7 +26,7 @@ import Link from "next/link";
 import Cookies from "js-cookie";
 import { Input } from "./ui/input";
 import { formatCurrency } from "../../utils/formatters";
-import { generateOrderReference } from "./orderReferenceGenerator";
+import { generateOrderReference } from "../../utils/orderReferenceGenerator";
 import { useGetProductByIdQuery } from "@/_redux/services/productApi";
 import { setOpenClose, setProductId } from "@/_redux/slices/orderSlice";
 import { Button } from "./ui/button";
@@ -292,6 +292,15 @@ const CheckoutLink = ({ name }: { name: string }) => {
       "cartItems",
       JSON.stringify({ data: cartItems, totalAmount: totalAmount }),
       { expires: 7 }
+    );
+    
+
+    //order number
+    const inTenMinutes = new Date(new Date().getTime() + 10 * 60 * 1000);
+    Cookies.set(
+      "orderNumber",
+      JSON.stringify({ orderNumber: order}),
+      { expires: inTenMinutes }
     );
     dispatch(openCartModal());
   };

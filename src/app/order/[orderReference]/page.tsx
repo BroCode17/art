@@ -35,6 +35,11 @@ interface OrderItemProps {
   desc: string;
 }
 
+
+const getOrderNumberFromCookie = () => {
+  return Cookies.get('orderNumber')
+}
+
 const OrderItem = ({ title, price, desc }: OrderItemProps) => {
   return (
     <div className="flex flex-col justify-center items-center mb-10">
@@ -47,7 +52,7 @@ const OrderItem = ({ title, price, desc }: OrderItemProps) => {
   );
 };
 
-const OrderDetailsPage = () => {
+const OrderDetailsPage = ({params: id}: {params: {id: string}}) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams()
@@ -61,6 +66,8 @@ const OrderDetailsPage = () => {
     },
     [searchParams]
   )
+
+  // if(getOrderNumberFromCookie() !== id as string) re
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -78,6 +85,8 @@ const OrderDetailsPage = () => {
   const orderItems = useSelector((state: any) => state.cart.products);
   const totalAmount = useSelector((state: any) => state.cart.totalAmount);
   const deliveryAmount = useSelector((state: any) => state.cart.deliveryAmount);
+
+  
 
   const onSubmit = (e: any) => {
     //create order details and send to db

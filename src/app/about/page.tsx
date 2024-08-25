@@ -12,10 +12,10 @@ const AboutPage = () => {
           <div className="border-1 flex h-96 items-center justify-center  max-sm:flex-col-reverse max-sm:gap-2 py-6">
           <div className="h-full min-w-[300px]  max-w-[330px] max-md:mb-4">
               <ImageWithSkeleton
-                src="amofa-main.png"
+                src="AmofaMainCrop.jpg"
                 alt="Amofa"
-                width={100}
-                height={100}
+                width={800}
+                height={800}
                 className={` w-full object-contain h-full rounded-sm`}
                 priority
                 flag={true}

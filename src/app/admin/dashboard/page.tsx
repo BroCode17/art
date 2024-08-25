@@ -42,6 +42,7 @@ const AdminDashboard = () => {
     error: activeError,
     isLoading: activeProductLoading,
     isSuccess: activeProductSuccess,
+    refetch
   } = useGetActiveProductQuery("");
  
   const {
@@ -49,6 +50,7 @@ const AdminDashboard = () => {
     error: inError,
     isLoading: inLoading,
     isSuccess: inSuccess, 
+    refetch: inActiveRefetch
   } =  useGetInActiveProductQuery("")
   const [active, setActive] = useState(0);
   const [inActive, setInActive] = useState(0);

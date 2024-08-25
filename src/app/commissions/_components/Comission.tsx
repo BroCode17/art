@@ -8,7 +8,6 @@ import {
   Source_Sans_Pro_Light,
   Source_Sans_Pro_SemiBold,
 } from "@/local-fonts/local";
-;
 import Points from "@/components/Points";
 import GenericBanner from "@/app/gallery/_components/GenericBanner";
 import Container from "@/components/Container";
@@ -17,112 +16,95 @@ import UserForm from "@/components/UserForm";
 import { leftPointsData, pointsData } from "../../../../utils/data";
 import ImageWithSkeleton from "@/components/_images/ImageWithSkeleton";
 
+const Render = ({
+  position,
+  imgPath,
+}: {
+  position: "left" | "right";
+  imgPath: string;
+}) => {
+  switch (position) {
+    case "left":
+      return (
+        <div className="flex max-sm:flex-col gap-5 items-center ">
+          <div className="bg-black h-[370px] w-[40%] overflow-hidden border max-sm:w-full max-sm:px-10 rounded-lg">
+            <Image
+              src={`/images/${imgPath}`}
+              alt="Fall"
+              width={800}
+              height={600}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+              className="object-cover"
+            />
+          </div>
+          <div className="w-2/3 max-sm:w-full">
+            {/* <h1 className={`font-bold ${ITC_Font.className} text-xl`}>
+              Lorem Ipsum
+            </h1> */}
+            <div className="text-sm flex flex-col gap-5 mt-5 ">
+              <p>
+                Explore a curated selection of commissioned pieces that
+                highlight the diversity and creativity of our customer artworks
+              </p>
 
-const Render  = ({position, imgPath}:{position: 'left'|'right'; imgPath: string}) => {
-    switch(position){
-      case 'left':
-          return (
-            <div className="flex max-sm:flex-col gap-5 items-center ">
-              <div className="bg-black h-[370px] w-[40%] overflow-hidden border max-sm:w-full max-sm:px-10 rounded-lg">
-                <Image
-                  src={`/images/${imgPath}`}
-                  alt="Fall"
-                  width={800}
-                  height={600}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                  className="object-cover"
-                 
-                />
-              </div>
-              <div className="w-2/3 max-sm:w-full">
-                <h1 className={`font-bold ${ITC_Font.className} text-xl`}>Lorem Ipsum</h1>
-                  <div className="text-sm flex flex-col gap-5 mt-5 ">
-                  <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                  Maecenas porttitor congue massa. Fusce posuere, magna sed
-                  pulvinar ultricies, purus lectus malesuada libero, sit amet
-                  commodo magna eros quis urna. Nunc viverra imperdiet enim.
-                  Fusce est. Vivamus a tellus. Pellentesque habitant morbi
-                  tristique senectus et netus et malesuada fames ac turpis
-                  egestas. Proin pharetra nonummy pede. Mauris et orci. Aenean
-                  nec lorem. In porttitor. Donec laoreet nonummy augue.
-                  Suspendisse dui purus, scelerisque at, vulputate vitae,
-                  pretium mattis, nunc. Mauris eget neque at sem venenatis
-                  eleifend. Ut nonummy
-                </p>
+              {/* <p>
+                Every commissioned artwork has a story behind it. From celebrating special moments to capturing one&apos;s essence, these pieces were created with care and precision to bring our clients&apos; visions to life
+                </p> */}
+            </div>
+          </div>
+        </div>
+      );
+    case "right":
+      return (
+        <div className="flex max-sm:flex-col gap-5 items-center">
+          <div className="w-2/3 max-sm:w-full">
+            {/* <h1 className={`font-bold ${ITC_Font.className} text-xl`}>
+              Lorem Ipsum
+            </h1> */}
+            <div className="text-sm flex flex-col gap-5 mt-5 ">
+              <p>
+                Every commissioned artwork has a story behind it. From
+                celebrating special moments to capturing one&apos;s essence,
+                these pieces were created with care and precision to bring our
+                clients&apos; visions to life
+              </p>
 
-                <p>
+              {/* <p>
                   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
                   Maecenas porttitor congue massa. Fusce posuere, magna sed
                   pulvinar ultricies, purus lectus malesuada libero, sit amet
                   commodo magna eros quis urna
-                </p>
-                  </div>
-              </div>
+                </p> */}
             </div>
-          )
-      case 'right':
-        return(
-          <div className="flex max-sm:flex-col gap-5 items-center">
-             
-              <div className="w-2/3 max-sm:w-full">
-                <h1 className={`font-bold ${ITC_Font.className} text-xl`}>Lorem Ipsum</h1>
-                  <div className="text-sm flex flex-col gap-5 mt-5 ">
-                  <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                  Maecenas porttitor congue massa. Fusce posuere, magna sed
-                  pulvinar ultricies, purus lectus malesuada libero, sit amet
-                  commodo magna eros quis urna. Nunc viverra imperdiet enim.
-                  Fusce est. Vivamus a tellus. Pellentesque habitant morbi
-                  tristique senectus et netus et malesuada fames ac turpis
-                  egestas. Proin pharetra nonummy pede. Mauris et orci. Aenean
-                  nec lorem. In porttitor. Donec laoreet nonummy augue.
-                  Suspendisse dui purus, scelerisque at, vulputate vitae,
-                  pretium mattis, nunc. Mauris eget neque at sem venenatis
-                  eleifend. Ut nonummy
-                </p>
+          </div>
 
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                  Maecenas porttitor congue massa. Fusce posuere, magna sed
-                  pulvinar ultricies, purus lectus malesuada libero, sit amet
-                  commodo magna eros quis urna
-                </p>
-                  </div>
-              </div>
-
-              <div className="bg-black h-[370px] w-[40%] overflow-hidden border max-sm:w-full max-sm:px-10 rounded-lg">
-                <Image
-                  src={`/images/${imgPath}`}
-                  alt="Fall"
-                  width={800}
-                  height={600}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                  className="object-cover"
-                 
-                />
-              </div>
-            </div>
-        )
-    }
-}
-
+          <div className="bg-black h-[370px] w-[40%] overflow-hidden border max-sm:w-full max-sm:px-10 rounded-lg">
+            <Image
+              src={`/images/${imgPath}`}
+              alt="Fall"
+              width={800}
+              height={600}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+              className="object-cover"
+            />
+          </div>
+        </div>
+      );
+  }
+};
 
 const Commissions = () => {
   return (
     <div className="">
-      <GenericBanner
-        bannerImgUrl="Immerse.jpeg"
-        bannerTitle="Commission"
-      />
+      <GenericBanner bannerImgUrl="Immerse.jpeg" bannerTitle="Commission" />
       <div className="w-ful flex justify-center md:px-4 lg:px-0">
         <Container className="bg-white mt-20">
           <div>
@@ -219,16 +201,20 @@ const Commissions = () => {
           </div>
 
           {/* FROM */}
-          <div className="mt-10"><UserForm /></div>
+          <div className="mt-10">
+            <UserForm />
+          </div>
           {/* Horizontal Bar */}
           <div className="flex justify-center mt-10">
-            <hr className="w-4/5 h-[1px] bg-black border-[0.5px] border-black "/>
+            <hr className="w-4/5 h-[1px] bg-black border-[0.5px] border-black " />
           </div>
 
           <div className="mt-10 flex flex-col gap-10">
-            <h1 className={`font-bold ${ITC_Font.className} text-xl`}>Some Commisiond Pieces</h1>
-            <Render position="left" imgPath="Wo(w)man.jpeg"/>
-            <Render position="right" imgPath="home.png"/>
+            <h1 className={`font-bold ${ITC_Font.className} text-xl`}>
+              Some Commisiond Pieces
+            </h1>
+            <Render position="left" imgPath="Wo(w)man.jpeg" />
+            <Render position="right" imgPath="home.png" />
           </div>
         </Container>
       </div>

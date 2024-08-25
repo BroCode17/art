@@ -18,7 +18,7 @@ export const linkData = [
         url: '/'
     },
     {
-        name: 'Abort',
+        name: 'About',
         url: '/about'
     },
     {

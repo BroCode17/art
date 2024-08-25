@@ -82,7 +82,6 @@ export const uploader = async (
   id?: string
 ) => {
   //call to backend
-  console.log(allData.image.name);
   const dataToBeSend: EditProductProps = {
     name: allData.name,
     quantity: allData.quantity,
@@ -92,7 +91,7 @@ export const uploader = async (
   };
   try {
     await fetch(
-      `${process.env.NEXT_PUBLIC_NGROK_URL}/${id ? "product/" + id : "add"}`,
+      `${process.env.NEXT_PUBLIC_NGROK_URL}/api/v1/products/${id ? "product/" + id : "add"}`,
       {
         method: `${id ? "PUT" : "POST"}`,
         body: JSON.stringify({ data: dataToBeSend }),

@@ -134,12 +134,12 @@ const page = () => {
                   />
                  
                 </div>
-                <h1
+                {/* <h1
                     className={`${Source_Sans_Pro_Bold.className} self-start italic`}
                   >
                     This project was in collaboration with Alyssa Monet and
                     final logo was created by Alyssa Monet.
-                  </h1>
+                  </h1> */}
               </div>
             </div>
           </div>
@@ -164,19 +164,19 @@ const page = () => {
             <HeadTitle title="Explore Our Consulation Projects"  className="text-xl p-0 m-0 flex justify-start"/>
             <div  className="mt-10 flex flex-col md:grid md:grid-cols-3 gap-4">
               <BrandCard
-                imgUrl="/images/PGLA.png"
-                alt="One"
-                desc="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna."
+                imgUrl="/images/LGMA.jpg"
+                alt="Prety Grlz Love AMAMPIANO"
+                desc="Project was in collaboration with PGLA (@prettygirlzloveamapiano via Instagram) and final design was created by Amo.Arte"
               />
               <BrandCard
-                imgUrl="/images/FilmBrand.png"
+                imgUrl="/images/FilmLogo.jpg"
                 alt="Archive Film Brand Logo Digital"
-                desc="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna."
+                desc=" Logo created for Archive Films (@archivefilmsss via Instagram)"
               />
               <BrandCard
-                imgUrl="/images/MaryTrad.png"
-                alt="Mary Traditional Options Draft"
-                desc="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna."
+                imgUrl="/images/HustleDif.png"
+                alt="Hustle Different Logo"
+                desc="This project was in collaboration with Alyssa Monet and final logo was created by Alyssa Monet."
               />
             </div>
           </div>
