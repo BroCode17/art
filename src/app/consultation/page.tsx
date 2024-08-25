@@ -170,7 +170,7 @@ const page = () => {
               title="Explore Our Consulation Projects"
               className="text-xl p-0 m-0 flex justify-start"
             />
-            <div className="mt-10 flex flex-col md:grid md:grid-cols-3 gap-4">
+            <div className="mt-10 flex flex-col md:grid md:grid-cols-3 gap-1 sm:gap-2 md:gap-4">
               <BrandCard
                 imgUrl="/images/LGMA.jpg"
                 alt="Prety Grlz Love AMAMPIANO"
