@@ -190,7 +190,7 @@ const ArtworkCard: React.FC<{ artwork: ArtworkCopy; index: number; onClick: () =
       {isLoading && <ImageSkeleton />}
         <Image
           src={`/images/${artwork.url}`}
-          alt={artwork.url}
+          alt={artwork.url.split('.')[0]}
           fill
           sizes='95'
           objectFit="cover"
@@ -198,8 +198,8 @@ const ArtworkCard: React.FC<{ artwork: ArtworkCopy; index: number; onClick: () =
           onLoad={() => setIsLoading(false)}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-          <h3 className="text-white text-lg font-semibold">{artwork.url}</h3>
-          <p className="text-white text-sm">{artwork.url}</p>
+          <h3 className="text-white text-lg font-semibold">{artwork.url.split('.')[0]}</h3>
+          <p className="text-white text-sm">{artwork.url.split('.')[0]}</p>
         </div>
       </div>
     </motion.div>
@@ -233,7 +233,7 @@ const ArtworkModal: React.FC<{ artwork: ArtworkCopy; onClose: () => void }> = ({
           <div className="w-full  aspect-square relative">
             <Image
             src={`/images/${artwork.url}`}
-              alt={artwork.url}
+            alt={artwork.url.split('.')[0]}
               layout="fill"
               objectFit="cover"
               onClick={onClose}

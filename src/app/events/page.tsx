@@ -28,7 +28,7 @@ const page = () => {
   return (
     <div className="min-h-dvh ">
       <GenericBanner
-        bannerImgUrl="/images/shop.png"
+        bannerImgUrl="shop.png"
         bannerTitle="Events/Exhibition"
       />
       <div className="flex  justify-center item-center mt-20 max-lg:p-4">

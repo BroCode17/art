@@ -1,10 +1,7 @@
 import images from '../public/images/blue.jpeg'
 import caro from '../public/images/carosal.jpeg'
 import fall from '../public/images/fall.jpeg'
-import lady from '../public/images/lad.jpeg'
-import emb from '../public/images/emb.jpeg'
-import chal from '../public/images/chal.jpeg'
-import four from '../public/images/four.png'
+
 
 
 export const enum ButtonLinksTypes {
@@ -48,13 +45,13 @@ export const linkData = [
 
 export const imagesArray = [
     {
-        url: images
+        url: 'HouseOfBlues.jpeg'
     },
     {
-        url: caro
+        url: 'ForYourEyesOnlyI.jpeg'
     },
     {
-        url: fall
+        url: 'Gentleman.jpeg'
     }
 ]
 
@@ -90,22 +87,40 @@ export const ButtonLinksData = [
 ]
 
 
+// export const recentWorkData = [
+//     {
+//         url: "lad",
+//         flag: false,
+//     },
+//     {
+//         url: "emb",
+//         flag: false,
+//     },
+//     {
+//         url: "chal",
+//         flag: false,
+//     },
+//     {
+//         url: "fall",
+//         flag: false,
+//     }
+// ]
 export const recentWorkData = [
     {
-        url: "lad",
-        flag: false,
+        url: "BrothersKeeper.jpeg",
+        
     },
     {
-        url: "emb",
-        flag: false,
+        url: "HouseOfBlues.jpeg",
+        
     },
     {
-        url: "chal",
-        flag: false,
+        url: "FallOfMan.jpeg",
+        
     },
     {
-        url: "fall",
-        flag: false,
+        url: "Ethereal.jpeg",
+        
     }
 ]
 
@@ -141,116 +156,213 @@ export const leftPointsData = [
 ]
 
 
-export const shopData = [
-    {
-        url: 'one.jpeg'
-    },
-    {
-        url: 'two.jpeg'
-    },
-    {
-        url: 'chal.jpeg'
-    },
-    {
-        url: 'five.jpeg'
-    },
-    {
-        url: 'six.jpeg'
-    },
-    {
-        url: 'one.jpeg'
-    },
-    {
-        url: 'two.jpeg'
-    },
-    {
-        url: 'chal.jpeg'
-    },
-    {
-        url: 'five.jpeg'
-    },
-    {
-        url: 'six.jpeg'
-    },
-    {
-        url: 'one.jpeg'
-    },
-    {
-        url: 'two.jpeg'
-    },
-    {
-        url: 'chal.jpeg'
-    },
-    {
-        url: 'five.jpeg'
-    },
-    {
-        url: 'six.jpeg'
-    },
-    {
-        url: 'one.jpeg'
-    },
-    {
-        url: 'two.jpeg'
-    },
-    {
-        url: 'chal.jpeg'
-    },
-    {
-        url: 'five.jpeg'
-    },
-    {
-        url: 'six.jpeg'
-    },
-    {
-        url: 'one.jpeg'
-    },
-    {
-        url: 'two.jpeg'
-    },
-    {
-        url: 'chal.jpeg'
-    },
-    {
-        url: 'five.jpeg'
-    },
-    {
-        url: 'six.jpeg'
-    },
-    {
-        url: 'one.jpeg'
-    },
-    {
-        url: 'two.jpeg'
-    },
-    {
-        url: 'chal.jpeg'
-    },
-    {
-        url: 'five.jpeg'
-    },
-    {
-        url: 'six.jpeg'
-    },
-    {
-        url: 'one.jpeg'
-    },
-    {
-        url: 'two.jpeg'
-    },
-    {
-        url: 'chal.jpeg'
-    },
-    {
-        url: 'five.jpeg'
-    },
-    {
-        url: 'six.jpeg'
-    },
+// export const shopData = [
+//     {
+//         url: 'one.jpeg'
+//     },
+//     {
+//         url: 'two.jpeg'
+//     },
+//     {
+//         url: 'chal.jpeg'
+//     },
+//     {
+//         url: 'five.jpeg'
+//     },
+//     {
+//         url: 'six.jpeg'
+//     },
+//     {
+//         url: 'one.jpeg'
+//     },
+//     {
+//         url: 'two.jpeg'
+//     },
+//     {
+//         url: 'chal.jpeg'
+//     },
+//     {
+//         url: 'five.jpeg'
+//     },
+//     {
+//         url: 'six.jpeg'
+//     },
+//     {
+//         url: 'one.jpeg'
+//     },
+//     {
+//         url: 'two.jpeg'
+//     },
+//     {
+//         url: 'chal.jpeg'
+//     },
+//     {
+//         url: 'five.jpeg'
+//     },
+//     {
+//         url: 'six.jpeg'
+//     },
+//     {
+//         url: 'one.jpeg'
+//     },
+//     {
+//         url: 'two.jpeg'
+//     },
+//     {
+//         url: 'chal.jpeg'
+//     },
+//     {
+//         url: 'five.jpeg'
+//     },
+//     {
+//         url: 'six.jpeg'
+//     },
+//     {
+//         url: 'one.jpeg'
+//     },
+//     {
+//         url: 'two.jpeg'
+//     },
+//     {
+//         url: 'chal.jpeg'
+//     },
+//     {
+//         url: 'five.jpeg'
+//     },
+//     {
+//         url: 'six.jpeg'
+//     },
+//     {
+//         url: 'one.jpeg'
+//     },
+//     {
+//         url: 'two.jpeg'
+//     },
+//     {
+//         url: 'chal.jpeg'
+//     },
+//     {
+//         url: 'five.jpeg'
+//     },
+//     {
+//         url: 'six.jpeg'
+//     },
+//     {
+//         url: 'one.jpeg'
+//     },
+//     {
+//         url: 'two.jpeg'
+//     },
+//     {
+//         url: 'chal.jpeg'
+//     },
+//     {
+//         url: 'five.jpeg'
+//     },
+//     {
+//         url: 'six.jpeg'
+//     },
     
+// ]
+
+export const shopData = [ 
+    {
+        url: 'car.jpeg'
+    },
+    {
+        url: 'Chale.jpeg'
+    },
+    {
+        url: 'BrothersKeeper.jpeg'
+    },
+    {
+        url: 'Embrace.jpeg'
+    },
+    {
+        url: 'Ethereal.jpeg'
+    },
+    {
+        url: 'FallOfMan.jpeg'
+    },
+    {
+        url: 'ForYourEyesOnly.jpeg'
+    },
+    {
+        url: 'ForYourEyesOnlyI.jpeg'
+    },
+    {
+        url: 'Gentleman.jpeg'
+    },
+    {
+        url: 'GodHelpTheChild.jpeg'
+    },
+    {
+        url: 'Hair.jpeg'
+    },
+    {
+        url: 'HouseOfBlues.jpeg'
+    },
+    {
+        url: 'HouseOfBluesII.jpeg'
+    },
+    {
+        url: 'Immerse.jpeg'
+    },
+    {
+        url: 'KingsCradle.jpeg'
+    },
+    {
+        url: 'OneEye.jpeg'
+    },
+    {
+        url: 'OrdinaryApart.jpeg'
+    },
+    {
+        url: 'ThroughTheNeedle.jpeg'
+    },
+    {
+        url: 'UnderTheSun.jpeg'
+    },
+    {
+        url: 'War.jpeg'
+    },
+    {
+        url: 'WinterBlue.jpeg'
+    },
+    {
+        url: 'WithGrace.jpeg'
+    },
+    {
+        url: 'Wo(w)man.jpeg'
+    },
+    {
+        url: 'CommissionedPortrait.jpg'
+    },
+    {
+        url: 'CommissionedPortraitII.jpg'
+    },
+    {
+        url: 'shop.png'
+    },
+    {
+        url: 'shop.jpg'
+    },
+    {
+        url: 'TraditionalWearConsultation.jpg'
+    },
+    {
+        url: 'TraditionalWearConsultationI.jpg'
+    },
+    {
+        url: 'four.png'
+    },
+    {
+        url: 'home.png'
+    },
+    {
+        url: 'MoveWithMe.jpeg'
+    },
 ]
-
-
 export const itemSizeArray = [
     {
         size: 'Small',

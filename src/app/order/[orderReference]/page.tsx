@@ -95,7 +95,7 @@ const OrderDetailsPage = () => {
     <div className="min-h-dvh w-full ">
       <div className="">
         <GenericBanner
-          bannerImgUrl="/images/shop.png"
+          bannerImgUrl="shop.png"
           bannerTitle="Order Information"
         />
         <div className="w-full flex justify-center">

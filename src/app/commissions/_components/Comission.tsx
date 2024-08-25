@@ -22,13 +22,13 @@ const Render  = ({position, imgPath}:{position: 'left'|'right'; imgPath: string}
     switch(position){
       case 'left':
           return (
-            <div className="flex max-sm:flex-col gap-5 items-center">
-              <div className="bg-black h-[370px] w-[40%] overflow-hidden border max-sm:w-full max-sm:px-10">
+            <div className="flex max-sm:flex-col gap-5 items-center ">
+              <div className="bg-black h-[370px] w-[40%] overflow-hidden border max-sm:w-full max-sm:px-10 rounded-lg">
                 <Image
-                  src={imgPath}
+                  src={`/images/${imgPath}`}
                   alt="Fall"
-                  width={1000}
-                  height={1000}
+                  width={800}
+                  height={600}
                   style={{
                     width: "100%",
                     height: "100%",
@@ -95,12 +95,12 @@ const Render  = ({position, imgPath}:{position: 'left'|'right'; imgPath: string}
                   </div>
               </div>
 
-              <div className="bg-black h-[370px] w-[40%] overflow-hidden border max-sm:w-full max-sm:px-10">
+              <div className="bg-black h-[370px] w-[40%] overflow-hidden border max-sm:w-full max-sm:px-10 rounded-lg">
                 <Image
-                  src={imgPath}
+                  src={`/images/${imgPath}`}
                   alt="Fall"
-                  width={1000}
-                  height={1000}
+                  width={800}
+                  height={600}
                   style={{
                     width: "100%",
                     height: "100%",
@@ -118,12 +118,12 @@ const Render  = ({position, imgPath}:{position: 'left'|'right'; imgPath: string}
 
 const Commissions = () => {
   return (
-    <div className="md:px-4 lg:px-0">
+    <div className="">
       <GenericBanner
-        bannerImgUrl="/images/commision.png"
+        bannerImgUrl="Immerse.jpeg"
         bannerTitle="Commission"
       />
-      <div className="w-ful flex justify-center">
+      <div className="w-ful flex justify-center md:px-4 lg:px-0">
         <Container className="bg-white mt-20">
           <div>
             <div className="flex gap-8 flex-col md:flex-row">
@@ -177,7 +177,7 @@ const Commissions = () => {
           <div className="flex gap-8 flex-col sm:flex-row mt-10 items-center">
             <div className="max-md:w-6/12 md:w-7/12  h-[310px] sm:h-[340px]">
               <ImageWithSkeleton
-                src="thr.png"
+                src="CommissionedPortraitII.jpg"
                 alt="Frame"
                 width={1000}
                 height={1000}
@@ -227,8 +227,8 @@ const Commissions = () => {
 
           <div className="mt-10 flex flex-col gap-10">
             <h1 className={`font-bold ${ITC_Font.className} text-xl`}>Some Commisiond Pieces</h1>
-            <Render position="left" imgPath="/images/coms.png"/>
-            <Render position="right" imgPath="/images/home.png"/>
+            <Render position="left" imgPath="Wo(w)man.jpeg"/>
+            <Render position="right" imgPath="home.png"/>
           </div>
         </Container>
       </div>

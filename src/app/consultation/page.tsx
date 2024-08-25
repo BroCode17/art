@@ -12,6 +12,7 @@ import HeadTitle from "@/components/HeadTitle";
 import UserForm from "@/components/UserForm";
 import { cn } from "@/lib/utils";
 import GenericBanner from "../gallery/_components/GenericBanner";
+import ImageWithSkeleton from "@/components/_images/ImageWithSkeleton";
 
 const BrandCard = ({
   imgUrl,
@@ -42,14 +43,14 @@ const page = () => {
   return (
     <div className="min-h-screen">
       <GenericBanner
-        bannerImgUrl="/images/shop.png"
+        bannerImgUrl="HandCraft.png"
         bannerTitle="Consultation"
       />
       <div className="w-ful flex justify-center items-center px-1 md:px-3 xl:px-0">
         <Container className="bg-white mt-20  ">
           <div className="">
             <div className="flex gap-8 flex-col md:flex-row md:items-center">
-              <div className="w-full md:flex-1 pt-5 flex flex-col gap-5 upper">
+              <div className="w-full md:flex-1 pt-5 flex flex-col gap-5 md:-mt-10 ">
                 <h2 className={`${Source_Sans_Pro_SemiBold.className}`}>
                   TRADITIONAL GHANA WEAR DESIGN SKETCHES
                 </h2>
@@ -110,27 +111,35 @@ const page = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex justify-center w-full md:w-1/2 md:flex-row md:gap-10">
-                <div className="w-full">
-                  <Image
-                    src="/images/brand.png"
-                    alt="Fall"
+              <div className="flex flex-col justify-center w-full md:w-[42%]  md:gap-5">
+                <div className="w-full border rounded-lg hover:scale-105 transition-all duration-500">
+                  <ImageWithSkeleton
+                    src="TraditionalWearConsultation.jpg"
+                    alt="TraditionalWearConsultation.jpg"
                     width={400}
                     height={400}
-                    // style={{
-                    //   width: "100%",
-                    //   height: "auto",
-                    //   objectFit: "initial",
-                    // }}
-                    className="  w-full md:h-auto"
+                    className="  w-full lg:w-[350px] "
+                    flag={true}
                   />
-                  <h1
-                    className={`${Source_Sans_Pro_Bold.className} self-start mt-5`}
+                 
+                </div>
+                <div className="w-full border rounded-lg hover:scale-105 transition-all duration-500">
+                  <ImageWithSkeleton
+                    src="TraditionalWearConsultationI.jpg"
+                    alt="TraditionalWearConsultationI.jpg"
+                    width={400}
+                    height={400}
+                    className="  w-full md:h-auto"
+                    flag={true}
+                  />
+                 
+                </div>
+                <h1
+                    className={`${Source_Sans_Pro_Bold.className} self-start italic`}
                   >
                     This project was in collaboration with Alyssa Monet and
                     final logo was created by Alyssa Monet.
                   </h1>
-                </div>
               </div>
             </div>
           </div>

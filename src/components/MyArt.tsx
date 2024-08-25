@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Row2Image from "./Row2Image";
 import ImageContainer from "./ImageContainer";
 import { cn } from "@/lib/utils";
+import { once } from "events";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -15,14 +16,14 @@ const MyArtPieceIntro = ({className}: {className?:string}) => {
   const myRef = useRef(null);
   const [view, setView] = useState();
   const { ref, inView } = useInView({ threshold: 0 });
-  useEffect(() => {}, [myRef]);
+  //useEffect(() => {}, [myRef]);
   useGSAP(
     () => {
       const t1 = gsap.timeline();
       t1.from(".title", {
         opacity: 0,
         y: "-10",
-      }).from(".para", {
+      },).from(".para", {
         opacity: 0,
         y: "-5",
       });
@@ -46,8 +47,7 @@ const MyArtPieceIntro = ({className}: {className?:string}) => {
       //   duration: 3
       // })
     },
-    { scope: myRef }
-  );
+    { scope: myRef },);
 
   
   return (
@@ -76,14 +76,14 @@ const MyArtPieces = () => {
       <div className="grid  grid-cols-2 md:grid-cols-3 md:h-[600px] grid-rows-2 md:grid-rows-3 gap-3  max-w-[900px] ">
         <Row2Image
           text="For Your Eyes Only"
-          imgUrl={"brothers"}
+          imgUrl={"BrothersKeeper.jpeg"}
           className="max-sm:hidden"
         />
         <MyArtPieceIntro  className="max-md:hidden"/>
-        <Row2Image text="Fall of Man" imgUrl="fall" color="black" />
-        <Row2Image text="Move with Me" imgUrl="oneman" />
-        <div className=" relative">
-          <ImageContainer text="House of Blue" imgUrl="blue" />
+        <Row2Image text="Fall of Man" imgUrl="FallOfMan.jpeg" color="black" />
+        <Row2Image text="Move with Me" imgUrl="MoveWithMe.jpeg" />
+        <div className=" relative hover:scale-105 transition-all duration-500">
+          <ImageContainer text="House of Blue" imgUrl="HouseOfBlues.jpeg" />
           <span
             className={`absolute bottom-5 left-5  text-white font-bold text-sm ${ITC_Font.className}`}
           >

@@ -3,6 +3,7 @@ import HeadTitle from "./HeadTitle";
 import ImageContainerTwo from "./ImageContanierTwo";
 import ImageContainer from "./ImageContainer";
 import { recentWorkData } from "../../utils/data";
+import ImageWithSkeleton from "./_images/ImageWithSkeleton";
 
 const RecentWork = () => {
   return (
@@ -11,14 +12,16 @@ const RecentWork = () => {
         title="Recent Artworks"
         className="text-2xl text-left p-0 m-0"
       />
-      <div className="grid grid-cols-2 md:flex gap-2 md:justify-start mt-5">
+      <div className="grid grid-cols-2 md:flex gap-2 md:justify-start mt-5 ">
         {recentWorkData.map((item, index) => (
-          <div className="md:w-1/4" key={index}>
-            <ImageContainer
+          <div className="md:w-1/4 hover:scale-105 transition-all duration-500" key={index}>
+            <ImageWithSkeleton
               key={index}
-              imgUrl={item.url}
-              text={item.url}
-              flag={item.flag}
+              alt={item.url}
+              src={item.url}
+              width={400}
+              height={500}
+              flag={true}
             />
           </div>
         ))}

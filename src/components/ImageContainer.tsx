@@ -6,7 +6,7 @@ import Image from 'next/image'
 const ImageContainer =  ({imgUrl, text, flag, ref, className}: Row2ImageParam) => {
 
   return (
-  <Image src={`/images/${flag ? imgUrl+'.png' : imgUrl+'.jpeg'}`} 
+  <Image src={`/images/${imgUrl}`} 
   alt={text} 
   width={259}
   height={394} 

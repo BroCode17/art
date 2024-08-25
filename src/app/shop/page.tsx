@@ -31,7 +31,7 @@ const ShopPage = () => {
 
   return (
     <div className="min-h-screen">
-      <GenericBanner bannerImgUrl="/images/shop.png" bannerTitle="Shop" />
+      <GenericBanner bannerImgUrl="HandCraft.png" bannerTitle="Shop" />
       <div className="flex justify-center md:px-4 lg:px-0">
         <Container className="bg-white mt-10">
           <div className="flex justify-between">

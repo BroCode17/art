@@ -12,7 +12,7 @@ const GenericBanner = ({
   titleColor,
 }: BannerProps) => {
   return (
-    <div className="w-full relative ">
+    <div className="w-full relative">
 
       <BannerImg imageUrl={bannerImgUrl} />
    

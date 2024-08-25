@@ -94,7 +94,7 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
   return (
     <div className="min-h-dvh w-full ">
       <div className="">
-        <GenericBanner bannerImgUrl="/images/shop.png" bannerTitle="Cart" />
+        <GenericBanner bannerImgUrl="shop.png" bannerTitle="Cart" />
         <div className="w-full flex justify-center">
           <Container className="bg-white mt-20 ">
             <HeadTitle title={`Add To Cart `}className="text-start mb-5" />

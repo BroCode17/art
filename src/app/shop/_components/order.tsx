@@ -8,7 +8,7 @@ const OrderDetailsPage = () => {
   return (
     <div className="min-h-dvh w-full ">
     <div className="">
-      <GenericBanner bannerImgUrl="/images/shop.png" bannerTitle="Cart" />
+      <GenericBanner bannerImgUrl="shop.png" bannerTitle="Cart" />
       <div className="w-full flex justify-center">
         <Container className="bg-white mt-20 ">
           <HeadTitle title={`Shipping Information`}className="text-start mb-5" />

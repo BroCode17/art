@@ -39,7 +39,7 @@ const Card = (
 
   return (
     // <Link href={{pathname:'/shop/',  query: {name:'helloword'} }} as={`/shop/${description}`}>
-    <div className="relative h-[260px] cursor-pointer drop-shadow-md shadow-md rounded-md hover:scale-105 transition duration-150">
+    <div className="relative h-[260px] cursor-pointer drop-shadow-md shadow-md rounded-md hover:scale-105 transition-all duration-500">
      { quantity === 0 && <div className="absolute inset-0 w-full h-full bg-white bg-opacity-50 flex items-center justify-center z-50">
         <p className="font-semibold text-xl select-none">Out of Stock</p>
       </div>}

@@ -17,23 +17,14 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/effect-fade';
 
 import { imagesArray } from "../../../../utils/data";
 import SlideNextButton from "./SwiperBtn";
+import ImageWithSkeleton from "@/components/_images/ImageWithSkeleton";
 
  const Slide = () => {
-  //   const [currSlide, setCurrSlide] = useState(0);
-
-  // const nextSlide = () => {
-  //   setCurrSlide((prev) => (prev === imagesArray.length - 1 ? 0 : prev + 1));
-  // };
-  // const prevSlide = () => {
-  //   setCurrSlide((prev) => (prev === 0 ? imagesArray.length - 1 : prev - 1));
-  // };
-
-  // const switchToIndex = (idx: number) => {
-  //   setCurrSlide(idx)
-
   const swiper = useSwiper();
   const nexto = () => {
     swiper.slideNext();
@@ -51,15 +42,13 @@ import SlideNextButton from "./SwiperBtn";
         ]}
         spaceBetween={0}
         slidesPerView={1}
-        // onSlideChange={() => console.log("slide change")}
-        // onSwiper={(swiper) => console.log(swiper)}
+      
         className="h-96 w-full"
-        //pagination={{ clickable: true }}
         autoplay={{
           delay: 5000,
           waitForTransition: true,
         }}
-        effect="fade"
+        effect="coverflow"
         loop={true}
         fadeEffect={{
           crossFade: true,
@@ -72,15 +61,13 @@ import SlideNextButton from "./SwiperBtn";
               //style={{ transform: `translateX(-${currSlide * 100}%)` }}
               className=""
             >
-              <Image
+              <ImageWithSkeleton
                 src={item.url}
                 alt="Carosaul"
-                style={{
-                  width: "100%",
-                  height: "24rem",
-                  objectFit: "cover",
-                }}
-                className="w-full bg-blend-multiply"
+                width={1000}
+                height={1000}
+                className="w-full bg-blend-multiply rounded-none"
+                flag={true}
               />
             </SwiperSlide>
           ))}

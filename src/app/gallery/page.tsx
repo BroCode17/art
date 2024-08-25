@@ -18,7 +18,7 @@ const GalleryPage = () => {
   }, [data, isSuccess]);
   return (
     <div className="min-h-screen w-full  ">
-      <GenericBanner bannerImgUrl="/images/galley.png" bannerTitle="Gallery" />
+      <GenericBanner bannerImgUrl="Hair.jpeg" bannerTitle="Gallery" />
       <div className=" flex justify-center">
         <Container className="min-h-[24rem] w-full bg-white ">
           {isLoading && (
