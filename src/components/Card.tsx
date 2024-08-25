@@ -2,6 +2,7 @@
 import React from "react";
 import ImageContainerTwo from "./ImageContanierTwo";
 import Link from "next/link";
+import { encryptObjectClient } from "../../utils/encDecrypt";
 
 
 interface ItemInterface {
@@ -17,6 +18,7 @@ interface ItemInterface {
   quantity: number;
   flag?: boolean
 }
+
 
 const Card = (
   { price, image, description, title, id, quantity, flag }: ItemInterface
@@ -36,7 +38,9 @@ const Card = (
       id,
     },
   };
-
+  
+  const productInfo = encryptObjectClient(href.query);
+  const q = {productInfo}
   return (
     // <Link href={{pathname:'/shop/',  query: {name:'helloword'} }} as={`/shop/${description}`}>
     <div className="relative h-[260px] cursor-pointer drop-shadow-md shadow-md rounded-md hover:scale-105 transition-all duration-500">
@@ -45,7 +49,7 @@ const Card = (
       </div>}
       <Link
         href={href.pathname}
-        as={`shop/${id}?${new URLSearchParams(href.query).toString()}`}
+        as={`shop/${id}?${new URLSearchParams(q)}`}
       >
         {/* // <Link href={href} as={`/product/123?${new URLSearchParams(query).toString()}`} > */}
         <ImageContainerTwo

@@ -226,7 +226,7 @@ export default function CartModal() {
               {cartItems.map((item: ProductFromCartPageProps) => (
                 <li
                   key={item.id}
-                  className="flex justify-between mb-2 bg-soft h-20 items-center"
+                  className="flex justify-between mb-2 bg-soft h-20 items-center rounded-md shadow-md"
                 >
                   <div className="w-16 h-full">
                     <ImageContainerTwo imgUrl={item.image} text={item.title} />
@@ -237,13 +237,13 @@ export default function CartModal() {
                   </div>
                   <div className="w-10 text-sm">
                     <p>{formatCurrency(Number(item.price) / 100)}</p>
-                    <p>{item.size}</p>
+                    {/* <p>{item.size}</p> */}
                   </div>
                   <button
                     onClick={() => dispatch(removeProduct(item.id))}
-                    className=" pr-2"
+                    className=" pr-2 bg-red-500 h-full rounded-tr-md rounded-br-md "
                   >
-                    <IoMdCloseCircleOutline size={24} />
+                    <IoClose size={24} />
                   </button>
                 </li>
               ))}

@@ -1,9 +1,12 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const NotFound = () => {
   const pathname = usePathname();
+  const router = useRouter()
   return (
     <div className="flex justify-center">
       <section className="page_404">
@@ -20,7 +23,7 @@ const NotFound = () => {
 
                   <p>the page you are looking for not avaible!</p>
 
-                  <a
+                  {/* <a
                     href={`${
                       pathname.includes("/admin/dashboard")
                         ? "/admin/dashboard"
@@ -29,7 +32,10 @@ const NotFound = () => {
                     className="link_404 hover:bg-muted-foreground"
                   >
                     Go to Home
-                  </a>
+                  </a> */}
+                  <Button className="mt-3 rounded-md" onClick={() => router.back()}>
+                    Go Back
+                  </Button>
                 </div>
               </div>
             </div>

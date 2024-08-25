@@ -193,7 +193,8 @@ const ArtworkCard: React.FC<{ artwork: ArtworkCopy; index: number; onClick: () =
           alt={artwork.url.split('.')[0]}
           fill
           sizes='95'
-          objectFit="cover"
+          
+          style={{objectFit:"cover"}}
           className="transition-transform duration-300 hover:scale-105 w-full h-auto"
           onLoad={() => setIsLoading(false)}
         />
@@ -235,7 +236,8 @@ const ArtworkModal: React.FC<{ artwork: ArtworkCopy; onClose: () => void }> = ({
             src={`/images/${artwork.url}`}
             alt={artwork.url.split('.')[0]}
               layout="fill"
-              objectFit="cover"
+              
+              style={{objectFit:"cover"}}
               onClick={onClose}
 
             />

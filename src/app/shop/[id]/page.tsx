@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { notFound, useSearchParams } from "next/navigation";
 import Container from "@/components/Container";
 import HeadTitle from "@/components/HeadTitle";
 import { CldImage } from "next-cloudinary";
@@ -19,6 +19,7 @@ import { FaCircleMinus } from "react-icons/fa6";
 import { RadioButton } from "@/components/RadioButton";
 import { useSelector } from "react-redux";
 import GenericBanner from "@/app/gallery/_components/GenericBanner";
+import { decryptObjectClient } from "../../../../utils/encDecrypt";
 
 interface SelectType {
   value: "Small" | "Medium" | "Large";
@@ -49,18 +50,19 @@ interface SelectType {
 //   );
 // }
 
-
 const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
   const searchParams = useSearchParams();
-  const title = searchParams.get("title");
-  const image = searchParams.get("image");
-  const description = searchParams.get("description");
-  const price = searchParams.get("price");
+ //Get the encrypted data
+  const productInfo = searchParams.get("productInfo");
+ //Decypte and the actual data
+  const decryptedData = decryptObjectClient(productInfo as string);
+  // const eg = decryptObjectClient('1se');
+  if(decryptedData === null) return notFound()
+  const { title, image, description, price } = decryptedData;
 
   const [counter, setCounter] = useState(1);
   const [enbaleDecrease, setEnableDecrease] = useState(true);
-  const productItem = useSelector((state:any) => state.cart.products)
-
+  const productItem = useSelector((state: any) => state.cart.products);
 
   const [size, setItemSize] = useState("Small");
 
@@ -68,16 +70,10 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
     setItemSize(value);
   };
 
-
-
-
   const increaseItem = useCallback(() => {
     setEnableDecrease(false);
     setCounter((prev) => prev + 1);
   }, [enbaleDecrease]);
-
-
-
 
   const decreaseItem = () => {
     if (counter < 2) setEnableDecrease(true);
@@ -85,11 +81,10 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
   };
 
   const [numOfItems, setNumOfItems] = useState(productItem.length || 0);
-  
 
   useEffect(() => {
-    setNumOfItems(productItem.length)
-  }, [productItem])
+    setNumOfItems(productItem.length);
+  }, [productItem]);
 
   return (
     <div className="min-h-dvh w-full ">
@@ -97,7 +92,7 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
         <GenericBanner bannerImgUrl="shop.png" bannerTitle="Cart" />
         <div className="w-full flex justify-center">
           <Container className="bg-white mt-20 ">
-            <HeadTitle title={`Add To Cart `}className="text-start mb-5" />
+            <HeadTitle title={`Add To Cart `} className="text-start mb-5" />
             <div className="w-full flex flex-col items-center md:items-start  justify-center md:flex-row gap-2 md:gap-10">
               <div className="w-[350px]">
                 <CldImage
@@ -213,3 +208,10 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
 };
 
 export default ProductPage;
+{
+  /***
+  
+  
+  
+  */
+}
