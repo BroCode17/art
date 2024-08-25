@@ -10,6 +10,7 @@ import MyArtPieces from "@/components/MyArt";
 import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
+
   return (
     <main className="w-full overflow-hidden relative">
       <section className="w-full relative">

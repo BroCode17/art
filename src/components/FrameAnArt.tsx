@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useGetAllProductQuery } from "@/_redux/services/productApi";
 import { ProductTypes } from "@/types";
-import { formatCurrency } from "../../utils/formatters";
+import { formatCurrency, formatNumber } from "../../utils/formatters";
 
 import IntroBox from "./IntroBox";
 import Container from "./Container";
@@ -34,7 +34,7 @@ const FrameAnArt = () => {
 
         {isSuccess &&
           product.slice(0,6).map((item:any, index) => {
-            const amout = formatCurrency(item.price / 100);
+            const amout = formatCurrency(Number(formatNumber(item.price/ 100)));
             return (
               <Card
                 key={index}

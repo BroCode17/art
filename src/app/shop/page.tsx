@@ -11,7 +11,7 @@ import Card from "@/components/Card";
 import { Input } from "@/components/ui/input";
 import { Loader2, Search } from "lucide-react";
 import GenericBanner from "../gallery/_components/GenericBanner";
-import { formatCurrency } from "../../../utils/formatters";
+import { formatCurrency, formatNumber } from "../../../utils/formatters";
 import { useGetAllProductQuery } from "@/_redux/services/productApi";
 import { SkeletonDemo } from "@/components/_images/SkeletonDemo";
 
@@ -49,7 +49,8 @@ const ShopPage = () => {
 
             {isSuccess &&
               filteredProducts.map((item:any, index) => {
-                const amout = formatCurrency(item.price / 100);
+  
+                const amout = formatCurrency(Number(formatNumber(item.price/ 100)));
                 return (
                   <Card
                     key={index}
