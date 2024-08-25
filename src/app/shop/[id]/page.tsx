@@ -57,34 +57,39 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
  //Decypte and the actual data
   const decryptedData = decryptObjectClient(productInfo as string);
   // const eg = decryptObjectClient('1se');
-  if(decryptedData === null) return notFound()
-  const { title, image, description, price } = decryptedData;
-
+  
   const [counter, setCounter] = useState(1);
   const [enbaleDecrease, setEnableDecrease] = useState(true);
   const productItem = useSelector((state: any) => state.cart.products);
-
   const [size, setItemSize] = useState("Small");
+  const [numOfItems, setNumOfItems] = useState(productItem.length || 0);
+  
+  useEffect(() => {
+    setNumOfItems(productItem.length);
+  }, [productItem]);
 
-  const handleValueChange = (value: any) => {
-    setItemSize(value);
-  };
-
+  
   const increaseItem = useCallback(() => {
     setEnableDecrease(false);
     setCounter((prev) => prev + 1);
   }, [enbaleDecrease]);
+
+  if(decryptedData === null) return notFound()
+    const { title, image, description, price } = decryptedData;
+  
+  
+  const handleValueChange = (value: any) => {
+    setItemSize(value);
+  };
+
 
   const decreaseItem = () => {
     if (counter < 2) setEnableDecrease(true);
     setCounter((prev) => prev - 1);
   };
 
-  const [numOfItems, setNumOfItems] = useState(productItem.length || 0);
 
-  useEffect(() => {
-    setNumOfItems(productItem.length);
-  }, [productItem]);
+
 
   return (
     <div className="min-h-dvh w-full ">
