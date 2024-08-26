@@ -43,7 +43,7 @@ const ShopPage = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mt-10 ">
+          <div className="grid xs:grid-cols-2 md:grid-cols-3 gap-5 mt-10 ">
             {isLoading && <SkeletonDemo />}
           {isError && <div>Server is down</div>}
 

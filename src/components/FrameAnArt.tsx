@@ -26,7 +26,7 @@ const FrameAnArt = () => {
         description=" Collection of art curated by Amo-Mensah Amofa. Artwork designed as
             more than a display but meant to ignite conversations"
       />
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4  relative">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4  relative">
         {isLoading && <div className="absolute w-full h-full flex justify-center">
           <SkeletonDemo />
           </div>}

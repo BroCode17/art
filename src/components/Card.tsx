@@ -43,7 +43,7 @@ const Card = (
   
   const productInfo = encryptObjectClient(href.query);
   const q = {productInfo}
-  console.log(quantity)
+
   return (
     // <Link href={{pathname:'/shop/',  query: {name:'helloword'} }} as={`/shop/${description}`}>
     // <div className="relative h-[260px] cursor-pointer drop-shadow-md shadow-md rounded-md hover:scale-105 transition-all duration-500">
@@ -95,9 +95,9 @@ const Card = (
       <div className="p-4 flex flex-col flex-grow">
         <h2 className="text-md font-semibold mb-2 text-gray-800">{title}</h2>
         <p className="text-gray-600 mb-4  truncate text-xs">{description}</p>
-        <div className="flex justify-between items-center max-sm:flex-col">
+        <div className="flex justify-between items-center">
           <span className="text-xl font-bold text-black">{price}</span>
-          <button className="bg-black text-white px-4 py-2 rounded-full hover:bg-indigo-700 transition-colors duration-300">
+          <button className="bg-black text-white px-4 py-2 rounded-full hover:bg-muted-foreground transition-colors duration-300">
             Add to Cart
           </button>
         </div>

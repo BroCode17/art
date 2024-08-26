@@ -33,6 +33,16 @@ import { Button } from "./ui/button";
 import { useGetOrderByRefQuery } from "@/_redux/services/ordersApi";
 import { IoClose } from "react-icons/io5";
 import { CldImage } from "next-cloudinary";
+import ImageWithSkeleton from "./_images/ImageWithSkeleton";
+
+type EachProductCardProps = {
+  src: string;
+  title: string;
+  price: string;
+  description: string;
+  quantity: number;
+  id: string;
+};
 
 const CloseBtn = () => {
   const dispatch = useDispatch();
@@ -49,6 +59,50 @@ const CloseBtn = () => {
     >
       <IoClose size={24} />
     </div>
+  );
+};
+
+const EachProductCard = ({
+  src,
+  title,
+  price,
+  description,
+  id,
+  quantity,
+}: EachProductCardProps) => {
+  const dispatch = useDispatch();
+
+  return (
+    <li className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300  flex flex-col cursor-pointer relative">
+      <div className="relative h-48 sm:h-44">
+        <ImageWithSkeleton
+          src={src}
+          alt={title}
+          height={200}
+          width={150}
+          className="object-cover w-full h-full rounded-bl-none rounded-br-none"
+        />
+      </div>
+      <div className="p-4 flex flex-col flex-grow">
+        <h2 className="text-md font-semibold mb-2 text-gray-800">{title}</h2>
+        <p className="text-gray-600 mb-4  truncate text-xs">{description}</p>
+        <div className="flex items-center justify-between max-xs:flex-col">
+          <span className="text-xl font-bold text-black">{price}</span>
+          <div className="flex items-center w-full xs:w-1/2 gap-2">
+            <div className="w-full sm:flex-1">
+            
+              <Counter quantity={quantity} id={id} />
+            </div>
+            <button
+              onClick={() => dispatch(removeProduct(id))}
+              className="  border border-soft flex justify-center items-center px-1 py-1 rounded-sm mt-1 bg-red-500 max-xs:w-full  "
+            >
+              <IoClose size={24} />
+            </button>
+          </div>
+        </div>
+      </div>
+    </li>
   );
 };
 
@@ -144,7 +198,7 @@ export const Counter = ({ id, quantity }: { id: string; quantity: number }) => {
 
   return (
     <div
-      className={`border border-soft flex justify-between px-1 py-2 rounded-sm mt-1 bg-white`}
+      className={`border border-soft flex justify-between px-1 py-2 rounded-sm mt-1 bg-white `}
     >
       <button
         className="cursor-pointer"
@@ -209,49 +263,58 @@ export default function CartModal() {
         <button className="hidden" />
       </SheetTrigger>
 
-      <SheetContent side="right">
+      <SheetContent side="right" className="overflow-y-auto custom-scrollbar">
         <SheetHeader>
           <SheetTitle>Your Cart</SheetTitle>
           <SheetDescription className="sr-only hidden">
             Make changes to your to your cart and checkout
           </SheetDescription>
         </SheetHeader>
-        <div className="h-[76%]">
+        <div className="min-h-[76%]">
           <h2 className="text-xl font-bold mb-4"></h2>
 
           {cartItems.length === 0 ? (
             <p>Your cart is empty.</p>
           ) : (
-            <ul className="space-y-2">
+            <ul className="space-y-2 ">
               {cartItems.map((item: ProductFromCartPageProps) => (
-                <li
+                // <li
+                //   key={item.id}
+                //   className="flex justify-between mb-2 bg-soft h-20 items-center rounded-md shadow-md"
+                // >
+                //   <div className="w-16 h-full">
+                //     <ImageContainerTwo imgUrl={item.image} text={item.title} />
+                //   </div>
+                //   <div className="w-20 text-sm">
+                //     <span>{item.title}</span>
+                //     <Counter quantity={item.quantity} id={item.id} />
+                //   </div>
+                //   <div className="w-10 text-sm">
+                //     <p>{formatCurrency(Number(item.price) / 100)}</p>
+                //     {/* <p>{item.size}</p> */}
+                //   </div>
+                //   <button
+                //     onClick={() => dispatch(removeProduct(item.id))}
+                //     className=" pr-2 bg-red-500 h-full rounded-tr-md rounded-br-md "
+                //   >
+                //     <IoClose size={24} />
+                //   </button>
+                // </li>
+                <EachProductCard
+                  src={item.image}
+                  description={item.title}
+                  price={formatCurrency(Number(item.price) / 100)}
+                  title={item.title}
                   key={item.id}
-                  className="flex justify-between mb-2 bg-soft h-20 items-center rounded-md shadow-md"
-                >
-                  <div className="w-16 h-full">
-                    <ImageContainerTwo imgUrl={item.image} text={item.title} />
-                  </div>
-                  <div className="w-20 text-sm">
-                    <span>{item.title}</span>
-                    <Counter quantity={item.quantity} id={item.id} />
-                  </div>
-                  <div className="w-10 text-sm">
-                    <p>{formatCurrency(Number(item.price) / 100)}</p>
-                    {/* <p>{item.size}</p> */}
-                  </div>
-                  <button
-                    onClick={() => dispatch(removeProduct(item.id))}
-                    className=" pr-2 bg-red-500 h-full rounded-tr-md rounded-br-md "
-                  >
-                    <IoClose size={24} />
-                  </button>
-                </li>
+                  quantity={item.quantity}
+                  id={item.id}
+                />
               ))}
             </ul>
           )}
         </div>
-        <div className="w-full">
-          <SearchOrderLink name="Search Order" />
+        <div className="w-full mt-5 mb-20">
+          <SearchOrderLink name="Search" />
           {cartItems.length > 0 && <CheckoutLink name="Check Out" />}
           {cartItems.length > 0 && (
             <p className="text-muted-foreground text-right ">
@@ -293,23 +356,20 @@ const CheckoutLink = ({ name }: { name: string }) => {
       JSON.stringify({ data: cartItems, totalAmount: totalAmount }),
       { expires: 7 }
     );
-    
 
     //order number
     const inTenMinutes = new Date(new Date().getTime() + 10 * 60 * 1000);
-    Cookies.set(
-      "orderNumber",
-      JSON.stringify({ orderNumber: order}),
-      { expires: inTenMinutes }
-    );
+    Cookies.set("orderNumber", JSON.stringify({ orderNumber: order }), {
+      expires: inTenMinutes,
+    });
     dispatch(openCartModal());
   };
 
   return (
     <Link href={`/order/${order}`} onClick={handleFoward}>
-      <button className="bg-black text-white text-xs py-3 mt-2 font-semibold w-full uppercase border">
+      <Button className="bg-black text-white text-xs py-3 mt-2 font-semibold w-full uppercase border">
         {name}
-      </button>
+      </Button>
     </Link>
   );
 };
@@ -334,12 +394,12 @@ const SearchOrderLink = ({ name }: { name: string }) => {
 
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col ">
         {isError && (
           <p className="text-destructive mt-1">Enter a valid order id</p>
         )}
         <div className="flex items-center gap-2">
-          <div>
+          <div className="w-full">
             <Input
               className="rounded-none"
               placeholder="Order Reference Code"
@@ -348,12 +408,12 @@ const SearchOrderLink = ({ name }: { name: string }) => {
             />
           </div>
 
-          <button
-            className="bg-black text-white text-xs py-3 font-semibold w-1/3 uppercase border"
+          <Button
+            className="bg-black text-white text-xs py-1 md:py-3 font-semibold  sm:w-1/3 uppercase border"
             onClick={handleSearchOrder}
           >
             {name}
-          </button>
+          </Button>
         </div>
       </div>
     </>

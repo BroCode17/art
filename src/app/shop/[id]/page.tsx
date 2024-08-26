@@ -115,7 +115,7 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
                 <h1 className="text-zinc-900 font-semibold">Description</h1>
                 <p className="text-sm text-muted-foreground">{description}</p>
               </div>
-              <div className="w-[400px] border border-black p-10">
+              <div className="max-w-[400px] border border-black p-10">
                 <div className="flex flex-col gap-4">
                   <h1 className="text-xl font-bold">{`"${title!}"`}</h1>
                   <hr className="w-10/12 h-[1px] bg-gray-300 rounded-sm"></hr>
