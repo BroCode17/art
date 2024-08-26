@@ -14,6 +14,7 @@ export async function POST(req:NextRequest) {
 
   console.log('Stripe hook')
   console.log(event.type === 'charge.succeeded')
+  console.log(event)
 
   if(event.type === 'charge.succeeded'){
     const charge = event.data.object
