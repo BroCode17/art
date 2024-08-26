@@ -73,7 +73,7 @@ const EachProductCard = ({
   const dispatch = useDispatch();
 
   return (
-    <li className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300  flex flex-col cursor-pointer relative">
+    <li className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300  flex flex-col relative">
       <div className="relative h-48 sm:h-44">
         <ImageWithSkeleton
           src={src}
@@ -265,7 +265,7 @@ export default function CartModal() {
 
       <SheetContent side="right" className="overflow-y-auto custom-scrollbar">
         <SheetHeader>
-          <SheetTitle>Your Cart</SheetTitle>
+          <SheetTitle className="font-bold text-2xl">Your Cart</SheetTitle>
           <SheetDescription className="sr-only hidden">
             Make changes to your to your cart and checkout
           </SheetDescription>
