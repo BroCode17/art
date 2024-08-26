@@ -25,7 +25,7 @@ export async function POST(req:NextRequest) {
     const amount = charge.amount
 
 
-
+    console.log()
     //create order
     const dbProduct: Array<{product: string, orderedQuantity: number}> = [];
     itemPurchased.forEach((element:any) => {
@@ -47,7 +47,7 @@ export async function POST(req:NextRequest) {
         const response = await axios.post(`{process.env.NEXT_PUBLIC_NGROK_URL}/api/v1/orders/create-order`, orderObject);
         console.log('PUT Response:', response.data);
       } catch (error:any) {
-        console.error('Error updating data:', error.status);
+        console.error('Error updating data:', error);
       }
 
   }
