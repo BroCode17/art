@@ -12,6 +12,9 @@ export async function POST(req:NextRequest) {
   console.log(process.env.STRIPE_WEBHOOK_SECRET)
   const event = stripe.webhooks.constructEvent(await req.text(), req.headers.get('stripe-signature') as string, process.env.STRIPE_WEBHOOK_SECRET as string)
 
+  console.log('Stripe hook')
+  console.log(event.type === 'charge.succeeded')
+
   if(event.type === 'charge.succeeded'){
     const charge = event.data.object
     const refrenceNumber = charge.metadata.orderReference
