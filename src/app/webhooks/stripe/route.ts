@@ -8,6 +8,8 @@ import Stripe from 'stripe'
 const stripe = new Stripe(process.env.STRIPE_WEBHOOK_SECRET as string);
 
 export async function POST(req:NextRequest) {
+  console.log('called')
+  console.log(process.env.STRIPE_WEBHOOK_SECRET)
   const event = stripe.webhooks.constructEvent(await req.text(), req.headers.get('stripe-signature') as string, process.env.STRIPE_WEBHOOK_SECRET as string)
   const cook = cookies();
   if(event.type === 'charge.succeeded'){
