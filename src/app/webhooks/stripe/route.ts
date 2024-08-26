@@ -11,7 +11,7 @@ export async function POST(req:NextRequest) {
   console.log('called')
   console.log(process.env.STRIPE_WEBHOOK_SECRET)
   const event = stripe.webhooks.constructEvent(await req.text(), req.headers.get('stripe-signature') as string, process.env.STRIPE_WEBHOOK_SECRET as string)
-  const cook = cookies();
+
   if(event.type === 'charge.succeeded'){
     const charge = event.data.object
     const refrenceNumber = charge.metadata.orderReference
@@ -40,7 +40,7 @@ export async function POST(req:NextRequest) {
       }
       
       try {
-        const response = await axios.post(`http:localhost:5050/api/v1/orders/create-order`, orderObject);
+        const response = await axios.post(`{process.env.NEXT_PUBLIC_NGROK_URL}/api/v1/orders/create-order`, orderObject);
         console.log('PUT Response:', response.data);
       } catch (error:any) {
         console.error('Error updating data:', error.status);
