@@ -76,14 +76,15 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
       
 //  }, [size])
 
-  if(decryptedData === null) return notFound()
-
+ 
 
 
   const increaseItem = useCallback(() => {
     setEnableDecrease(false);
     setCounter((prev) => prev + 1);
   }, [enbaleDecrease]);
+  
+  if(decryptedData === null) return notFound()
 
   const { title, image, description, price, variant } = decryptedData;
   
