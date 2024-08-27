@@ -1,6 +1,11 @@
 "use client";
-import { useCreateProductMutation } from "@/_redux/services/productApi";
+import {
+  useCreateProductMutation,
+  useEditProductMutation,
+  useGetAllProductQuery,
+} from "@/_redux/services/productApi";
 import { useToast } from "@/app/shop/_components/toast-context";
+import ImageWithSkeleton from "@/components/_images/ImageWithSkeleton";
 
 // import { addProduct, updateProduct } from "@/app/admin/_actions/product";
 import { Button } from "@/components/ui/button";
@@ -9,9 +14,9 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import React, { FormEvent, useEffect } from "react";
+import React, { FormEvent } from "react";
 import { useState } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import {  useFormStatus } from "react-dom";
 
 type Variant = {
   id: number;
@@ -44,23 +49,25 @@ const initVariant = {
 const availableVariants = ["Original", "12 X 16", "16 X 20", "18 X 24"];
 
 // Save Button
-const SaveBtn = ({ p }: { p?: any }) => {
-  const { pending } = useFormStatus();
-  const router = useRouter();
-  return (
-    <Button
-      type="submit"
-      disabled={pending}
-      onClick={() => {
-        //REFETCH DATA HERE!
-        router.replace("/admin/dashboard");
-      }}
-      className="w-full"
-    >
-      {pending ? "Saving" : p?._id ? "Update" : "Save"}
-    </Button>
-  );
-};
+// const SaveBtn = ({ p }: { p?: any }) => {
+//   const { refetch } = useGetAllProductQuery("");
+//   const { pending } = useFormStatus();
+//   const router = useRouter();
+//   return (
+//     <Button
+//       type="submit"
+//       disabled={pending}
+//       onClick={() => {
+//         //REFETCH DATA HERE!
+//         refetch(); //refetch data from backend
+//         //router.replace("/admin/dashboard");
+//       }}
+//       className="w-full"
+//     >
+//       {pending ? "Saving" : p?._id ? "Update" : "Save"}
+//     </Button>
+//   );
+// };
 
 const ProductFormTwo = ({ product }: { product?: any }) => {
   //BINDING
@@ -78,27 +85,33 @@ const ProductFormTwo = ({ product }: { product?: any }) => {
   });
 
   //   USE STATES
-  const [productName, setProductName] = useState<string>("");
-  const [variants, setVariants] = useState<Variant[]>([initVariant]);
+  const [productName, setProductName] = useState<string>(product?.name || "");
+  const [variants, setVariants] = useState<Variant[]>(
+    product?.variants || [initVariant]
+  );
   const [quantity, setQuantity] = useState<number | undefined>(
     product?.quantity || ""
   );
-  const [description, setDescription] = useState<string>();
+  const [description, setDescription] = useState<string>(product?.description);
   //Image state
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   //Add produt query
-  const [createProduct, {isLoading, error}] = useCreateProductMutation();
+  const [createProduct, { isLoading, error }] = useCreateProductMutation();
+  //Update product query
+  const [editProduct, { isLoading: editProductLoading }] = useEditProductMutation();
+  //Get all roduct query
+  const {refetch} = useGetAllProductQuery("")
   //use toast
-  const toast = useToast()
+  const toast = useToast();
   // Handles
   const handleVariantChange = (
-    id: number,
+    name: string,
     field: keyof Variant,
     value: string | number
   ) => {
     setVariants(
       variants.map((variant) =>
-        variant.id === id ? { ...variant, [field]: value } : variant
+        variant.name === name ? { ...variant, [field]: value } : variant
       )
     );
   };
@@ -173,46 +186,60 @@ const ProductFormTwo = ({ product }: { product?: any }) => {
       image: selectedImage,
     };
     // Perform the API call to save the product
-
-    const res = variants.some((value) => value.price === null);
-
-    if (!res && productName && quantity && description && selectedImage) {
+    if (product) {
+      
       try {
-
         
-        const response:any = await createProduct(newProduct).unwrap()
-        console.log(response)
-
-        if(response.sucess){
-            toast?.open('Product add successfully')
-        }
-        const emptyFields = variants.filter((v: any) => !Number.isNaN(v.price));
-
-        //Clear error form
-        //console.log(newProduct);
-       
-
-        //After app i response
-        //Reset states
-        setDescription("");
-        setSelectedImage(null);
-        setProductName("");
-        setQuantity(undefined);
-        handleSetFormErrors(emptyFields, true);
-
-        //reset variants
-        setVariants((prev) => [initVariant]);
-
-     
-      } catch (error) {}
+        const response:any = await editProduct({id: product?._id, ...newProduct}).unwrap()
+        if(response.success)
+            toast?.open('Prorduct update successfully')
+      } catch (error:any) {
+          toast?.open(`${error.data.message}. Try Refeshing the browser`)
+      }
     } else {
-      //get varient empty fields
-      const emptyFields = variants.filter(
-        (v: any) => Number.isNaN(v.price) || v.price === null
-      );
-      //check for the remaining errors
-      handleSetFormErrors(emptyFields);
+      const res = variants.some((value) => value.price === null);
+
+      if (!res && productName && quantity && description && selectedImage) {
+        try {
+          const response: any = await createProduct(newProduct).unwrap();
+          console.log(response);
+
+          if (response.sucess) {
+            toast?.open("Product add successfully");
+
+            const emptyFields = variants.filter(
+              (v: any) => !Number.isNaN(v.price)
+            );
+
+            //Clear error form
+            //console.log(newProduct);
+
+            //After app i response
+            //Reset states
+            setDescription("");
+            setSelectedImage(null);
+            setProductName("");
+            setQuantity(undefined);
+            handleSetFormErrors(emptyFields, true);
+
+            //reset variants
+            setVariants((prev) => [initVariant]);
+            return;
+          }
+          toast?.open(response.error.message);
+        } catch (error) {
+          console.log(error);
+        }
+      } else {
+        //get varient empty fields
+        const emptyFields = variants.filter(
+          (v: any) => Number.isNaN(v.price) || v.price === null
+        );
+        //check for the remaining errors
+        handleSetFormErrors(emptyFields);
+      }
     }
+    refetch()
   };
 
   // Image Handle
@@ -302,7 +329,7 @@ const ProductFormTwo = ({ product }: { product?: any }) => {
       </div>
 
       {variants.map((variant) => (
-        <div key={variant.id} className="mb-4">
+        <div key={variant.name} className="mb-4">
           <label className="block text-sm font-medium" htmlFor={variant.name}>
             Price for {variant.name}
           </label>
@@ -311,7 +338,7 @@ const ProductFormTwo = ({ product }: { product?: any }) => {
             value={variant.price || ""}
             onChange={(e) =>
               handleVariantChange(
-                variant.id,
+                variant.name,
                 "price",
                 parseFloat(e.target.value)
               )
@@ -364,18 +391,27 @@ const ProductFormTwo = ({ product }: { product?: any }) => {
             />
           </div>
         )}
+        {product && !selectedImage && (
+          <div className="mt-4">
+            <ImageWithSkeleton
+              src={product?.image?.public_src}
+              height={400}
+              width={400}
+              alt="Selected"
+              className="w-full h-[400px] rounded-md"
+            />
+          </div>
+        )}
       </div>
 
       <div className="flex justify-end mt-3 mb-20">
-        {" "}
-        <SaveBtn p={product} />
+        <Button
+          onClick={handleSubmit}
+          className="p-2 text-white rounded-md w-full"
+        >
+          {isLoading || editProductLoading ? <Loader2 className="animate-spin" /> : product ? "Update Product" : "Save Product"}
+        </Button>
       </div>
-      <button
-        onClick={handleSubmit}
-        className="p-2 bg-green-500 text-white rounded-md"
-      >
-        {isLoading ? <Loader2 className="animate-spin"/> : "Save Product"}
-      </button>
     </form>
   );
 };

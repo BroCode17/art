@@ -90,12 +90,12 @@ const ShippingDetails = ({
         <div className="space-y-4">
           {order.products.map((product: any) => (
             <div
-              key={product.product._id}
+              key={product?.product?._id}
               className="flex items-center bg-gray-100 rounded-lg p-4 shadow"
             >
               <div className="">
-                <h3 className="text-md font-[700]">{product.product.name}</h3>
-                <p className="text-sm">Quantity: {product.orderedQuantity}</p>
+                <h3 className="text-md font-[700]">{product?.product?.name}</h3>
+                <p className="text-sm">Quantity: {product?.orderedQuantity}</p>
               </div>
             </div>
           ))}
@@ -362,6 +362,8 @@ const OrderTable = () => {
       setOrder(data);
     }
   }, [data, isSuccess]);
+
+  console.log(orders)
 
   return (
     <Order

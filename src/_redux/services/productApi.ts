@@ -44,10 +44,10 @@ export const productApi = createApi({
             })
         }),
         editProduct: builder.mutation<{}, EditProductProps>({
-            query: (id, ...rest) =>({
+        query: ({id, ...rest}) =>({
                 url: `product/${id}`,
                 method: "PUT",
-                body: {rest},
+                body: {...rest},
                 invalidatesTags:  ['Product']
             })
         }),

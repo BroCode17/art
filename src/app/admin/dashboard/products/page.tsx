@@ -32,9 +32,7 @@ import { formatCurrency } from "../../../../../utils/formatters";
 export const dynamic = "force-dynamic";
 
 const ProductTable = ({ product, isLoading, isSuccess }: any) => {
-  useEffect(() => {
-
-  }, [product])
+  useEffect(() => {}, [product]);
   return (
     <Table>
       <TableHeader>
@@ -43,7 +41,7 @@ const ProductTable = ({ product, isLoading, isSuccess }: any) => {
             <span className="sr-only">Available For Purchase</span>
           </TableHead>
           <TableHead>Name</TableHead>
-          <TableHead>Price</TableHead>
+          <TableHead>Prices</TableHead>
           <TableHead>Quantity</TableHead>
           <TableHead className="w-0">
             <span className="sr-only">Actions</span>
@@ -78,7 +76,16 @@ const ProductTable = ({ product, isLoading, isSuccess }: any) => {
                 )}
               </TableCell>
               <TableCell>{p.name}</TableCell>
-              <TableCell>{formatCurrency(p.price / 100)}</TableCell>
+              <TableCell className="flex flex-col">
+                {p.variants.map((v: any) => (
+                  <span key={v.name}>
+                    <span className="font-semibold mr-1">
+                    {v.name}:
+                      </span> 
+                      {formatCurrency(v.price)}
+                  </span>
+                ))}
+              </TableCell>
               <TableCell>{p.quantity}</TableCell>
               <TableCell>
                 <DropdownMenu>
@@ -127,7 +134,7 @@ const Products = () => {
           <Link href="/admin/dashboard/products/new">Add New Product</Link>
         </Button>
       </div>
-      <div className="xl:w-4/6 w-full">
+      <div className="xl:w-5/6 w-full">
         <ProductTable
           product={product}
           isLoading={isLoading}
@@ -140,9 +147,10 @@ const Products = () => {
         )}
       </div>
       <div>
-        {!isLoading && !error && product.length === 0 && <span className="text-sm">Add Product</span>}
+        {!isLoading && !error && product.length === 0 && (
+          <span className="text-sm">Add Product</span>
+        )}
         {error && <span className="text-sm">Ops...Error Fetching Data</span>}
-
       </div>
     </div>
   );

@@ -42,7 +42,7 @@ export type EditProductProps = {
     quantity?: number;
     image?: Blob | File | any;
     description?: string;
-    price?: number;
+    variants?: any[{}];
 }
 
 
