@@ -9,6 +9,7 @@ export const productApi = createApi({
         baseUrl: `${process.env.NEXT_PUBLIC_NGROK_URL}/api/v1/products/`
     }),
     endpoints: builder => ({
+       
         getAllProduct: builder.query({
             query: () => `all`,
             providesTags: ['Product']
@@ -20,6 +21,14 @@ export const productApi = createApi({
         getInActiveProduct: builder.query({
             query: () => `inactive`,
             providesTags: ['Product']
+        }),
+        createProduct: builder.mutation({
+            query: (data) => ({
+                url: '/add',
+                method: 'POST',
+                body: {data},
+                invalidatesTags: ['Product']
+            }),
         }),
         getProductById: builder.query<any ,string>({
             query: (id) => `product/${id}`,
@@ -53,4 +62,4 @@ export const productApi = createApi({
     })
 })
 
-export const {useGetAllProductQuery, useGetActiveProductQuery, useGetInActiveProductQuery, useUpdateActiveProductMutation, useDeleteProductMutation, useEditProductMutation, useGetProductByIdQuery} = productApi
+export const {useGetAllProductQuery, useGetActiveProductQuery, useGetInActiveProductQuery, useUpdateActiveProductMutation, useDeleteProductMutation, useEditProductMutation, useGetProductByIdQuery, useCreateProductMutation} = productApi

@@ -42,6 +42,7 @@ type EachProductCardProps = {
   description: string;
   quantity: number;
   id: string;
+  itemSize: string | undefined;
 };
 
 const CloseBtn = () => {
@@ -69,9 +70,10 @@ const EachProductCard = ({
   description,
   id,
   quantity,
+  itemSize
 }: EachProductCardProps) => {
   const dispatch = useDispatch();
-
+  console.log(itemSize)
   return (
     <li className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300  flex flex-col relative">
       <div className="relative h-48 sm:h-44">
@@ -84,7 +86,7 @@ const EachProductCard = ({
         />
       </div>
       <div className="p-4 flex flex-col flex-grow">
-        <h2 className="text-md font-semibold mb-2 text-gray-800">{title}</h2>
+        <h2 className="text-md font-semibold mb-2 text-gray-800">{title} {itemSize}</h2>
         <p className="text-gray-600 mb-4  truncate text-xs">{description}</p>
         <div className="flex items-center justify-between max-xs:flex-col">
           <span className="text-xl font-bold text-black">{price}</span>
@@ -303,11 +305,12 @@ export default function CartModal() {
                 <EachProductCard
                   src={item.image}
                   description={item.title}
-                  price={formatCurrency(Number(item.price) / 100)}
+                  price={formatCurrency(Number(item.price))}
                   title={item.title}
                   key={item.id}
                   quantity={item.quantity}
                   id={item.id}
+                  itemSize= {item.size}
                 />
               ))}
             </ul>
@@ -318,7 +321,7 @@ export default function CartModal() {
           {cartItems.length > 0 && <CheckoutLink name="Check Out" />}
           {cartItems.length > 0 && (
             <p className="text-muted-foreground text-right ">
-              Subtotal: {formatCurrency(totalAmount / 100)}
+              Subtotal: {formatCurrency(totalAmount)}
             </p>
           )}
         </div>
@@ -327,19 +330,21 @@ export default function CartModal() {
   );
 }
 
-const load = ({ cartItems, totalAmount }: any) => {
-  window.onbeforeunload = function () {
-    Cookies.set(
-      "cartItems",
-      JSON.stringify({ data: cartItems, totalAmount: totalAmount }),
-      { expires: 7 }
-    );
-  };
+// const load = ({ cartItems, totalAmount }: any) => {
+//   window.onbeforeunload = function () {
+//     Cookies.set(
+//       "cartItems",
+//       JSON.stringify({ data: cartItems, totalAmount: totalAmount }),
+//       { expires: 7 }
+//     );
+//   };
 
-  return () => {
-    window.onbeforeunload;
-  };
-};
+//   return () => {
+//     window.onbeforeunload;
+//   };
+// };
+
+/**Check out Link */
 
 const CheckoutLink = ({ name }: { name: string }) => {
   const dispatch = useDispatch();
@@ -373,6 +378,9 @@ const CheckoutLink = ({ name }: { name: string }) => {
     </Link>
   );
 };
+
+
+/**Seach Order Component */
 const SearchOrderLink = ({ name }: { name: string }) => {
   const dispatch = useDispatch();
   const [orderReference, setOrderReference] = useState("");

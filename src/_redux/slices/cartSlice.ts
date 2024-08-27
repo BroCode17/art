@@ -11,11 +11,13 @@ export interface Product {
 export interface ProductFromCartPageProps {
   id: string;
   title: string;
-  price: string;
+  price: number;
   quantity: number;
   deliveryMethod?: string;
   image: string;
   size?: string;
+  variant?: any;
+  priceIndex?: number;
 }
 
 interface CartState {

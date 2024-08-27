@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Protected from "./_components/Protected";
 
 export const dynamic = "force-dynamic";
@@ -8,9 +8,5 @@ export default function AdimLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <div className="flex min-h-screen">
-      {children}
-    </div>
-  );
+  return <div className="flex min-h-screen">{children}</div>;
 }

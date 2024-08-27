@@ -45,6 +45,7 @@ const FrameAnArt = () => {
                 id={item._id as string}
                 quantity={item.quantity}
                 title={item.name}
+                variant={item.variants}
               />
             );
           })}

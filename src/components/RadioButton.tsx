@@ -20,6 +20,7 @@ import {
   ProductFromCartPageProps,
 } from "@/_redux/slices/cartSlice";
 import { useToast } from "@/app/shop/_components/toast-context";
+import { Button } from "./ui/button";
 
 
 const FormSchema = z.object({
@@ -36,6 +37,7 @@ interface FormRadioItemProps {
   sender: string;
   price?: string;
   value: string;
+  variant?: any
   
 }
 
@@ -63,7 +65,7 @@ const FormRadioItem = ({
             <p className="text-[.675rem] -mt-1 text-[#727070]">
               {date}{" "}
               {rec && (
-                <span className="text-[.675rem] ml-1 text-[#0160EE] rounded-full  bg-[#0160EE] bg-opacity-35 text-center px-1">
+                <span className="text-[.6rem] ml-1 text-[#0160EE] rounded-full  bg-[#0160EE] bg-opacity-35 text-center px-1 space-y-0">
                   Recommended
                 </span>
               )}
@@ -91,7 +93,9 @@ export function RadioButton({
   price,
   id,
   image,
-  size
+  size,
+  variant,
+  priceIndex
 }: ProductFromCartPageProps) {
 
 
@@ -104,14 +108,13 @@ export function RadioButton({
 
   const dispatch = useDispatch();
 
-  const newPrice = Number(price.substring(1) || 0)*100;
-
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
 
+
     const selectedItem = {
       id,
-      price: newPrice,
+      price,
       title,
       quantity,
       deliveryMethod: data.type,
@@ -162,22 +165,23 @@ export function RadioButton({
             </FormItem>
           )}
         />
-          <CheckoutBtn name="add out" />
+          <CheckoutBtn name="Add to Cart" size={size as any}/>
       </form>
     </Form>
   );
 }
 
-export const CheckoutBtn = ({name}: {name: string}) => {
+export const CheckoutBtn = ({name, size}: {name: string, size: any}) => {
   const toast = useToast();
 
   return (
-    <button
-      className="bg-black text-white text-xs py-3 mt-2 font-semibold w-full uppercase"
+    <Button
+      className="bg-black text-white text-xs py-3 mt-2 font-semibold w-full uppercase rounded-none"
       type="submit"
       onClick={() => toast?.open('Item Added Successfully')}
+      disabled={!size}
     >
       {name}
-    </button>
+    </Button>
   );
 };

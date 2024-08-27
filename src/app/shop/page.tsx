@@ -57,6 +57,7 @@ const ShopPage = () => {
                     id={item._id}
                     image={item.image}
                     description={item.description}
+                    variant={item.variants}
                     price={amout}
                     title={item.name}
                     flag={false} 

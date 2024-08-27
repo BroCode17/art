@@ -50,7 +50,7 @@ const OrderItem = ({ title, price, desc }: OrderItemProps) => {
       <h1 className={`${ITC_Font.className} text-xl md:text-2xl`}>
         &quot;{title}&quot;
       </h1>
-      <p className="font-[500]">{formatCurrency(price / 100)}</p>
+      <p className="font-[500]">{formatCurrency(price)}</p>
       <p className="text-sm font-light text-center">{desc}</p>
     </div>
   );
@@ -218,7 +218,7 @@ const OrderDetailsPage = ({params: orderReference}: {params: {orderReference: an
                           return (
                             <OrderItem
                               key={item.title}
-                              title={item.title}
+                              title={`${item.title}  ${item.size}`}
                               price={item.price}
                               desc={item.description}
                             />
@@ -227,7 +227,7 @@ const OrderDetailsPage = ({params: orderReference}: {params: {orderReference: an
                       <div className="flex flex-col ">
                         <div className="flex justify-between">
                           <span className="font-[500] text-sm">Subtotal:</span>
-                          <span className="font-[500] text-sm">{formatCurrency(totalAmount/100)}</span>
+                          <span className="font-[500] text-sm">{formatCurrency(totalAmount)}</span>
                         </div>
                         <div className="h-[1px] w-full bg-black"></div>
                         <div className="flex justify-between mt-2">
@@ -244,7 +244,7 @@ const OrderDetailsPage = ({params: orderReference}: {params: {orderReference: an
                         <div className="flex justify-between mt-2">
                           <span className="font-extrabold text-sm">Total:</span>
                           <span className="font-extrabold text-sm">
-                            {formatCurrency((totalAmount + deliveryAmount)/100)}
+                            {formatCurrency(totalAmount + (deliveryAmount)/100)}
                           </span>
                         </div>
                       </div>

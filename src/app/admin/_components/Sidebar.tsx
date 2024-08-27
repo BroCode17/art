@@ -17,7 +17,8 @@ const AdminSideBar = () => {
  }
 
   return (
-    <div className="bg-black sticky left-0 top-[5%] w-72 flex justify-center items-center flex-col ">
+    <div className="bg-black fixed left-0 top-[8%] w-72 flex justify-center items-center flex-col h-full z-10"
+    >
       <nav className="flex flex-col w-full text-white">
         <AdminLinks name="Dashboard" active={false} url="/admin/dashboard" />
         <AdminLinks name="Products" active={false} url="/admin/dashboard/products" />

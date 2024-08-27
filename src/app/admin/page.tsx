@@ -44,6 +44,7 @@ const LoginPage = () => {
         <LoginForm />
       </div>
     </div>
+
   );
 };
 

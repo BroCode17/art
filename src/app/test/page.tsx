@@ -196,37 +196,154 @@
 // export default Slider;
 'use client'
 
-import Gallery from "@/components/_animations/galley/ArtGallery";
+// import Gallery from "@/components/_animations/galley/ArtGallery";
 
-const artworks = [
-    {
-      id: '1',
-      title: 'Starry Night',
-      artist: 'Vincent van Gogh',
-      imageUrl: '/images/starry-night.jpg',
-      description: 'This is a description of Starry Night...',
-    },
-    {
-      id: '2',
-      title: 'Mona Lisa',
-      artist: 'Leonardo da Vinci',
-      imageUrl: '/images/mona-lisa.jpg',
-      description: 'This is a description of Mona Lisa...',
-    },
-    {
-      id: '3',
-      title: 'The Persistence of Memory',
-      artist: 'Salvador Dalí',
-      imageUrl: '/images/persistence-of-memory.jpg',
-      description: 'This is a description of The Persistence of Memory...',
-    },
-    // Add more artworks here
-  ];
+// const artworks = [
+//     {
+//       id: '1',
+//       title: 'Starry Night',
+//       artist: 'Vincent van Gogh',
+//       imageUrl: '/images/starry-night.jpg',
+//       description: 'This is a description of Starry Night...',
+//     },
+//     {
+//       id: '2',
+//       title: 'Mona Lisa',
+//       artist: 'Leonardo da Vinci',
+//       imageUrl: '/images/mona-lisa.jpg',
+//       description: 'This is a description of Mona Lisa...',
+//     },
+//     {
+//       id: '3',
+//       title: 'The Persistence of Memory',
+//       artist: 'Salvador Dalí',
+//       imageUrl: '/images/persistence-of-memory.jpg',
+//       description: 'This is a description of The Persistence of Memory...',
+//     },
+//     // Add more artworks here
+//   ];
   
-  export default function Home() {
-    return (
-      <main>
-        <Gallery artworks={artworks} />
-      </main>
+//   export default function Home() {
+//     return (
+//       <main>
+//         <Gallery artworks={artworks} />
+//       </main>
+//     );
+//   }
+
+import { useState } from "react";
+
+type Variant = {
+  id: number;
+  name: string;
+  price: number | null;
+};
+
+type Product = {
+  name: string;
+  variants: Variant[];
+};
+
+const availableVariants = ["Small", "Medium", "Large", "Extra Large"];
+
+export default function CreateProduct() {
+  const [productName, setProductName] = useState<string>("");
+  const [variants, setVariants] = useState<Variant[]>([]);
+
+  const handleVariantChange = (
+    id: number,
+    field: keyof Variant,
+    value: string | number
+  ) => {
+    setVariants(
+      variants.map((variant) =>
+        variant.id === id ? { ...variant, [field]: value } : variant
+      )
     );
-  }
+  };
+
+  const handleCheckboxChange = (variantName: string) => {
+    const variantExists = variants.find((variant) => variant.name === variantName);
+
+    if (variantExists) {
+      setVariants(variants.filter((variant) => variant.name !== variantName));
+    } else {
+      setVariants([
+        ...variants,
+        {
+          id: Date.now(),
+          name: variantName,
+          price: null,
+        },
+      ]);
+    }
+  };
+
+  const handleSubmit = () => {
+    const newProduct: Product = {
+      name: productName,
+      variants,
+    };
+    console.log(newProduct);
+    // Perform the API call to save the product
+  };
+
+  return (
+    <div className="max-w-lg mx-auto mt-10">
+      <h2 className="text-2xl font-bold mb-4">Create Product</h2>
+      <div className="mb-4">
+        <label htmlFor="productName" className="block text-sm font-medium">
+          Product Name
+        </label>
+        <input
+          type="text"
+          id="productName"
+          value={productName}
+          onChange={(e) => setProductName(e.target.value)}
+          className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+        />
+      </div>
+
+      <div className="mb-4">
+        <h3 className="text-lg font-medium">Variants</h3>
+        {availableVariants.map((variantName) => (
+          <div key={variantName} className="flex items-center">
+            <input
+              type="checkbox"
+              id={variantName}
+              onChange={() => handleCheckboxChange(variantName)}
+              checked={variants.some((variant) => variant.name === variantName)}
+              className="mr-2"
+            />
+            <label htmlFor={variantName} className="text-sm font-medium">
+              {variantName}
+            </label>
+          </div>
+        ))}
+      </div>
+
+      {variants.map((variant) => (
+        <div key={variant.id} className="mb-4">
+          <label className="block text-sm font-medium">
+            Price for {variant.name}
+          </label>
+          <input
+            type="number"
+            value={variant.price || ""}
+            onChange={(e) =>
+              handleVariantChange(variant.id, "price", parseFloat(e.target.value))
+            }
+            className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+          />
+        </div>
+      ))}
+
+      <button
+        onClick={handleSubmit}
+        className="p-2 bg-green-500 text-white rounded-md"
+      >
+        Save Product
+      </button>
+    </div>
+  );
+}
