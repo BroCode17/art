@@ -1,6 +1,5 @@
 'use client'
 import AdminPageHeader from "@/app/admin/_components/AdminPageHeader";
-import ProductForm from "../../_components/ProductForm";
 import { useEditProductMutation, useGetProductByIdQuery } from "@/_redux/services/productApi";
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
