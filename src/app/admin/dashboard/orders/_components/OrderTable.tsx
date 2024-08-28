@@ -14,7 +14,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CheckCircle2, Link, Loader2, MoreVerticalIcon,  } from "lucide-react";
+import { CheckCircle2, Link, Loader2, MoreVerticalIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import {
   ActiveToggleDropdownItem,
@@ -49,7 +49,7 @@ const ShippingDetails = ({
   setShow: any;
 }) => {
   if (!show) return;
-
+  //console.log(order);
   return (
     <div className="container p-4">
       <div
@@ -76,25 +76,31 @@ const ShippingDetails = ({
           <span className="font-semibold">Contact:</span> {order.customerEmail}
         </p>
         <p className="mb-2">
-          <span className="font-semibold">Order Status:</span> 
-          <span className={`${order.orderStatus ==='Confirmed' && 'text-green-700'} ml-1`}>
+          <span className="font-semibold">Order Status:</span>
+          <span
+            className={`${
+              order.orderStatus === "Confirmed" && "text-green-700"
+            } ml-1`}
+          >
             {order.orderStatus}
-            </span>
+          </span>
         </p>
         <p className="mb-2">
           <span className="font-semibold">TrackingId:</span> {order.trackingId}
         </p>
       </div>
-      <div className="bg-white rounded-lg shadow-lg p-6 max-h-96 overflow-y-auto">
+      <div className="bg-white rounded-lg shadow-lg p-6 max-h-52 overflow-y-auto custom-scrollbar">
         <h2 className="text-2xl font-bold mb-4">Products to be Shipped</h2>
         <div className="space-y-4">
           {order.products.map((product: any) => (
             <div
-              key={product?.product?._id}
+              key={`${product?.product?._id} ${product?.itemSize}`}
               className="flex items-center bg-gray-100 rounded-lg p-4 shadow"
             >
               <div className="">
-                <h3 className="text-md font-[700]">{product?.product?.name}</h3>
+                <h3 className="text-md font-[700]">
+                  {product?.product?.name} {product?.itemSize}
+                </h3>
                 <p className="text-sm">Quantity: {product?.orderedQuantity}</p>
               </div>
             </div>
@@ -115,14 +121,9 @@ const Text = ({ order }: { order: any }) => {
 
 const OrderStatusModal = ({ show, setShow, orderRef, actionType }: any) => {
   const { refetch } = useGetAllOrderQuery("");
-  const [
-    deleteOrderByRef,
-    {isLoading },
-  ] = useDeleteOrderByRefMutation();
-  const [
-    updateOrderTrackingId,
-    {isLoading: loadingForUpdateTrackId },
-  ] = useUpdateOrderTrackingIdMutation();
+  const [deleteOrderByRef, { isLoading }] = useDeleteOrderByRefMutation();
+  const [updateOrderTrackingId, { isLoading: loadingForUpdateTrackId }] =
+    useUpdateOrderTrackingIdMutation();
   const [shipState, setShipState] = useState<string>("Confirmed");
   const [trackingNumber, setTrackingNumber] = useState<string>("");
   const [showError, setShowError] = useState<string>("");
@@ -136,50 +137,52 @@ const OrderStatusModal = ({ show, setShow, orderRef, actionType }: any) => {
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
-   
-    switch (actionType) {
-      case "DELETE": {
-        if(trackingNumber !== orderRef){
-    
-          setShowError('Value Unmatch')
-          return
-        }
-        const res = await deleteOrderByRef(orderRef).unwrap();
-        if('success' in res){
-          toast?.open('Order Deleted Successfully')   
-        }else{
-          toast?.open('Order can not be deleted')
-        }
-        refetch()
-        return
+
+    if (actionType === "DELETE") {
+      if (trackingNumber !== orderRef) {
+        setShowError("Value Unmatch");
+        return;
       }
-      default:{
-            if(shipState && shipState === 'Confirmed'){
-              const res = await updateOrderTrackingId({ref: orderRef as string, trackingId: trackingNumber, shipState}).unwrap()
-              if('success' in res){
-                toast?.open('Order is Confirmed')
-                setTrackingNumber('')   
-              }else{
-                toast?.open('Order state can changed')
-                setTrackingNumber('') 
-              }
-            }else{
-              const res = await updateOrderTrackingId({ref: orderRef as string, shipState}).unwrap()
-              if('success' in res){
-                toast?.open('Order Status Changed to Shipped')
-                
-              }else{
-                toast?.open('Order can not be deleted')
-              }
-            }
-            refetch()
-        }
+      const res = await deleteOrderByRef(orderRef).unwrap();
+      if ("success" in res) {
+        toast?.open("Order Deleted Successfully");
+      } else {
+        toast?.open("Order can not be deleted");
+      }
+      refetch();
+      return;
     }
+
+    if (shipState && shipState === "Confirmed") {
+      const res = await updateOrderTrackingId({
+        ref: orderRef as string,
+        trackingId: trackingNumber,
+        shipState,
+      }).unwrap();
+      if ("success" in res) {
+        toast?.open("Order is Confirmed");
+        setTrackingNumber("");
+      } else {
+        toast?.open("Order state can changed");
+        setTrackingNumber("");
+      }
+    } else {
+      const res = await updateOrderTrackingId({
+        ref: orderRef as string,
+        shipState,
+      }).unwrap();
+      if ("success" in res) {
+        toast?.open("Order Status Changed to Shipped");
+      } else {
+        toast?.open("Order can not be deleted");
+      }
+    }
+    refetch();
   };
 
   return (
     <form
-      className="bg-white rounded-lg shadow-lg p-6 mb-5 relative space-y-4"
+      className="bg-white rounded-lg shadow-lg p-6 mb-5 relative space-y-4 mt-[30%]"
       onSubmit={onSubmit}
     >
       {showError && <p className="text-destructive font-bold">{showError}</p>}
@@ -197,37 +200,46 @@ const OrderStatusModal = ({ show, setShow, orderRef, actionType }: any) => {
           value={trackingNumber}
         />
       ) : (
-        <div className="mt-4">
-          <Select onValueChange={handleSetShipState} defaultValue={shipState}>
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Theme" />
-            </SelectTrigger>
-            <SelectContent>
-              {/* <SelectItem value="Pending">Pending</SelectItem> */}
-              <SelectItem value="Confirmed">Confirm</SelectItem>
-              <SelectItem value="Shipped">Shipped</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+        <>
+          <div className="mt-4">
+            <Select onValueChange={handleSetShipState} defaultValue={shipState}>
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Theme" />
+              </SelectTrigger>
+              <SelectContent>
+                {/* <SelectItem value="Pending">Pending</SelectItem> */}
+                <SelectItem value="Confirmed">Confirm</SelectItem>
+                <SelectItem value="Shipped">Shipped</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="">
+            {shipState === "Confirmed" && (
+              <Input
+                placeholder="Enter Tracking Number"
+                required
+                onChange={(e) => setTrackingNumber(e.target.value)}
+                value={trackingNumber}
+              />
+            )}
+          </div>
+        </>
       )}
-      <div className="">
-        {shipState === "Confirmed" && (
-          <Input
-            placeholder="Enter Tracking Number"
-            required
-            onChange={(e) => setTrackingNumber(e.target.value)}
-            value={trackingNumber}
-          />
-        )}
-      </div>
+
       <Button
         className={`bg-black w-full uppercase br ${
           actionType === "DELETE" && "bg-destructive"
         }`}
         type="submit"
       >
-        {isLoading || loadingForUpdateTrackId ? <Loader2 className="animate-spin" /> :
-        actionType === "DELETE" ? "Delete" : "Update"}
+        {isLoading || loadingForUpdateTrackId ? (
+          <Loader2 className="animate-spin" />
+        ) : actionType === "DELETE" ? (
+          "Delete"
+        ) : (
+          "Update"
+        )}
       </Button>
     </form>
   );
@@ -240,7 +252,7 @@ const Order = ({ orders, isLoading, isSuccess, isError }: any) => {
   const [showOrderStatuModal, setShowOrderStatuModal] =
     useState<boolean>(false);
   const [orderReference, setOrderReference] = useState<string>("");
-  const [modalActionType, setModalActionType] = useState('');
+  const [modalActionType, setModalActionType] = useState("");
 
   const handleShowShippingDetails = (order: any) => {
     setShowShippingDetails(true);
@@ -288,7 +300,17 @@ const Order = ({ orders, isLoading, isSuccess, isError }: any) => {
                   </TableCell>
                   <TableCell>{`${order.customerShippingInformation.firstName} ${order.customerShippingInformation.lastName}`}</TableCell>
                   <TableCell>{formatCurrency(order.totalAmount)}</TableCell>
-                  <TableCell className={`${order.orderStatus ==='Confirmed' ? 'text-red-500' : order.orderStatus ==='Shipped' ? 'text-green-700' : ''}`}>{order.orderStatus}</TableCell>
+                  <TableCell
+                    className={`${
+                      order.orderStatus === "Confirmed"
+                        ? "text-red-500"
+                        : order.orderStatus === "Shipped"
+                        ? "text-green-700"
+                        : ""
+                    }`}
+                  >
+                    {order.orderStatus}
+                  </TableCell>
                   <TableCell>
                     <DropdownMenu>
                       <DropdownMenuTrigger>
@@ -363,15 +385,28 @@ const OrderTable = () => {
     }
   }, [data, isSuccess]);
 
-  console.log(orders)
+  // console.log(orders);
 
   return (
-    <Order
-      orders={orders}
-      isLoading={isLoading}
-      isSuccess={isSuccess}
-      isError={isError}
-    />
+    <>
+      <Order
+        orders={orders}
+        isLoading={isLoading}
+        isSuccess={isSuccess}
+        isError={isError}
+      />
+      {orders.length === 0 && (
+        <div className="w-ful flex justify-center mt-[20%]">
+          {isLoading ? (
+            <Loader2 size={30} className="animate-spin" />
+          ) : (
+            <span className="mx-auto text-muted-foreground text-2xl">
+              No order
+            </span>
+          )}
+        </div>
+      )}
+    </>
   );
 };
 

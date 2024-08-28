@@ -5,6 +5,7 @@ import Link from "next/link";
 import { encryptObjectClient } from "../../utils/encDecrypt";
 import { CldImage } from "next-cloudinary";
 import ImageWithSkeleton from "./_images/ImageWithSkeleton";
+import { formatCurrency } from "../../utils/formatters";
 
 
 interface ItemInterface {
@@ -42,7 +43,7 @@ const Card = (
   };
   
   useEffect(() => {
-      console.log(variant[0]?.price)
+      //console.log(variant[0]?.price)
   }, [variant])
   
   const productInfo = encryptObjectClient(href.query);
@@ -71,7 +72,7 @@ const Card = (
         <h2 className="text-md font-semibold mb-2 text-gray-800">{title}</h2>
         <p className="text-gray-600 mb-4  truncate text-xs">{description}</p>
         <div className="flex justify-between items-center">
-          <span className="text-xl font-bold text-black">{price !== '$NaN'? price : variant[0]?.price}</span>
+          <span className="text-xl font-bold text-black">{formatCurrency(variant[0]?.price)}</span>
         
           <button className="bg-black text-white px-4 py-2 rounded-full hover:bg-muted-foreground transition-colors duration-300">
             Add to Cart

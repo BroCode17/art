@@ -6,6 +6,7 @@ export interface Product {
   price: number;
   quantity: number;
   deliveryMethod?: string;
+  size: string
 }
 
 export interface ProductFromCartPageProps {
@@ -53,7 +54,7 @@ const cartSlice = createSlice({
     },
     addProduct: (state, action: PayloadAction<Product>) => {
       const existingProduct = state.products.find(
-        (product) => product.id === action.payload.id
+        (product) => product.id === action.payload.id && product.size === action.payload.size
       );
       if (existingProduct) {
         existingProduct.quantity += action.payload.quantity;
@@ -64,9 +65,9 @@ const cartSlice = createSlice({
       if(action.payload.deliveryMethod !== 'free')
           state.deliveryAmount += 559
     },
-    removeProduct: (state, action: PayloadAction<string>) => {
+    removeProduct: (state, action: PayloadAction<{id:string, size:string}>) => {
       const productIndex = state.products.findIndex(
-        (product) => product.id === action.payload
+        (product) =>  product.id === action.payload.id && product.size === action.payload.size
       );
       if (productIndex >= 0) {
         state.totalAmount -=
@@ -87,16 +88,16 @@ const cartSlice = createSlice({
       state.showCart = !state.showCart;
     },
 
-    increaseQuanty: (state, action: PayloadAction<{ id: string }>) => {
-      const item = state.products.find((p) => p.id === action.payload.id);
+    increaseQuanty: (state, action: PayloadAction<{ id: string, size: string}>) => {
+      const item = state.products.find((p) =>  p.id === action.payload.id && p.size === action.payload.size);
       if (item) {
         item.quantity += 1;
         state.totalAmount += item.price;
       }
     },
 
-    decreaseQuanty: (state, action: PayloadAction<{ id: string }>) => {
-      const item = state.products.find((p) => p.id === action.payload.id);
+    decreaseQuanty: (state, action: PayloadAction<{ id: string, size:string }>) => {
+      const item = state.products.find((p) =>  p.id === action.payload.id && p.size === action.payload.size);
       if (item) {
         item.quantity -= 1;
         state.totalAmount -= item.price;

@@ -53,65 +53,51 @@ interface SelectType {
 
 const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
   const searchParams = useSearchParams();
- //Get the encrypted data
+  //Get the encrypted data
   const productInfo = searchParams.get("productInfo");
- //Decypte and the actual data
+  //Decypte and the actual data
   const decryptedData = decryptObjectClient(productInfo as string);
   // const eg = decryptObjectClient('1se');
-  
+
   const [counter, setCounter] = useState(1);
   const [enbaleDecrease, setEnableDecrease] = useState(true);
   const productItem = useSelector((state: any) => state.cart.products);
   //const [size, setItemSize] = useState(decryptedData?.variant[0]?.name || '');
-  const [size, setItemSize] = useState('');
+  const [size, setItemSize] = useState("");
   const [numOfItems, setNumOfItems] = useState(productItem.length || 0);
-  const [currPrice, setCurrPrice] = useState( decryptedData?.variant[0]?.price || 0);
-  
+  const [currPrice, setCurrPrice] = useState(
+    decryptedData?.variant[0]?.price || 0
+  );
+
   useEffect(() => {
     setNumOfItems(productItem.length);
   }, [productItem]);
-
-  
-//  useLayoutEffect(() => {
-      
-//  }, [size])
-
- 
-
 
   const increaseItem = useCallback(() => {
     setEnableDecrease(false);
     setCounter((prev) => prev + 1);
   }, [enbaleDecrease]);
-  
-  if(decryptedData === null) return notFound()
+
+  if (decryptedData === null) return notFound();
 
   const { title, image, description, price, variant } = decryptedData;
-  
 
-  
-     //SET CURRENT PRICE BASE ON SELECTED SIZE
-     const handleSetCurrentPrice = (priceName: string) => {
-      const rs = variant?.find((v:any) => v.name === priceName).price;
-      setCurrPrice(rs)
-    }
-    
-
-
+  //SET CURRENT PRICE BASE ON SELECTED SIZE
+  const handleSetCurrentPrice = (priceName: string) => {
+    const rs = variant?.find((v: any) => v.name === priceName).price;
+    setCurrPrice(rs);
+  };
 
   //HANDLE SELECT VALUE CHANGE
   const handleValueChange = (value: any) => {
-    setItemSize(value)
-    handleSetCurrentPrice(value)
-    
+    setItemSize(value);
+    handleSetCurrentPrice(value);
   };
 
   const decreaseItem = () => {
     if (counter < 2) setEnableDecrease(true);
     setCounter((prev) => prev - 1);
   };
-
-
 
   return (
     <div className="min-h-dvh w-full ">
@@ -142,34 +128,36 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
                   <h1 className="text-xl font-bold">{`"${title!}"`}</h1>
                   <hr className="w-10/12 h-[1px] bg-gray-300 rounded-sm"></hr>
                   <div>
-                    <h2 className="text-sm font-bold">US {formatCurrency(currPrice)}</h2>
+                    <h2 className="text-sm font-bold">
+                      US {formatCurrency(currPrice)}
+                    </h2>
                   </div>
 
                   <hr className=" h-[2px] bg-gray-300 rounded-sm"></hr>
                   <div className="flex flex-row justify-between items-center">
                     <div className="flex-1">
                       <div>
-                         {/* <SelectForm /> */}
-                         <h1 className={`text-sm font-normal`}>Pick a size</h1>
-                           <Select onValueChange={handleValueChange}>
-                            <SelectTrigger className="w-2/3 rounded-none">
-                              <SelectValue placeholder="Select Size" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              {variant.map((item:{name: string, price:number}) => (
-                               
-                                <SelectItem key={item.name} value={item.name} >
+                        {/* <SelectForm /> */}
+                        <h1 className={`text-sm font-normal`}>Pick a size</h1>
+                        <Select onValueChange={handleValueChange}>
+                          <SelectTrigger className="w-2/3 rounded-none">
+                            <SelectValue placeholder="Select Size" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {variant.map(
+                              (item: { name: string; price: number }) => (
+                                <SelectItem key={item.name} value={item.name}>
                                   {item.name}
                                 </SelectItem>
-                               
-                              ))} 
-                              {/* {["Small", "Medium", "Large"].map((item: string) => (
+                              )
+                            )}
+                            {/* {["Small", "Medium", "Large"].map((item: string) => (
                                 <SelectItem key={item} value={item}>
                                   {item}
                                 </SelectItem>
                               ))} */}
-                            </SelectContent>
-                          </Select>  
+                          </SelectContent>
+                        </Select>
 
                         <h1 className="h-5 text-sm mt-2">Quantity</h1>
                         {/* <Counter /> */}
@@ -201,26 +189,25 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
                         <div className="border-l border-black flex  justify-start items-center pl-1">
                           <div className="flex flex-col justify-center  ">
                             <span className="text-[0.65rem] transform rotate-90 font-semibold p-0 m-0 ">
-                              {(size === 'Original' || size === '')? "30in" : `${size.substring(4)}in`}
+                              {size === "Original" || size === ""
+                                ? "30in"
+                                : `${size.substring(4)}in`}
                             </span>
-                           
                           </div>
                         </div>
                       </div>
                       <div className="w-[78%] text-center  leading-none border-t border-black">
                         <span className="text-[.65rem] font-semibold">
-                        {(size === 'Original' || size === '')? '20in' : `${size.substring(0,2)}in`}
-                          
+                          {size === "Original" || size === ""
+                            ? "20in"
+                            : `${size.substring(0, 2)}in`}
                         </span>
                       </div>
                     </div>
                   </div>
                   <hr className=" h-[2px] bg-gray-300 rounded-sm"></hr>
-                  {/* <div className="flex flex-col gap-2">
-                  <div className="bg-gray-300 w-full h-12"></div>
-                  <div className="bg-gray-300 w-full h-12"></div>
-                </div> */}
-                  <div className="w-full" >
+                 
+                  <div className="w-full">
                     <RadioButton
                       id={id}
                       price={currPrice}
@@ -228,7 +215,7 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
                       quantity={counter}
                       image={image!}
                       size={size}
-                      variant= {variant}
+                      variant={variant}
                     />
                   </div>
                 </div>

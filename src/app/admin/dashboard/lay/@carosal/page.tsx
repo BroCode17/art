@@ -260,6 +260,7 @@ const CarouselAdmin = () => {
                 />
                 <button
                   type="button"
+                  key={image._id}
                   onClick={() => handleDeleteImage(image._id)}
                   className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600"
                 >
@@ -267,7 +268,7 @@ const CarouselAdmin = () => {
                 </button>
               </div>
               <div className="flex flex-wrap space-x-4">
-                {["Banner", "Caro 1", "Caro 2", "Footer"].map((tag) => (
+                {["Banner", "Caro 1", "Caro 2", "RTA"].map((tag) => (
                   <label
                     key={tag}
                     className="flex items-center space-x-2 containa "

@@ -42,7 +42,7 @@ type EachProductCardProps = {
   description: string;
   quantity: number;
   id: string;
-  itemSize: string | undefined;
+  itemSize: string;
 };
 
 const CloseBtn = () => {
@@ -86,17 +86,17 @@ const EachProductCard = ({
         />
       </div>
       <div className="p-4 flex flex-col flex-grow">
-        <h2 className="text-md font-semibold mb-2 text-gray-800">{title} {itemSize}</h2>
+        <h2 className="text-md font-semibold mb-2 text-gray-800">{title} ({itemSize})</h2>
         <p className="text-gray-600 mb-4  truncate text-xs">{description}</p>
         <div className="flex items-center justify-between max-xs:flex-col">
           <span className="text-xl font-bold text-black">{price}</span>
           <div className="flex items-center w-full xs:w-1/2 gap-2">
             <div className="w-full sm:flex-1">
             
-              <Counter quantity={quantity} id={id} />
+              <Counter quantity={quantity} id={id} size={itemSize}/>
             </div>
             <button
-              onClick={() => dispatch(removeProduct(id))}
+              onClick={() => dispatch(removeProduct({id, size:itemSize!}))}
               className="  border border-soft flex justify-center items-center px-1 py-1 rounded-sm mt-1 bg-red-500 max-xs:w-full  "
             >
               <IoClose size={24} />
@@ -195,7 +195,7 @@ export const ProductDetail = () => {
   );
 };
 
-export const Counter = ({ id, quantity }: { id: string; quantity: number }) => {
+export const Counter = ({ id, quantity, size }: { id: string; quantity: number, size: string }) => {
   const dispatch = useDispatch();
 
   return (
@@ -204,7 +204,7 @@ export const Counter = ({ id, quantity }: { id: string; quantity: number }) => {
     >
       <button
         className="cursor-pointer"
-        onClick={() => dispatch(increaseQuanty({ id }))}
+        onClick={() => dispatch(increaseQuanty({ id, size}))}
       >
         <FaCirclePlus />
       </button>
@@ -213,10 +213,10 @@ export const Counter = ({ id, quantity }: { id: string; quantity: number }) => {
         className="cursor-pointer"
         onClick={() => {
           if (quantity === 1) {
-            dispatch(removeProduct(id));
+            dispatch(removeProduct({id, size}));
           }
           {
-            dispatch(decreaseQuanty({ id }));
+            dispatch(decreaseQuanty({ id, size }));
           }
         }}
       >
@@ -280,37 +280,15 @@ export default function CartModal() {
           ) : (
             <ul className="space-y-2 ">
               {cartItems.map((item: ProductFromCartPageProps) => (
-                // <li
-                //   key={item.id}
-                //   className="flex justify-between mb-2 bg-soft h-20 items-center rounded-md shadow-md"
-                // >
-                //   <div className="w-16 h-full">
-                //     <ImageContainerTwo imgUrl={item.image} text={item.title} />
-                //   </div>
-                //   <div className="w-20 text-sm">
-                //     <span>{item.title}</span>
-                //     <Counter quantity={item.quantity} id={item.id} />
-                //   </div>
-                //   <div className="w-10 text-sm">
-                //     <p>{formatCurrency(Number(item.price) / 100)}</p>
-                //     {/* <p>{item.size}</p> */}
-                //   </div>
-                //   <button
-                //     onClick={() => dispatch(removeProduct(item.id))}
-                //     className=" pr-2 bg-red-500 h-full rounded-tr-md rounded-br-md "
-                //   >
-                //     <IoClose size={24} />
-                //   </button>
-                // </li>
                 <EachProductCard
                   src={item.image}
                   description={item.title}
                   price={formatCurrency(Number(item.price))}
                   title={item.title}
-                  key={item.id}
+                  key={`${item.id} ${item.size}`}
                   quantity={item.quantity}
                   id={item.id}
-                  itemSize= {item.size}
+                  itemSize= {item.size!}
                 />
               ))}
             </ul>

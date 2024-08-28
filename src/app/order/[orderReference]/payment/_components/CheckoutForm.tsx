@@ -122,7 +122,7 @@ function Form() {
           }`}
           disabled={stripe === null || elements === null}
         >
-          {isLoading ? "Processing..." : `Pay ${formatCurrency((totalAmount + deliveryAmount) / 100)}`}
+          {isLoading ? "Processing..." : `Pay ${formatCurrency((totalAmount + deliveryAmount))}`}
         </Button>
       </div>
     </form>

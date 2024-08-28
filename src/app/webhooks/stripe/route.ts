@@ -8,13 +8,13 @@ import Stripe from 'stripe'
 const stripe = new Stripe(process.env.STRIPE_WEBHOOK_SECRET as string);
 
 export async function POST(req:NextRequest) {
-  console.log('called')
-  console.log(process.env.STRIPE_WEBHOOK_SECRET)
+  
+  //console.log(process.env.STRIPE_WEBHOOK_SECRET)
   const event = stripe.webhooks.constructEvent(await req.text(), req.headers.get('stripe-signature') as string, process.env.STRIPE_WEBHOOK_SECRET as string)
 
-  console.log('Stripe hook')
+  // console.log('Stripe hook')
   console.log(event.type === 'charge.succeeded')
-  console.log(event)
+  // console.log(event)
 
   if(event.type === 'charge.succeeded'){
     const charge = event.data.object
@@ -27,9 +27,9 @@ export async function POST(req:NextRequest) {
 
     console.log()
     //create order
-    const dbProduct: Array<{product: string, orderedQuantity: number}> = [];
+    const dbProduct: Array<{product: string, orderedQuantity: number, itemSize: string}> = [];
     itemPurchased.forEach((element:any) => {
-        dbProduct.push({product: element.id, orderedQuantity: element.quantity})
+        dbProduct.push({product: element.id, orderedQuantity: element.quantity, itemSize: element.size})
     });
 
     console.log(dbProduct)

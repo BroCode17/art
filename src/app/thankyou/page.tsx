@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import { useDispatch } from "react-redux";
 import { updateInitState } from '@/_redux/slices/cartSlice';
 import { FaCartShopping } from 'react-icons/fa6';
+import { Button } from '@/components/ui/button';
 
 
 const ThankYouPage = () => {
@@ -43,7 +44,7 @@ const ThankYouPage = () => {
             </div>
     
             <Link href="/">
-              <button className="bg-black text-white py-2  hover:bg-gray-700 px-3">Continue Shopping</button>
+              <Button className="bg-black text-white py-2  hover:bg-gray-700 px-3">Continue Shopping</Button>
             </Link>
           </div>
         </div>

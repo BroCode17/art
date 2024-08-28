@@ -94,8 +94,6 @@ export function RadioButton({
   id,
   image,
   size,
-  variant,
-  priceIndex
 }: ProductFromCartPageProps) {
 
 

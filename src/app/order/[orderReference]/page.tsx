@@ -217,7 +217,7 @@ const OrderDetailsPage = ({params: orderReference}: {params: {orderReference: an
                         orderItems.map((item: any) => {
                           return (
                             <OrderItem
-                              key={item.title}
+                              key={`${item.title}  ${item.size}`}
                               title={`${item.title}  ${item.size}`}
                               price={item.price}
                               desc={item.description}
