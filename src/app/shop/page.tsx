@@ -46,7 +46,7 @@ const ShopPage = () => {
           <div className="grid xs:grid-cols-2 md:grid-cols-3 gap-5 mt-10 ">
             {isLoading && <SkeletonDemo />}
           {isError && <div>Server is down</div>}
-          {filteredProducts.length === 0 && <div className="text-2xl">No Available Product</div>}
+          {!isLoading && filteredProducts.length === 0 && <div className="text-2xl">No Available Product</div>}
 
             {isSuccess &&
               filteredProducts.map((item:any, index) => {
