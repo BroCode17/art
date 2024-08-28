@@ -5,7 +5,6 @@ import {
   Source_Sans_Pro_Bold,
   Source_Sans_Pro_SemiBold,
 } from "@/local-fonts/local";
-import { leftPointsData, pointsData } from "../../../utils/data";
 import Points from "@/components/Points";
 import Image from "next/image";
 import HeadTitle from "@/components/HeadTitle";
