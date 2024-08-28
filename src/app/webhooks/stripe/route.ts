@@ -7,11 +7,11 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_WEBHOOK_SECRET as string);
 
-export const config= {
-  api: {
-    bodyParser: false
-  }
-}
+// export const config= {
+//   api: {
+//     bodyParser: false
+//   }
+// }
 
 export async function POST(req: NextRequest) {
   //console.log(process.env.STRIPE_WEBHOOK_SECRET)
