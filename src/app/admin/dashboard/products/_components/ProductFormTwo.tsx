@@ -4,7 +4,7 @@ import {
   useEditProductMutation,
   useGetAllProductQuery,
 } from "@/_redux/services/productApi";
-import { useToast } from "@/app/shop/_components/toast-context";
+import { useToast } from "@/app/(root)/shop/_components/toast-context";
 import ImageWithSkeleton from "@/components/_images/ImageWithSkeleton";
 
 // import { addProduct, updateProduct } from "@/app/admin/_actions/product";

@@ -1,5 +1,5 @@
 
-import GenericBanner from '@/app/gallery/_components/GenericBanner';
+import GenericBanner from '@/app/(root)/gallery/_components/GenericBanner';
 import Container from '@/components/Container';
 import HeadTitle from '@/components/HeadTitle';
 import React from 'react'

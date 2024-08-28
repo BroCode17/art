@@ -12,7 +12,7 @@ import { usePathname } from "next/navigation";
 import { useSelector } from "react-redux";
 
 import React, { FormEvent, useState } from "react";
-import { formatCurrency } from "../../../../../../utils/formatters";
+import { formatCurrency } from "../../../../../../../utils/formatters";
 type CheckoutFormProps = {
   product?: {};
   clientSecret: string;

@@ -9,11 +9,11 @@ import {
   Source_Sans_Pro_SemiBold,
 } from "@/local-fonts/local";
 import Points from "@/components/Points";
-import GenericBanner from "@/app/gallery/_components/GenericBanner";
+import GenericBanner from "@/app/(root)/gallery/_components/GenericBanner";
 import Container from "@/components/Container";
 import HeadTitle from "@/components/HeadTitle";
 import UserForm from "@/components/UserForm";
-import { leftPointsData, pointsData } from "../../../../utils/data";
+import { leftPointsData, pointsData } from "../../../../../utils/data";
 import ImageWithSkeleton from "@/components/_images/ImageWithSkeleton";
 
 const Render = ({

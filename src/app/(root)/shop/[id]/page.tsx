@@ -18,9 +18,9 @@ import { FaCirclePlus } from "react-icons/fa6";
 import { FaCircleMinus } from "react-icons/fa6";
 import { RadioButton } from "@/components/RadioButton";
 import { useSelector } from "react-redux";
-import GenericBanner from "@/app/gallery/_components/GenericBanner";
-import { decryptObjectClient } from "../../../../utils/encDecrypt";
-import { formatCurrency } from "../../../../utils/formatters";
+import GenericBanner from "@/app/(root)/gallery/_components/GenericBanner";
+import { decryptObjectClient } from "../../../../../utils/encDecrypt";
+import { formatCurrency } from "../../../../../utils/formatters";
 
 interface SelectType {
   value: "Small" | "Medium" | "Large";

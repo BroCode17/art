@@ -5,13 +5,13 @@ import HeadTitle from "@/components/HeadTitle";
 
 
 import React, { useEffect, useState } from "react";
-import { shopData } from "../../../utils/data";
+import { shopData } from "../../../../utils/data";
 import Card from "@/components/Card";
 
 import { Input } from "@/components/ui/input";
 import { Loader2, Search } from "lucide-react";
 import GenericBanner from "../gallery/_components/GenericBanner";
-import { formatCurrency, formatNumber } from "../../../utils/formatters";
+import { formatCurrency, formatNumber } from "../../../../utils/formatters";
 import { useGetAllProductQuery } from "@/_redux/services/productApi";
 import { SkeletonDemo } from "@/components/_images/SkeletonDemo";
 

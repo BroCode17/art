@@ -12,9 +12,9 @@ import { FormFiedType } from "@/components/UserForm";
 import { useSelector } from "react-redux";
 import { notFound, usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ITC_Font } from "@/local-fonts/local";
-import GenericBanner from "@/app/gallery/_components/GenericBanner";
+import GenericBanner from "@/app/(root)/gallery/_components/GenericBanner";
 import Cookies from 'js-cookie';
-import { formatCurrency } from "../../../../utils/formatters";
+import { formatCurrency } from "../../../../../utils/formatters";
 const formSchema = z.object({
   firstName: z.string().min(2, {
     message: "Username must be at least 2 characters.",

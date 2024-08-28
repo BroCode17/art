@@ -9,7 +9,7 @@ import {
   Form,
 } from "@/components/ui/form";
 import UserInput from "./UserInput";
-import { useToast } from "@/app/shop/_components/toast-context";
+import { useToast } from "@/app/(root)/shop/_components/toast-context";
 import { describe } from "node:test";
 import { useSendUserInquariesMutation } from "@/_redux/services/userApi";
 import { useState } from "react";

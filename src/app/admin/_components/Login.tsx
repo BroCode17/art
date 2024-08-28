@@ -110,7 +110,7 @@ export function LoginForm() {
           )}
         />
         <Button type="submit" className="bg-black">
-          Submit
+          Login
         </Button>
       </form>
     </Form>

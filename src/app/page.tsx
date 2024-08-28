@@ -4,6 +4,7 @@ import G from "@/components/_animations/swipper/G";
 import CustomSwiper from "@/components/_animations/swipper/Slide";
 
 import CarosalTwo from "@/components/CarosalTwo";
+import Footer from "@/components/Footer";
 import FrameAnArt from "@/components/FrameAnArt";
 import LetConnect from "@/components/LetConnect";
 import MyArtPieces from "@/components/MyArt";
@@ -36,6 +37,7 @@ export default function Home() {
       <section className="max-md:px-1">
         <LetConnect />
       </section>
+      <Footer />
     </main>
   );
 }

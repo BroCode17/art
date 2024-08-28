@@ -36,8 +36,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { formatCurrency } from "../../../../../../utils/formatters";
-import { useToast } from "@/app/shop/_components/toast-context";
+import { useToast } from "@/app/(root)/shop/_components/toast-context";
 import { useRouter } from "next/navigation";
+import { dateFormatter } from "../../../../../../utils/dateFormatter";
 
 const ShippingDetails = ({
   order,
@@ -166,7 +167,7 @@ const OrderStatusModal = ({ show, setShow, orderRef, actionType }: any) => {
         toast?.open("Order state can changed");
         setTrackingNumber("");
       }
-    } else {
+    } else if(shipState && shipState === "Shipped") {
       const res = await updateOrderTrackingId({
         ref: orderRef as string,
         shipState,
@@ -177,6 +178,7 @@ const OrderStatusModal = ({ show, setShow, orderRef, actionType }: any) => {
         toast?.open("Order can not be deleted");
       }
     }
+    setTrackingNumber("")
     refetch();
   };
 
@@ -232,6 +234,7 @@ const OrderStatusModal = ({ show, setShow, orderRef, actionType }: any) => {
           actionType === "DELETE" && "bg-destructive"
         }`}
         type="submit"
+        disabled = {(shipState === 'Confirmed' || actionType ==='DELETE') && trackingNumber.length === 0}
       >
         {isLoading || loadingForUpdateTrackId ? (
           <Loader2 className="animate-spin" />
@@ -275,13 +278,15 @@ const Order = ({ orders, isLoading, isSuccess, isError }: any) => {
 
   return (
     <div className="relative">
-      <Table>
+      <Table className="w-[800px] overflow-x-auto">
         <TableHeader>
           <TableRow>
             <TableHead>Reference</TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Price</TableHead>
             <TableHead>Status</TableHead>
+            <TableHead>Order Date</TableHead>
+            <TableHead>Last Updated</TableHead>
             <TableHead className="w-0">
               <span className="sr-only">Actions</span>
             </TableHead>
@@ -311,6 +316,9 @@ const Order = ({ orders, isLoading, isSuccess, isError }: any) => {
                   >
                     {order.orderStatus}
                   </TableCell>
+                  <TableCell className="text-sm">{dateFormatter(order.orderDate)}</TableCell>
+                  <TableCell>{dateFormatter(order.updatedAt)}</TableCell>
+                
                   <TableCell>
                     <DropdownMenu>
                       <DropdownMenuTrigger>
@@ -385,7 +393,7 @@ const OrderTable = () => {
     }
   }, [data, isSuccess]);
 
-  // console.log(orders);
+  console.log(orders);
 
   return (
     <>

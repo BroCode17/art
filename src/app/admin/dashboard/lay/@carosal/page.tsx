@@ -7,7 +7,7 @@ import {
   useUpdateImageMutation,
   useDeleteImageMutation,
 } from "@/_redux/services/imageApi";
-import { useToast } from "@/app/shop/_components/toast-context";
+import { useToast } from "@/app/(root)/shop/_components/toast-context";
 import { CldImage } from "next-cloudinary";
 import { Loader2 } from "lucide-react";
 

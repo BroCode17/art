@@ -19,7 +19,7 @@ import {
   Product,
   ProductFromCartPageProps,
 } from "@/_redux/slices/cartSlice";
-import { useToast } from "@/app/shop/_components/toast-context";
+import { useToast } from "@/app/(root)/shop/_components/toast-context";
 import { Button } from "./ui/button";
 
 
