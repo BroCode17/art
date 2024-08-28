@@ -37,25 +37,25 @@ export async function POST(req: NextRequest) {
     return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
   }
   // console.log('Stripe hook')
-  console.log(event.type === "payment_intent.succeeded");
+  console.log(event.type === "charge.succeeded");
   // console.log(event)
 
-  if (event.type === "payment_intent.succeeded") {
-  //   const charge = event.data.object;
-  //   const refrenceNumber = charge.metadata.orderReference;
-  //   const itemPurchased = JSON.parse(charge.metadata.itemPurchased);
-  //   const shippingInfo = JSON.parse(charge.metadata.shippinginfo);
-  //   const email = charge.billing_details.email;
-  //   const amount = charge.amount;
-    // Extracting charge information
-    const paymentIntent = event.data.object as Stripe.PaymentIntent;
-   // const charge = paymentIntent.charges.data[0];
-    const refrenceNumber = paymentIntent.metadata.orderReference;
-    const itemPurchased = JSON.parse(paymentIntent.metadata.itemPurchased);
-    const shippingInfo = JSON.parse(paymentIntent.metadata.shippinginfo);
-    const email = paymentIntent.receipt_email;
-    const amount = paymentIntent.amount_received;
-    console.log();
+  if (event.type === "charge.succeeded") {
+    const charge = event.data.object;
+    const refrenceNumber = charge.metadata.orderReference;
+    const itemPurchased = JSON.parse(charge.metadata.itemPurchased);
+    const shippingInfo = JSON.parse(charge.metadata.shippinginfo);
+    const email = charge.billing_details.email;
+    const amount = charge.amount;
+  //  Extracting charge information
+  //   const paymentIntent = event.data.object as Stripe.PaymentIntent;
+  //  // const charge = paymentIntent.charges.data[0];
+  //   const refrenceNumber = paymentIntent.metadata.orderReference;
+  //   const itemPurchased = JSON.parse(paymentIntent.metadata.itemPurchased);
+  //   const shippingInfo = JSON.parse(paymentIntent.metadata.shippinginfo);
+  //   const email = paymentIntent.receipt_email;
+  //   const amount = paymentIntent.amount_received;
+
     //create order
     const dbProduct: Array<{
       product: string;
