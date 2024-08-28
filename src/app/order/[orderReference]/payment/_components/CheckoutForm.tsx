@@ -22,6 +22,9 @@ type CheckoutFormProps = {
 const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_API_KEY as string
 );
+// const stripePromise = loadStripe(
+//   'pk_test_51PnsMDETijnv0Ht9zukZpV7IIcls2KkHr1hJQAUg1cPznKYQlHc1XM4luzAR2L6nSge1fYmbRotq2J7iLZEtdFZ900jITqAE4z'
+// );
 
 const CheckoutForm = ({ clientSecret }: CheckoutFormProps) => {
   return (
@@ -95,8 +98,8 @@ function Form() {
       .confirmPayment({
         elements,
         confirmParams: {
-          return_url: `${process.env.NEXT_PUBLIC_SERVER_URL  || 'https://amoarte.online'}/thankyou`,
-          //return_url: `http://localhost:3000/thankyou`,
+          //return_url: `${process.env.NEXT_PUBLIC_SERVER_URL  || 'https://amoarte.online/thankyou'}`,
+          return_url: `http://localhost:3000/thankyou`,
         },
       })
       .then(({ error }) => {

@@ -12,6 +12,7 @@ params: {
 }
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+// const stripe = new Stripe('sk_test_51PnsMDETijnv0Ht9TTn3uhS3FJkjuv1KtThXUYO7PiUXwU5djDxZztvd1Woiw7lEm8fQYfJeuZTMaf3XJCLcQ7Hg004kAvJrVO');
 
 //const PaymentPage = async ({ params}: CustomerInterface) => {
 const PaymentPage = async ({
@@ -26,7 +27,7 @@ const PaymentPage = async ({
   const item = JSON.parse(c.get("cartItems")?.value!);
 
   const orderNumber = c.get('orderNumber');
-  console.log(item.totalAmount)
+
   
   // const newId = params.orderReference
   // console.log(newId)
@@ -44,7 +45,7 @@ const PaymentPage = async ({
 
   return (
     <div className="min-h-dvh pb-10 w-full flex justify-center items-center">
-      <CheckoutForm clientSecret={paymentIntent.client_secret} id={1} />
+      <CheckoutForm clientSecret={paymentIntent.client_secret} />
     </div>
   );
 };

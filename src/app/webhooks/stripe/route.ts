@@ -6,6 +6,7 @@ import axios from "axios";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_WEBHOOK_SECRET as string);
+// const stripe = new Stripe('whsec_0f2ca547105738699b4ce0930c718d3f289020eef9c1cf5b70b37f23bead2ee8');
 
 // export const config= {
 //   api: {
@@ -14,28 +15,28 @@ const stripe = new Stripe(process.env.STRIPE_WEBHOOK_SECRET as string);
 // }
 
 export async function POST(req: NextRequest) {
-  //console.log(process.env.STRIPE_WEBHOOK_SECRET)
-  // const event = stripe.webhooks.constructEvent(
-  //   await req.text(),
-  //   req.headers.get("stripe-signature") as string,
-  //   process.env.STRIPE_WEBHOOK_SECRET as string
-  // );
+  console.log(process.env.STRIPE_WEBHOOK_SECRET)
+  const event = stripe.webhooks.constructEvent(
+    await req.text(),
+    req.headers.get("stripe-signature") as string,
+    process.env.STRIPE_WEBHOOK_SECRET as string
+  );
 
-  const rawBody = await req.text();
-  const sig = req.headers.get('stripe-signature') as string;
+  // const rawBody = await req.text();
+  // const sig = req.headers.get('stripe-signature') as string;
 
-  let event: Stripe.Event;
+  // let event: Stripe.Event;
 
-  try {
-    event = stripe.webhooks.constructEvent(
-      rawBody,
-      sig,
-      process.env.STRIPE_WEBHOOK_SECRET as string
-    );
-  } catch (err: any) {
-    console.error('Webhook signature verification failed:', err.message);
-    return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
-  }
+  // try {
+  //   event = stripe.webhooks.constructEvent(
+  //     rawBody,
+  //     sig,
+  //     process.env.STRIPE_WEBHOOK_SECRET as string
+  //   );
+  // } catch (err: any) {
+  //   console.error('Webhook signature verification failed:', err.message);
+  //   return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
+  // }
   // console.log('Stripe hook')
   console.log(event.type === "charge.succeeded");
   // console.log(event)
@@ -47,6 +48,7 @@ export async function POST(req: NextRequest) {
     const shippingInfo = JSON.parse(charge.metadata.shippinginfo);
     const email = charge.billing_details.email;
     const amount = charge.amount;
+    console.log(charge.billing_details)
   //  Extracting charge information
   //   const paymentIntent = event.data.object as Stripe.PaymentIntent;
   //  // const charge = paymentIntent.charges.data[0];
