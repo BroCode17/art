@@ -204,7 +204,7 @@ const OrderDetailsPage = ({params: orderReference}: {params: {orderReference: an
                       </div>
                     </div>
                   </div>
-                  <div className="md:w-[400px] border border-black p-10 flex flex-col items-center">
+                  <div className="w-full md:w-[400px] border border-black p-10 flex flex-col items-center">
                     <div className={`w-10/12 space-y-3`}>
                       <h1 className="text-xl font-semibold">Order Summary</h1>
                       <hr className=" h-[2px] bg-gray-300 rounded-sm"></hr>
