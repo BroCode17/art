@@ -23,7 +23,7 @@ const NotFound = () => {
                 <div className="contant_box_404">
                   <h3 className="h2">Look like you&apos;re lost</h3>
 
-                  <p>the page you are looking for not avaible!</p>
+                  <p>the page you are looking for is not avaible!</p>
 
                   {/* <a
                     href={`${
