@@ -2,12 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
 
 import Stripe from "stripe";
+import { decryptObjectClient } from "../../../../utils/encDecrypt";
 
 const stripe = new Stripe(process.env.STRIPE_WEBHOOK_SECRET as string);
 
 
 export async function POST(req: NextRequest) {
-  console.log(process.env.STRIPE_WEBHOOK_SECRET)
   let event: Stripe.Event
   
     try {
@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
     const amount = charge.amount;
 
     //create order
+ 
     const dbProduct: Array<{
       product: string;
       orderedQuantity: number;
@@ -52,7 +53,7 @@ export async function POST(req: NextRequest) {
       customerShippingInformation: shippingInfo,
       totalAmount: amount / 100,
     };
-    console.log(orderObject);
+  
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_NGROK_URL}/api/v1/orders/create-order`,

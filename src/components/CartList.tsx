@@ -73,7 +73,7 @@ const EachProductCard = ({
   itemSize
 }: EachProductCardProps) => {
   const dispatch = useDispatch();
-  console.log(itemSize)
+
   return (
     <li className="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300  flex flex-col relative">
       <div className="relative h-48 sm:h-44">
@@ -273,7 +273,7 @@ export default function CartModal() {
           </SheetDescription>
         </SheetHeader>
         <div className="min-h-[76%]">
-          <h2 className="text-xl font-bold mb-4"></h2>
+          <h2 className="text-md font-semibold text-sm mb-4 text-red-500 text-center">Sorry, cart can have at most 2 differen products at the moment</h2>
 
           {cartItems.length === 0 ? (
             <p>Your cart is empty.</p>

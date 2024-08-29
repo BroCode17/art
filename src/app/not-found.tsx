@@ -1,4 +1,5 @@
 "use client";
+import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
@@ -8,6 +9,7 @@ const NotFound = () => {
   const pathname = usePathname();
   const router = useRouter()
   return (
+    <>
     <div className="flex justify-center">
       <section className="page_404">
         <div className="container">
@@ -43,6 +45,8 @@ const NotFound = () => {
         </div>
       </section>
     </div>
+    <Footer />
+    </>
   );
 };
 

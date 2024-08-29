@@ -97,7 +97,7 @@ function Form() {
         elements,
         confirmParams: {
           return_url: `${process.env.NEXT_PUBLIC_SERVER_URL  || 'https://amoarte.online/thankyou'}`,
-          //return_url: `http://localhost:3000/thankyou`,
+         // return_url: `http://localhost:3000/thankyou`,
         },
       })
       .then(({ error }) => {

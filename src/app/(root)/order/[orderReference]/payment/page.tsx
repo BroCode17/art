@@ -3,6 +3,7 @@ import Stripe from "stripe";
 import CheckoutForm from "./_components/CheckoutForm";
 
 import { cookies } from "next/headers";
+import { encryptObjectClient } from "../../../../../../utils/encDecrypt";
 
 interface CustomerInterface{
 params: {
@@ -26,7 +27,6 @@ const PaymentPage = async ({
   const c = cookies();
   const item = JSON.parse(c.get("cartItems")?.value!);
 
-  const orderNumber = c.get('orderNumber');
 
   
   // const newId = params.orderReference

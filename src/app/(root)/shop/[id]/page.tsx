@@ -52,6 +52,7 @@ interface SelectType {
 // }
 
 const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
+  const cartItem = useSelector((state:any) => state.cart.products)
   const searchParams = useSearchParams();
   //Get the encrypted data
   const productInfo = searchParams.get("productInfo");
@@ -218,6 +219,7 @@ const ProductPage = ({ params: { id } }: { params: { id: string } }) => {
                       variant={variant}
                     />
                   </div>
+                  {cartItem.length >= 2 && <h1 className="text-center text-sm text-red-500 font-semibold">Sorry, cart can have at most two different items at the moment. Thank you.</h1>}
                 </div>
               </div>
             </div>

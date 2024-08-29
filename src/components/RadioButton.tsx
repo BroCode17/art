@@ -21,6 +21,7 @@ import {
 } from "@/_redux/slices/cartSlice";
 import { useToast } from "@/app/(root)/shop/_components/toast-context";
 import { Button } from "./ui/button";
+import { Label } from "@radix-ui/react-label";
 
 
 const FormSchema = z.object({
@@ -97,6 +98,7 @@ export function RadioButton({
 }: ProductFromCartPageProps) {
 
 
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -126,6 +128,7 @@ export function RadioButton({
   }
 
   return (
+    <>
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
         <FormField
@@ -166,18 +169,21 @@ export function RadioButton({
           <CheckoutBtn name="Add to Cart" size={size as any}/>
       </form>
     </Form>
+
+    </>
   );
 }
 
 export const CheckoutBtn = ({name, size}: {name: string, size: any}) => {
   const toast = useToast();
+  const cartItem = useSelector((state:any) => state.cart.products)
 
   return (
     <Button
       className="bg-black text-white text-xs py-3 mt-2 font-semibold w-full uppercase rounded-none"
       type="submit"
       onClick={() => toast?.open('Item Added Successfully')}
-      disabled={!size}
+      disabled={!size || cartItem.length >= 2}
     >
       {name}
     </Button>

@@ -316,7 +316,7 @@ const Order = ({ orders, isLoading, isSuccess, isError }: any) => {
                   >
                     {order.orderStatus}
                   </TableCell>
-                  <TableCell className="text-sm">{dateFormatter(order.orderDate)}</TableCell>
+                  <TableCell className="text-sm">{dateFormatter(order.createdAt)}</TableCell>
                   <TableCell>{dateFormatter(order.updatedAt)}</TableCell>
                 
                   <TableCell>
