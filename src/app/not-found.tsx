@@ -35,7 +35,7 @@ const NotFound = () => {
                   >
                     Go to Home
                   </a> */}
-                  <Button className="mt-3 rounded-md" onClick={() => router.back()}>
+                  <Button className="mt-3 rounded-md bg-black" onClick={() => router.back()}>
                     Go Back
                   </Button>
                 </div>
