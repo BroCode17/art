@@ -1,5 +1,6 @@
 "use client";
 
+import CountDown from "@/components/CountDown";
 import Footer from "@/components/Footer";
 
 export const dynamic = "force-dynamic";

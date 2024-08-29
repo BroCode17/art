@@ -9,6 +9,7 @@ import cartSlice from '../slices/cartSlice'
 import { orderApi } from "../services/ordersApi";
 import headerSlice from "../slices/headerSlice";
 import orderSlice from "../slices/orderSlice";
+import countDown from "../slices/countDown";
 import { imageApi } from "../services/imageApi";
 
 export const store = configureStore({
@@ -21,7 +22,8 @@ export const store = configureStore({
         product: productSlice,
         cart: cartSlice,
         header: headerSlice,
-        order: orderSlice
+        order: orderSlice,
+        count: countDown
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([productApi.middleware, userApi.middleware, orderApi.middleware, imageApi.middleware])
 })

@@ -30,7 +30,7 @@ const ShopPage = () => {
   p.name.toLowerCase().includes(searchQuery.toLowerCase()));
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen relative">
       <GenericBanner bannerImgUrl="HandCraft.png" bannerTitle="Shop" />
       <div className="flex justify-center md:px-4 lg:px-0">
         <Container className="bg-white mt-10">
@@ -45,8 +45,7 @@ const ShopPage = () => {
 
           <div className="grid xs:grid-cols-2 md:grid-cols-3 gap-5 mt-10 ">
             {isLoading && <SkeletonDemo />}
-          {isError && <div>Server is down</div>}
-          {!isLoading && filteredProducts.length === 0 && <div className="text-2xl">No Available Product</div>}
+            {!isLoading && filteredProducts.length === 0 && <div className="text-2xl text-center">No Available Product</div>}          
 
             {isSuccess &&
               filteredProducts.map((item:any, index) => {
@@ -68,6 +67,7 @@ const ShopPage = () => {
           </div>
         </Container>
       </div>
+      
     </div>
   );
 };

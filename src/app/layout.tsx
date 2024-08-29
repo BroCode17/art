@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import { ToastProvider } from "./(root)/shop/_components/toast";
 import CartModal, { ProductDetail } from "@/components/CartList";
+import CountDown from "@/components/CountDown";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,14 +26,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} flex flex-col justify-between relative min-h-screen custom-scrollbar`}
+        className={`${inter.className} flex flex-col justify-between relative  custom-scrollbar`}
         suppressHydrationWarning={true}
       >
         <ReduxProvider>
           <ToastProvider>
             <Header />
             <CartModal />
-            {children}
+           {children}
           </ToastProvider>
         </ReduxProvider>
       </body>

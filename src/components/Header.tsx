@@ -6,7 +6,6 @@ import { linkData } from "../../utils/data";
 import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import { FaHamburger } from "react-icons/fa";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowMobileNav } from "@/_redux/slices/headerSlice";
@@ -26,6 +25,7 @@ const MobileNavIcon = () => {
 
 export const MobileNav = () => {
   const show = useSelector((state: any) => state.header.showMobileNav);
+ 
   // if(!show) return
   const dispatch = useDispatch();
 
@@ -58,6 +58,7 @@ export const MobileNav = () => {
 
 const Header = () => {
   const container = useRef(null);
+  const showPage = useSelector((state: any) => state.count.showPage);
 
   useGSAP(
     () => {
@@ -78,13 +79,18 @@ const Header = () => {
     { scope: container }
   );
 
+
+  // if(!showPage){
+  //   return null
+  // }
+  
   return (
     <header
-      className="h-[81px] bg-black flex items-center justify-center sticky -top-1 z-50 "
+      className={` h-[81px] bg-black flex items-center justify-center sticky -top-1 z-50 `}
       ref={container}
       id="head-main"
     >
-      <div className=" text-white flex justify-between w-5/6 2xl:w-4/6 items-center leading-5">
+      <div className={`text-white flex justify-between w-5/6 2xl:w-4/6 items-center leading-5`}>
         <Logo />
         <div className={`max-lg:hidden  ${ITC_Font.className}`}>
           <ul

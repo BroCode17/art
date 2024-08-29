@@ -9,7 +9,7 @@ const NotFound = () => {
   const pathname = usePathname();
   const router = useRouter()
   return (
-    <>
+    <section className="mt-16 flex-col justify-between">
     <div className="flex justify-center">
       <section className="page_404">
         <div className="container">
@@ -46,7 +46,7 @@ const NotFound = () => {
       </section>
     </div>
     <Footer />
-    </>
+    </section>
   );
 };
 
