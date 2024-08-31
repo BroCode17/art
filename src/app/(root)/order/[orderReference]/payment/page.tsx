@@ -13,7 +13,7 @@ params: {
 }
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
-// const stripe = new Stripe('sk_test_51PnsMDETijnv0Ht9TTn3uhS3FJkjuv1KtThXUYO7PiUXwU5djDxZztvd1Woiw7lEm8fQYfJeuZTMaf3XJCLcQ7Hg004kAvJrVO');
+
 
 //const PaymentPage = async ({ params}: CustomerInterface) => {
 const PaymentPage = async ({
