@@ -29,7 +29,7 @@ const page = () => {
     <div className="min-h-dvh ">
       <GenericBanner
         bannerImgUrl="shop.png"
-        bannerTitle="Events/Exhibition"
+        bannerTitle="Project/Events"
       />
       <div className="flex  justify-center item-center mt-20 max-lg:p-4">
         <div className="space-y-6">
