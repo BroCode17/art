@@ -9,7 +9,7 @@ const stripe = new Stripe(process.env.STRIPE_WEBHOOK_SECRET as string);
 
 export async function POST(req: NextRequest) {
   let event: Stripe.Event
-  
+
     try {
       event = stripe.webhooks.constructEvent(
         await req.text(),
@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
       );
     } catch (err: any) {
       console.error('Webhook signature verification failed:', err.message);
-      return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
+    return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
     }
 
   if (event.type === "charge.succeeded") {
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
     const amount = charge.amount;
 
     //create order
- 
+
     const dbProduct: Array<{
       product: string;
       orderedQuantity: number;
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
       });
     });
 
-  
+
 
     const orderObject = {
       refrenceNumber,
@@ -52,8 +52,11 @@ export async function POST(req: NextRequest) {
       products: dbProduct,
       customerShippingInformation: shippingInfo,
       totalAmount: amount / 100,
+
     };
-  
+
+    const h = 1
+
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_NGROK_URL}/api/v1/orders/create-order`,

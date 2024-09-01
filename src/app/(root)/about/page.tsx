@@ -29,17 +29,17 @@ const AboutPage = () => {
               </h1>
               <div className="bg-[#3678F6] bg-opacity-[46%] sm:p-6 z-10 rounded-sm">
                 <h1 className={`font-bold ${ITC_Font.className} sm:text-xl sm:text-white`}>
-                  Amo-Mensah Amofah
+                  Amo-Mensah Amofa
                 </h1>
                 <p className="text-sm sm:text-white">
                   A self-taught artist based in Glastonbury, Connecticut
                 </p>
               </div>
             </div>
-          
+
           </div>
         </div>
-      </div> 
+      </div>
 
       <AboutMe />
     </div>
